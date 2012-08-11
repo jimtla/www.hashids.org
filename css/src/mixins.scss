@@ -1,0 +1,22 @@
+
+@mixin box-shadow($var) {
+	-moz-box-shadow: $var;
+	-webkit-box-shadow: $var;
+	box-shadow: $var;
+}
+
+@mixin border-radius($var: 5px) {
+	-moz-border-radius: $var;
+	-webkit-border-radius: $var;
+	border-radius: $var;
+}
+
+@mixin text-shadow($var: 1px 1px 0 #fff) {
+	text-shadow: $var;
+}
+
+@mixin opacity($var: 100) {
+	-moz-opacity: $var / 100;
+	-khtml-opacity: $var / 100;
+	opacity: $var / 100;
+}
