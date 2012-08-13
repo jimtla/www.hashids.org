@@ -1,0 +1,6 @@
+hashids.org loves these:
+ - CoffeeScript http://coffeescript.org/
+ - Sass http://sass-lang.com/
+ - Mustache https://github.com/janl/mustache.js/
+ - Google Code Prettify http://code.google.com/p/google-code-prettify/
+ - jQuery History https://github.com/balupton/jquery-history/
