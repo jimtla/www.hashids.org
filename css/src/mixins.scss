@@ -20,3 +20,9 @@
 	-khtml-opacity: $var / 100;
 	opacity: $var / 100;
 }
+
+@mixin background-gradient($start: #f2f2f2, $finish: #cecece) {
+	background: $start;
+	background: -webkit-gradient(linear, left top, left bottom, from($start), to($finish));
+	background: -moz-linear-gradient(top, $start, $finish);
+}
