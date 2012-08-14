@@ -23,23 +23,25 @@
 						output.append ', '
 					output.append argument
 		
-		$('.available a').live 'click', (e) ->
-			e.preventDefault()
+		$('.clickable').live 'click', (e) ->
 			
 			that = $ @
-			$('.available a').removeClass 'selected'
+			e.preventDefault()
+			
+			that.siblings().removeClass 'selected'
 			that.addClass 'selected'
 			
 			template = $('.template-' + that.attr 'rel').html()
 			data =
 				title: that.text()
 				github: that.attr 'href'
+				project: that.attr('href').split('/')[4]
 			
 			$('#playground').html Mustache.render template, data
 			prettyPrint()
 			
 			$('title').text data.title if app.changeTitle
-			History.pushState({}, data.title, "/" + that.attr('rel') + "/") if app.changeUrl
+			History.pushState({}, data.title, "/" + that.attr('rel') + "/") if History.enabled and app.changeUrl
 			
 			app.changeUrl = true
 			
@@ -58,5 +60,5 @@
 		
 		if not window.location.pathname.replace(/\//g, '')
 			app.changeTitle = false
-			$('.available a').first().click()
+			$('.clickable').first().click()
 		
