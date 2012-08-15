@@ -11,10 +11,6 @@
 	border-radius: $var;
 }
 
-@mixin text-shadow($var: 1px 1px 0 #fff) {
-	text-shadow: $var;
-}
-
 @mixin opacity($var: 100) {
 	-moz-opacity: $var / 100;
 	-khtml-opacity: $var / 100;

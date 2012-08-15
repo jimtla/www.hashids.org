@@ -22,7 +22,7 @@ html, body {
 #wrap {
   min-height: 100%; }
   #wrap #wrap-inner {
-    border-top: 5px solid #7cbf7f;
+    border-top: 5px solid #81bc85;
     overflow: auto;
     padding-bottom: 60px;
     text-align: center; }
@@ -32,22 +32,24 @@ html, body {
       margin: 80px 0 60px;
       font-size: 700%;
       letter-spacing: -0.04em;
-      text-shadow: 0px 5px 0px #49974d; }
+      text-shadow: 0 5px 0 #49974d; }
       #wrap #wrap-inner h1 a {
         color: #333; }
     #wrap #wrap-inner .description {
       color: #b4ebb7;
       font-size: 140%;
       margin: 0 auto;
+      padding: 0 10px;
       line-height: 1.1em;
       text-shadow: 0 1px 0 #4d9951; }
     #wrap #wrap-inner .available {
       position: relative;
       margin-top: 10px;
       font-size: 120%;
-      background: #62a966;
-      padding: 15px 0; }
+      background: #60ab64;
+      padding: 8px 15px; }
       #wrap #wrap-inner .available a {
+        line-height: 2em;
         margin-left: 1px;
         padding: 5px 6px; }
         #wrap #wrap-inner .available a.selected {
@@ -63,6 +65,7 @@ html, body {
 .split-50 {
   position: relative; }
   .split-50 > div {
+    position: relative;
     float: left;
     width: 50%;
     text-align: right; }
@@ -70,107 +73,75 @@ html, body {
       text-align: left; }
 
 a {
-  color: #1c6220;
+  color: #1C6220;
   text-decoration: none; }
   a:hover {
-    color: #214924; }
-
-#footer {
-  color: #333;
-  font-size: 90%;
-  position: relative;
-  margin-top: -60px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 60px;
-  clear: both;
-  width: 600px; }
-  #footer > div {
-    float: left;
-    width: 290px;
-    text-align: left;
-    padding-left: 5px; }
-    #footer > div:first-child {
-      text-align: right;
-      padding-right: 5px;
-      line-height: 1em; }
-    #footer > div > a {
-      font-size: 180%;
-      line-height: 1em; }
-      #footer > div > a span {
-        color: #3c8940; }
+    color: #244426; }
 
 #playground {
   width: 910px;
   margin: 10px auto 20px;
+  padding: 0 5%;
   text-align: left; }
   #playground .bg {
     font-family: Monaco, Consolas, "Lucida Console", monospace;
     margin: 5px 0 0;
     background: #73b977;
-    padding: 8px;
+    padding: 1%;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px; }
   #playground h2 {
     font-weight: normal;
     padding: 30px 0 5px;
-    color: #115414;
-    text-shadow: 0 1px 0 #5dc963; }
-  #playground .examples {
-    position: relative; }
-    #playground .examples > div {
-      position: relative;
-      float: left;
-      width: 450px;
-      padding-left: 5px; }
-      #playground .examples > div:first-child {
-        padding: 0 5px 0 0; }
-      #playground .examples > div pre {
-        font-family: Monaco, Consolas, "Lucida Console", monospace;
-        margin: 5px 0 0;
-        padding: 8px 8px 20px 8px;
-        font-size: 110%;
-        line-height: 1.5em;
-        background: #73b977;
-        border: none !important;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        min-height: 200px;
-        outline: none;
-        -moz-border-radius: 4px;
-        -webkit-border-radius: 4px;
-        border-radius: 4px; }
-        #playground .examples > div pre .str {
-          color: #034600; }
-        #playground .examples > div pre[contentEditable] {
-          cursor: text; }
-      #playground .examples > div #run {
-        position: absolute;
-        bottom: 7px;
-        right: 10px;
-        background: #60b265;
+    color: #3b6f3e;
+    text-shadow: 0 1px 0 #9ccb9f; }
+  #playground #examples #output {
+    text-align: left; }
+  #playground #examples > div {
+    width: 450px;
+    padding-left: 5px; }
+    #playground #examples > div:first-child {
+      padding: 0 5px 0 0; }
+    #playground #examples > div pre {
+      padding: 5px 10px 20px;
+      font-size: 110%;
+      line-height: 1.5em;
+      border: none !important;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      min-height: 200px;
+      outline: none; }
+      #playground #examples > div pre .str {
+        color: #034600; }
+      #playground #examples > div pre[contentEditable] {
+        cursor: text; }
+    #playground #examples > div #run {
+      position: absolute;
+      bottom: 7px;
+      right: 10px;
+      background: #60b265;
+      background: #8ad68e;
+      background: -webkit-gradient(linear, left top, left bottom, from(#8ad68e), to(#60b265));
+      background: -moz-linear-gradient(top, #8ad68e, #60b265);
+      border-color: #63a62f #63a62f #5b992b;
+      border-radius: 4px;
+      border-style: solid;
+      border-width: 1px;
+      box-shadow: 0 1px 0 0 #1b8120;
+      color: #fff;
+      font: bold 12px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+      padding: 6px 0 8px;
+      text-align: center;
+      text-shadow: 0 -1px 0 #1b8120;
+      width: 55px;
+      cursor: pointer; }
+      #playground #examples > div #run:active {
         background: #8ad68e;
-        background: -webkit-gradient(linear, left top, left bottom, from(#8ad68e), to(#60b265));
-        background: -moz-linear-gradient(top, #8ad68e, #60b265);
-        border-color: #63a62f #63a62f #5b992b;
-        border-radius: 4px;
-        border-style: solid;
-        border-width: 1px;
-        box-shadow: 0 1px 0 0 #1b8120;
-        color: #fff;
-        font: bold 12px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
-        padding: 6px 0 8px;
-        text-align: center;
-        text-shadow: 0 -1px 0 #1b8120;
-        width: 55px;
-        cursor: pointer; }
-        #playground .examples > div #run:active {
-          background: #8ad68e;
-          background: #60b265;
-          background: -webkit-gradient(linear, left top, left bottom, from(#60b265), to(#8ad68e));
-          background: -moz-linear-gradient(top, #60b265, #8ad68e);
-          box-shadow: 0 -1px 0 0 #1b8120; }
+        background: #60b265;
+        background: -webkit-gradient(linear, left top, left bottom, from(#60b265), to(#8ad68e));
+        background: -moz-linear-gradient(top, #60b265, #8ad68e);
+        box-shadow: 0 -1px 0 0 #1b8120; }
 
 .github {
   padding: 5px 0 5px 30px;
@@ -183,10 +154,55 @@ a {
   line-height: 24px; }
 
 .me {
-  padding: 5px 0 5px 35px;
-  background: url("/img/me.png") left center no-repeat;
+  padding: 5px 0 5px 45px;
+  background: url("/img/me.png") 10px center no-repeat;
   line-height: 24px; }
 
+#footer {
+  color: #333;
+  font-size: 90%;
+  margin: -60px auto 0;
+  height: 60px; }
+  #footer > div {
+    text-align: left; }
+    #footer > div:first-child {
+      text-align: right;
+      line-height: 1em; }
+    #footer > div > a {
+      font-size: 180%;
+      line-height: 1em; }
+      #footer > div > a span {
+        color: #3c8940; }
+
+/* smaller */
+@media screen and (max-width: 1000px) {
+  #playground {
+    width: 90% !important; }
+    #playground #examples > div {
+      float: none;
+      width: 100% !important;
+      padding: 0 !important; }
+    #playground #source {
+      width: 98% !important; }
+
+  #footer {
+    width: 100% !important; } }
+@media screen and (max-width: 320px) {
+  #wrap-inner h1 {
+    font-size: 500% !important;
+    margin: 40px 0 !important; }
+
+  #playground #source {
+    width: 98% !important; }
+    #playground #source > div {
+      float: none;
+      width: 100% !important;
+      text-align: left;
+      line-height: 2.8em;
+      overflow-x: hidden; }
+
+  .me {
+    font-size: 130% !important; } }
 /* clearfix */
 .clearfix:after {
   content: ".";

@@ -18,7 +18,7 @@ body {
 	font-weight: normal;
 	line-height: 18px;
 	color: #404040;
-	background: $background;
+	background: $green;
 }
 
 html, body {
@@ -29,7 +29,7 @@ html, body {
 	min-height: 100%;
 	
 	#wrap-inner {
-		border-top: 5px solid #7cbf7f;
+		border-top: 5px solid lighten($green, 7%);
 		overflow: auto;
 		padding-bottom: $footer-height;
 		text-align: center;
@@ -40,46 +40,41 @@ html, body {
 			margin: 80px 0 60px;
 			font-size: 700%;
 			letter-spacing: -0.04em;
-			@include text-shadow(0px 5px 0px #49974d);
-			
+			text-shadow: 0 5px 0 #49974d;
 			a {
 				color: #333;
 			}
-			
 		}
 		
 		.description {
-			color: #b4ebb7;
+			color: $description-green;
 			font-size: 140%;
 			margin: 0 auto;
+			padding: 0 10px;
 			line-height: 1.1em;
-			@include text-shadow(0 1px 0 #4D9951);
+			text-shadow: 0 1px 0 #4d9951;
 		}
 		
 		.available {
 			position: relative;
 			margin-top: 10px;
 			font-size: 120%;
-			background: #62a966;
-			padding: 15px 0;
-			
+			background: darken($green, 3%);
+			padding: 8px 15px;
 			a {
+				line-height: 2em;
 				margin-left: 1px;
 				padding: 5px 6px;
-				
 				&.selected {
 					background: #569e5a;
 					@include border-radius(4px);
 					color: #214924;
 					cursor: text;
 				}
-				
 				&:first-child {
 					margin-left: 5px;
 				}
-				
 			}
-			
 		}
 		
 	}
@@ -89,6 +84,7 @@ html, body {
 .split-50 {
 	position: relative;
 	& > div {
+		position: relative;
 		float: left;
 		width: 50%;
 		text-align: right;
@@ -99,107 +95,63 @@ html, body {
 }
 
 a {
-	color: #1c6220;
+	color: #1C6220;
 	text-decoration: none;
-	
 	&:hover {
-		color: #214924;
+		color: darken($green, 35%);
 	}
-	
-}
-
-#footer {
-	color: #333;
-	font-size: 90%;
-	position: relative;
-	margin-top: $footer-height * -1;
-	margin-left: auto;
-	margin-right: auto;
-	height: $footer-height;
-	clear: both;
-	width: 600px;
-	
-	& > div {
-		float: left;
-		width: 290px;
-		text-align: left;
-		padding-left: 5px;
-		
-		&:first-child {
-			text-align: right;
-			padding-right: 5px;
-			line-height: 1em;
-		}
-		
-		& > a {
-			font-size: 180%;
-			line-height: 1em;
-			
-			span {
-				color: #3c8940;
-			}
-			
-		}
-		
-	}
-	
 }
 
 #playground {
-	width: 910px;
+	width: $playground-width;
 	margin: 10px auto 20px;
+	padding: 0 5%;
 	text-align: left;
 	
 	.bg {
 		font-family: Monaco, Consolas, "Lucida Console", monospace;
 		margin: 5px 0 0;
-		background: #73b977;
-		padding: 8px;
+		background: $pre-bg;
+		padding: 1%;
 		@include border-radius(4px);
 	}
 	
 	h2 {
 		font-weight: normal;
 		padding: 30px 0 5px;
-		color: #115414;
-		text-shadow: 0 1px 0 #5dc963;
+		color: darken($green, 22%);
+		text-shadow: 0 1px 0 lighten($green, 15%);
 	}
 	
-	.examples {
-		position: relative;
+	#examples {
+		
+		#output {
+			text-align: left;
+		}
 		
 		& > div {
-			position: relative;
-			float: left;
-			width: 450px;
+			width: ($playground-width - 10px) / 2;
 			padding-left: 5px;
-		
+			
 			&:first-child {
 				padding: 0 5px 0 0;
 			}
 			
 			pre {
-				font-family: Monaco, Consolas, "Lucida Console", monospace;
-				margin: 5px 0 0;
-				padding: 8px 8px 20px 8px;
+				padding: 5px 10px 20px;
 				font-size: 110%;
 				line-height: 1.5em;
-				background: #73b977;
 				border: none !important;
 				white-space: pre-wrap;
 				word-wrap: break-word;
 				min-height: 200px;
 				outline: none;
-				@include border-radius(4px);
-			
 				.str {
 					color: #034600;
 				}
-				
 				&[contentEditable] {
 					cursor: text;
 				}
-				
 			}
 			
 			#run {
@@ -220,13 +172,11 @@ a {
 			    text-shadow: 0 -1px 0 #1b8120;
 			    width: 55px;
 				cursor: pointer;
-				
 				&:active {
 					background: #8ad68e;
 					@include background-gradient(#60b265, #8ad68e);
 				    box-shadow: 0 -1px 0 0 #1b8120;
 				}
-				
 			}
 			
 		}
@@ -248,9 +198,85 @@ a {
 }
 
 .me {
-	padding: 5px 0 5px 35px;
-	background: url("/img/me.png") left center no-repeat;
+	padding: 5px 0 5px 45px;
+	background: url("/img/me.png") 10px center no-repeat;
 	line-height: 24px;
+}
+
+#footer {
+	color: #333;
+	font-size: 90%;
+	margin: $footer-height * -1 auto 0;
+	height: $footer-height;
+	& > div {
+		text-align: left;
+		&:first-child {
+			text-align: right;
+			line-height: 1em;
+		}
+		& > a {
+			font-size: 180%;
+			line-height: 1em;
+			span {
+				color: #3c8940;
+			}
+		}
+	}
+}
+
+/* smaller */
+
+@media screen and (max-width: 1000px) {
+	
+	#playground {
+		width: 90% !important;
+		
+		#examples {
+			& > div {
+				float: none;
+				width: 100% !important;
+				padding: 0 !important;
+			}
+		}
+		
+		#source {
+			width: 98% !important;
+		}
+		
+	}
+	
+	#footer {
+		width: 100% !important;
+	}
+	
+}
+
+@media screen and (max-width: 320px) {
+	
+	#wrap-inner h1 {
+		font-size: 500% !important;
+		margin: 40px 0 !important;
+	}
+	
+	#playground {
+		
+		#source {
+			width: 98% !important;
+			& > div {
+				float: none;
+				width: 100% !important;
+				text-align: left;
+				line-height: 2.8em;
+				overflow-x: hidden;
+			}
+		}
+		
+	}
+	
+	.me {
+		font-size: 130% !important;
+	}
+	
 }
 
 /* clearfix */

@@ -4,10 +4,13 @@
 	app =
 		
 		changeUrl: false
-		changeTitle: true
+		changeTitle: false
+		retarded: $.browser.msie is true and parseInt($.browser.version) <= 9
 		
 		checkPath: ->
-			@select window.location.pathname.replace(/\//g, '') || 'javascript'
+			lang = window.location.pathname.replace(/\//g, '')
+			@changeTitle = true if lang
+			@select lang || 'javascript'
 		
 		select: (lang) ->
 			
@@ -20,7 +23,9 @@
 				project: that.attr('href').split('/')[4]
 			
 			$('#playground').html Mustache.render template, data
-			prettyPrint()
+			
+			if not @retarded
+				prettyPrint()
 			
 			$('title').text data.title if @changeTitle
 			History.pushState {}, data.title, "/#{lang}/" if @changeUrl
@@ -30,7 +35,6 @@
 	$ ->
 		
 		History = window.History
-		History.ok = $.browser.msie isnt true or parseInt($.browser.version) > 9
 		
 		if typeof console isnt "undefined"
 			window.console = log: ->
@@ -48,7 +52,7 @@
 			that = $ @
 			lang = that.attr 'id'
 			
-			if not History.ok
+			if app.retarded
 				url = lang
 				window.location = "/#{url}/"
 				return

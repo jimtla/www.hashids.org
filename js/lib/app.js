@@ -3,9 +3,15 @@ var app;
 
 app = {
   changeUrl: false,
-  changeTitle: true,
+  changeTitle: false,
+  retarded: $.browser.msie === true && parseInt($.browser.version) <= 9,
   checkPath: function() {
-    return this.select(window.location.pathname.replace(/\//g, '') || 'javascript');
+    var lang;
+    lang = window.location.pathname.replace(/\//g, '');
+    if (lang) {
+      this.changeTitle = true;
+    }
+    return this.select(lang || 'javascript');
   },
   select: function(lang) {
     var data, template, that;
@@ -17,7 +23,9 @@ app = {
       project: that.attr('href').split('/')[4]
     };
     $('#playground').html(Mustache.render(template, data));
-    prettyPrint();
+    if (!this.retarded) {
+      prettyPrint();
+    }
     if (this.changeTitle) {
       $('title').text(data.title);
     }
@@ -31,7 +39,6 @@ app = {
 $(function() {
   var History;
   History = window.History;
-  History.ok = $.browser.msie !== true || parseInt($.browser.version) > 9;
   if (typeof console !== "undefined") {
     window.console = {
       log: function() {
@@ -55,7 +62,7 @@ $(function() {
     e.preventDefault();
     that = $(this);
     lang = that.attr('id');
-    if (!History.ok) {
+    if (app.retarded) {
       url = lang;
       window.location = "/" + url + "/";
       return;
