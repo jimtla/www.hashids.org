@@ -5,18 +5,33 @@ app = {
   changeUrl: false,
   changeTitle: true,
   checkPath: function() {
-    var el, token;
-    token = window.location.pathname.replace(/\//g, '');
-    el = $('.available a[rel="' + token + '"]');
-    if (el) {
-      return el.click();
+    return this.select(window.location.pathname.replace(/\//g, '') || 'javascript');
+  },
+  select: function(lang) {
+    var data, template, that;
+    that = $('#' + lang);
+    that.addClass('selected').siblings().removeClass('selected');
+    template = $('.template-' + lang).html();
+    data = {
+      title: that.text(),
+      project: that.attr('href').split('/')[4]
+    };
+    $('#playground').html(Mustache.render(template, data));
+    prettyPrint();
+    if (this.changeTitle) {
+      $('title').text(data.title);
     }
+    if (this.changeUrl) {
+      History.pushState({}, data.title, "/" + lang + "/");
+    }
+    return this.changeUrl = true;
   }
 };
 
 $(function() {
   var History;
   History = window.History;
+  History.ok = $.browser.msie !== true || parseInt($.browser.version) > 9;
   if (typeof console !== "undefined") {
     window.console = {
       log: function() {
@@ -35,33 +50,23 @@ $(function() {
       }
     };
   }
-  $('.clickable').live('click', function(e) {
-    var data, template, that;
-    that = $(this);
+  $('.clickable').click(function(e) {
+    var lang, that, url;
     e.preventDefault();
-    that.siblings().removeClass('selected');
-    that.addClass('selected');
-    template = $('.template-' + that.attr('rel')).html();
-    data = {
-      title: that.text(),
-      github: that.attr('href'),
-      project: that.attr('href').split('/')[4]
-    };
-    $('#playground').html(Mustache.render(template, data));
-    prettyPrint();
-    if (app.changeTitle) {
-      $('title').text(data.title);
+    that = $(this);
+    lang = that.attr('id');
+    if (!History.ok) {
+      url = lang;
+      window.location = "/" + url + "/";
+      return;
     }
-    if (History.enabled && app.changeUrl) {
-      History.pushState({}, data.title, "/" + that.attr('rel') + "/");
-    }
-    return app.changeUrl = true;
+    return app.select(lang);
   });
   $('#run').live('click', function() {
     var code;
     try {
       code = $(this).prev().text();
-      if ($('.available a.selected').attr('rel') === 'coffeescript') {
+      if ($('.clickable.selected').attr('id') === 'coffeescript') {
         code = CoffeeScript.compile(code);
       }
       return eval(code);
@@ -69,12 +74,5 @@ $(function() {
       return $('#output').text('<error> ' + e);
     }
   });
-  app.checkPath();
-  History.Adapter.bind(window, 'statechange', function() {
-    return app.checkPath();
-  });
-  if (!window.location.pathname.replace(/\//g, '')) {
-    app.changeTitle = false;
-    return $('.clickable').first().click();
-  }
+  return app.checkPath();
 });

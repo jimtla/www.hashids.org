@@ -5,14 +5,32 @@
 		
 		changeUrl: false
 		changeTitle: true
-		checkPath: ->
-			token = window.location.pathname.replace(/\//g, '')
-			el = $('.available a[rel="'+token+'"]')
-			el.click() if el
 		
+		checkPath: ->
+			@select window.location.pathname.replace(/\//g, '') || 'javascript'
+		
+		select: (lang) ->
+			
+			that = $('#' + lang)
+			that.addClass('selected').siblings().removeClass 'selected'
+			
+			template = $('.template-' + lang).html()
+			data =
+				title: that.text()
+				project: that.attr('href').split('/')[4]
+			
+			$('#playground').html Mustache.render template, data
+			prettyPrint()
+			
+			$('title').text data.title if @changeTitle
+			History.pushState {}, data.title, "/#{lang}/" if @changeUrl
+			
+			@changeUrl = true
+			
 	$ ->
 		
 		History = window.History
+		History.ok = $.browser.msie isnt true or parseInt($.browser.version) > 9
 		
 		if typeof console isnt "undefined"
 			window.console = log: ->
@@ -23,42 +41,28 @@
 						output.append ', '
 					output.append argument
 		
-		$('.clickable').live 'click', (e) ->
+		$('.clickable').click (e) ->
 			
-			that = $ @
 			e.preventDefault()
 			
-			that.siblings().removeClass 'selected'
-			that.addClass 'selected'
+			that = $ @
+			lang = that.attr 'id'
 			
-			template = $('.template-' + that.attr 'rel').html()
-			data =
-				title: that.text()
-				github: that.attr 'href'
-				project: that.attr('href').split('/')[4]
+			if not History.ok
+				url = lang
+				window.location = "/#{url}/"
+				return
 			
-			$('#playground').html Mustache.render template, data
-			prettyPrint()
-			
-			$('title').text data.title if app.changeTitle
-			History.pushState({}, data.title, "/" + that.attr('rel') + "/") if History.enabled and app.changeUrl
-			
-			app.changeUrl = true
+			app.select lang
 			
 		$('#run').live 'click', ->
 			try
 				code = $(@).prev().text()
-				if $('.available a.selected').attr('rel') == 'coffeescript'
+				if $('.clickable.selected').attr('id') == 'coffeescript'
 					code = CoffeeScript.compile code
 				eval code
 			catch e
 				$('#output').text '<error> ' + e
 		
 		app.checkPath()
-		History.Adapter.bind window, 'statechange', ->
-			app.checkPath()
-		
-		if not window.location.pathname.replace(/\//g, '')
-			app.changeTitle = false
-			$('.clickable').first().click()
 		
