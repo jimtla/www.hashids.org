@@ -15,6 +15,10 @@
 		select: (lang) ->
 			
 			that = $('#' + lang)
+			
+			if that.hasClass 'selected'
+				return
+			
 			that.addClass('selected').siblings().removeClass 'selected'
 			
 			template = $('.template-' + lang).html()
@@ -53,8 +57,7 @@
 			lang = that.attr 'id'
 			
 			if app.retarded
-				url = lang
-				window.location = "/#{url}/"
+				window.location = "/#{lang}/"
 				return
 			
 			app.select lang
@@ -69,4 +72,7 @@
 				$('#output').text '<error> ' + e
 		
 		app.checkPath()
+		
+		History.Adapter.bind window, 'statechange', ->
+			app.checkPath()
 		

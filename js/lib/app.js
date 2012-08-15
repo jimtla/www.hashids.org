@@ -16,6 +16,9 @@ app = {
   select: function(lang) {
     var data, template, that;
     that = $('#' + lang);
+    if (that.hasClass('selected')) {
+      return;
+    }
     that.addClass('selected').siblings().removeClass('selected');
     template = $('.template-' + lang).html();
     data = {
@@ -58,13 +61,12 @@ $(function() {
     };
   }
   $('.clickable').click(function(e) {
-    var lang, that, url;
+    var lang, that;
     e.preventDefault();
     that = $(this);
     lang = that.attr('id');
     if (app.retarded) {
-      url = lang;
-      window.location = "/" + url + "/";
+      window.location = "/" + lang + "/";
       return;
     }
     return app.select(lang);
@@ -81,5 +83,8 @@ $(function() {
       return $('#output').text('<error> ' + e);
     }
   });
-  return app.checkPath();
+  app.checkPath();
+  return History.Adapter.bind(window, 'statechange', function() {
+    return app.checkPath();
+  });
 });
