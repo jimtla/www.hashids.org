@@ -1,6 +1,14 @@
 	
 	# coffee -o lib/ -cw src/
 	
+	Function.prototype.method = (name, func) ->
+		if not @prototype[name]
+			@prototype[name] = func
+			@
+	
+	String.method 'trim', ->
+		return this.replace /^\s+|\s+$/g, ''
+	
 	app =
 		
 		changeUrl: false
@@ -21,16 +29,20 @@
 			
 			that.addClass('selected').siblings().removeClass 'selected'
 			
-			template = $('.template-' + lang).html()
+			$input = $ "#template-lang-#{lang}-input"
+			$output = $ "#template-lang-#{lang}-output"
+			
+			template = $('#template-playground').html()
 			data =
 				title: that.text()
 				project: that.attr('href').split('/')[4]
+				input: $input.text().trim()
+				output: $output.text().trim()
+				run: not $output.length
 			
 			$('#playground').html Mustache.render template, data
 			
-			if not @retarded
-				prettyPrint()
-			
+			prettyPrint() if not @retarded
 			$('title').text data.title if @changeTitle
 			History.pushState {}, data.title, "/#{lang}/" if @changeUrl
 			
@@ -38,6 +50,7 @@
 			
 	$ ->
 		
+		#alert app.templates['javascript']
 		History = window.History
 		
 		if typeof console isnt "undefined"

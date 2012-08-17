@@ -60,108 +60,113 @@
 		</div>
 	</div>
 	
-	<script class="template-javascript" type="text/template">
-		<h2>{{title}}:</h2>
-		<div id="examples" class="split-50 clearfix">
-			<div>
-				<pre class="bg prettyprint" contentEditable="true">
+	<div class="hidden">
+		
+		<script id="template-lang-javascript-input" type="text/template">
 var hashes = new hashids("this is my salt"),
     hash = hashes.encode(1, 2, 3),
     numbers = hashes.decode(hash);
 
-$("#output").text(numbers + " => " + hash);</pre>
-				<button id="run">run</button>
-			</div>
-			<div>
-				<pre id="output" class="bg"></pre>
-			</div>
-		</div>
-		<h2>Installation &amp; source:</h2>
-		<div id="source" class="bg split-50 clearfix">
-			<div>
-				<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
-			</div>
-			<div>
-				<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
-			</div>
-		</div>
-	</script>
-	
-	<script class="template-coffeescript" type="text/template">
-		<h2>{{title}}:</h2>
-		<div id="examples" class="split-50 clearfix">
-			<div>
-				<pre class="bg prettyprint" contentEditable="true">
+$("#output").text(numbers + " => " + hash);
+		</script>
+		
+		<script id="template-lang-coffeescript-input" type="text/template">
 hashes = new hashids "this is my salt"
 hash = hashes.encode 1, 2, 3
 numbers = hashes.decode hash
 
-$("#output").text numbers + " => " + hash</pre>
-				<button id="run">run</button>
-			</div>
-			<div>
-				<pre id="output" class="bg"></pre>
-			</div>
-		</div>
-		<h2>Installation &amp; source:</h2>
-		<div id="source" class="bg split-50 clearfix">
-			<div>
-				<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
-			</div>
-			<div>
-				<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
-			</div>
-		</div>
-	</script>
-	
-	<script class="template-node-js" type="text/template">
-		<h2>{{title}}:</h2>
-		<div id="examples" class="split-50 clearfix">
-			<div>
-				<pre class="bg prettyprint" contentEditable="true">
+$("#output").text numbers + " => " + hash
+		</script>
+		
+		<script id="template-lang-node-js-input" type="text/template">
 var hashes = new hashids("this is my salt"),
     hash = hashes.encode(1, 2, 3),
     numbers = hashes.decode(hash);
 
-console.log(numbers + " => " + hash);</pre></pre>
-				<button id="run">run</button>
-			</div>
-			<div>
-				<pre id="output" class="bg"></pre>
-			</div>
-		</div>
-		<h2>Installation &amp; source:</h2>
-		<div id="source" class="bg split-50 clearfix">
-			<div>
-				<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
-			</div>
-			<div>
-				<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
-			</div>
-		</div>
-	</script>
-	
-	<script class="template-ruby" type="text/template">
-		<h2>{{title}}:</h2>
-		<div id="examples" class="split-50 clearfix">
-			<div>
-				<pre class="bg prettyprint">
+console.log(numbers + " => " + hash);
+		</script>
+		
+		<script id="template-lang-ruby-input" type="text/template">
 hashes = Hashids.new('this is my salt')
 hash = hashes.encode(1, 2, 3)
 numbers = hashes.decode(hash)
 
-puts numbers + " => " + hash</pre>
-			</div>
-			<div>
-				<pre id="output" class="bg">
+puts numbers + " => " + hash
+		</script>
+		
+		<script id="template-lang-ruby-output" type="text/template">
 1,2,3 => 6utsa
-				</pre>
+		</script>
+		
+		<script id="template-lang-php-input" type="text/template">
+$hashes = new hashids('this is my salt');
+$hash = $hashes->encode(1, 2, 3);
+$numbers = $hashes->decode($hash);
+
+var_dump($numbers, $hash);
+		</script>
+		
+		<script id="template-lang-php-output" type="text/template">
+array(3) {
+  [0]=>
+  int(1)
+  [1]=>
+  int(2)
+  [2]=>
+  int(3)
+}
+string(5) "6utsa"
+		</script>
+		
+		<script id="template-playground" type="text/template">
+			<h2>{{title}}:</h2>
+			<div id="examples" class="split-50 clearfix">
+				<div>
+					<pre class="bg prettyprint" contentEditable="true">{{input}}</pre>
+					{{#run}}<button id="run">run</button>{{/run}}
+				</div>
+				<div>
+					<pre id="output" class="bg">{{output}}</pre>
+				</div>
 			</div>
-		</div>
-		<h2>Installation &amp; source:</h2>
-		<div id="source" class="bg split-50 clearfix">
-			<div>
-				<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
+			<h2>Installation &amp; source:</h2>
+			<div id="source" class="bg split-50 clearfix">
+				<div>
+					<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
+				</div>
+				<div>
+					<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
+				</div>
+			</div>
+		</script>
+		
+	</div>
+	
+	<!-- ಠ_ಠ -->
+	
+	<script type="text/javascript" src="/js/lib/mustache.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery.history.js"></script>
+	<script type="text/javascript" src="/js/lib/prettify.js"></script>
+	<script type="text/javascript" src="/js/lib/app.js"></script>
+	<script type="text/javascript" src="/js/lib/hashids.js"></script>
+	<script type="text/javascript" src="/js/lib/coffee-script.js"></script>
+	
+	<script type="text/javascript">
+		
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-31950226-1']);
+		_gaq.push(['_trackPageview']);
+		
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+		
+	</script>
+	
+</body>
+</html></a>
 			</div>
 			<div>
 				<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
