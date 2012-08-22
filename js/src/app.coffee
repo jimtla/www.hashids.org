@@ -1,5 +1,5 @@
 	
-	# coffee -o lib/ -cw src/
+	# coffee -bo lib/ -cw src/
 	
 	Function.prototype.method = (name, func) ->
 		if not @prototype[name]
