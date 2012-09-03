@@ -22,3 +22,10 @@
 	background: -webkit-gradient(linear, left top, left bottom, from($start), to($finish));
 	background: -moz-linear-gradient(top, $start, $finish);
 }
+
+@mixin rotate($deg) {
+	-moz-transform: rotate($deg);
+	-webkit-transform:rotate($deg);
+	-o-transform:rotate($deg);
+	-ms-transform:rotate($deg);
+}

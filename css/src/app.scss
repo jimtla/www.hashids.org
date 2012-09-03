@@ -60,7 +60,7 @@ html, body {
 			background: darken($green, 3%);
 			padding: 8px 15px;
 			@include border-radius(4px);
-			max-width: 500px;
+			max-width: 560px;
 			a {
 				line-height: 2em;
 				margin-left: 1px;
@@ -73,6 +73,26 @@ html, body {
 				}
 				&:first-child {
 					margin-left: 10px;
+				}
+			}
+			span {
+				position: relative;
+				line-height: 2em;
+				margin-left: 1px;
+				padding: 5px 6px;
+				color: lighten(#1C6220, 5%);
+				& > span {
+					@include rotate(10deg);
+					background: none repeat scroll 0 0 #8E1010;
+					border-radius: 4px 4px 4px 4px;
+					color: #CCCCCC;
+					font-size: 70%;
+					left: 10px;
+					line-height: 1em;
+					padding: 1px 4px 3px;
+					position: absolute;
+					text-shadow: none;
+					top: -10px;
 				}
 			}
 		}

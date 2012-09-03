@@ -36,8 +36,9 @@
 				<a id="javascript" class="clickable" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>
 				<a id="coffeescript" class="clickable" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
 				<a id="node-js" class="clickable" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
-				<a id="ruby" class="clickable" href="https://github.com/ivanakimov/hashids.rb">Ruby</a>
 				<a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">PHP</a>
+				<span>Ruby <span>coming</span></span>
+				<span>C++ <span>coming</span></span>
 			</p>
 			
 			<ul id="about">
@@ -86,18 +87,6 @@ var hashes = new hashids("this is my salt"),
     numbers = hashes.decrypt(hash);
 
 console.log(hash + " => [" + numbers + "]");
-		</script>
-		
-		<script id="template-lang-ruby-input" type="text/template">
-hashes = Hashids.new('this is my salt')
-hash = hashes.encrypt(1, 2, 3)
-numbers = hashes.decrypt(hash)
-
-puts hash + " => " + numbers
-		</script>
-		
-		<script id="template-lang-ruby-output" type="text/template">
-eGfrS8 => 1,2,3
 		</script>
 		
 		<script id="template-lang-php-input" type="text/template">
