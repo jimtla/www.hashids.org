@@ -14,6 +14,8 @@
 		changeUrl: false
 		changeTitle: false
 		retarded: $.browser.msie is true and parseInt($.browser.version) <= 9
+		loop: [2300, 2000, 1500, 1000, 1000, 750, 750, 500, 300, 300, 300, 300, 300, 300, 300]
+		hashids: undefined
 		
 		checkPath: ->
 			lang = window.location.pathname.replace(/\//g, '')
@@ -48,9 +50,28 @@
 			
 			@changeUrl = true
 			
+		logo: (original = true) ->
+			
+			$logo = $ "#wrap-inner h1 a"
+			
+			if original
+				$logo.text "hashids"
+			else
+				hash = @hashids.encrypt Math.floor Math.random() * 1000
+				$logo.text hash
+			
+		loopLogo: (index = 0) ->
+			
+			if @loop[index]
+				@logo false
+				setTimeout `function() { app.loopLogo(++index) }`, @loop[index]
+			else
+				@logo true
+				setTimeout "app.loopLogo()", 30000
+			
 	$ ->
 		
-		#alert app.templates['javascript']
+		app.hashids = new hashids "this is my salt", 7
 		History = window.History
 		
 		if typeof console isnt "undefined"
@@ -88,4 +109,6 @@
 		
 		History.Adapter.bind window, 'statechange', ->
 			app.checkPath()
+		
+		setTimeout "app.loopLogo()", 20000
 		

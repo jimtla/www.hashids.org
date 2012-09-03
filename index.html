@@ -15,7 +15,7 @@
 	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	
-	<link rel="icon" type="image/png" href="/img/favicon.16.png" />
+	<link rel="icon" type="image/png" href="/img/favicon.16.png?1" />
 	
 	<link href="/css/lib/app.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/css/lib/prettify.css" rel="stylesheet" type="text/css" media="screen" />
@@ -31,12 +31,7 @@
 			
 			<h1><a href="/">hashids</a></h1>
 			
-			<p class="description">
-				Generate unique decryptable hashes from one or many ids --<br/>
-				use them in URL shortening, tracking stuff, or making pages private.
-			</p>
-			
-			<p class="description available">
+			<p class="available">
 				Available for
 				<a id="javascript" class="clickable" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>
 				<a id="coffeescript" class="clickable" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
@@ -44,6 +39,12 @@
 				<a id="ruby" class="clickable" href="https://github.com/ivanakimov/hashids.rb">Ruby</a>
 				<a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">PHP</a>
 			</p>
+			
+			<ul id="about">
+				<li><strong>hashids</strong> - generate unique decryptable hashes from numbers. Use hashids when you do not want to expose your database ids to the user.</li>
+				<li>Turn numbers like these: <code>3</code>, <code>5</code>, <code>7</code> into hashes like these: <code>U6dc</code>, <code>u87U</code> and <code>HMou</code>.</li>
+				<li>Use them in URL shortening, tracking stuff, or making pages private.</li>
+			</ul>
 			
 			<div id="playground"></div>
 			
@@ -53,10 +54,11 @@
 	<div id="footer" class="split-50 clearfix">
 		<div>
 			<p>hashids is under <a href="http://opensource.org/licenses/mit-license.php/">mit license</a></p>
-			<p>this website &copy; 2012</p>
+			<p>this intimidatingly green website &copy; 2012</p>
 		</div>
 		<div>
-			<a class="me" href="https://twitter.com/ivanakimov"><span>@</span>IvanAkimov</a>
+			<a href="https://twitter.com/IvanAkimov" class="twitter-follow-button" data-show-count="false">Follow @IvanAkimov</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 		</div>
 	</div>
 	
@@ -64,49 +66,50 @@
 		
 		<script id="template-lang-javascript-input" type="text/template">
 var hashes = new hashids("this is my salt"),
-    hash = hashes.encode(1, 2, 3),
-    numbers = hashes.decode(hash);
+    hash = hashes.encrypt(1, 2, 3),
+    numbers = hashes.decrypt(hash);
 
-$("#output").text(numbers + " => " + hash);
+$("#output").text(hash + " => [" + numbers + "]");
 		</script>
 		
 		<script id="template-lang-coffeescript-input" type="text/template">
 hashes = new hashids "this is my salt"
-hash = hashes.encode 1, 2, 3
-numbers = hashes.decode hash
+hash = hashes.encrypt 1, 2, 3
+numbers = hashes.decrypt hash
 
-$("#output").text numbers + " => " + hash
+$("#output").text hash + " => [" + numbers + "]"
 		</script>
 		
 		<script id="template-lang-node-js-input" type="text/template">
 var hashes = new hashids("this is my salt"),
-    hash = hashes.encode(1, 2, 3),
-    numbers = hashes.decode(hash);
+    hash = hashes.encrypt(1, 2, 3),
+    numbers = hashes.decrypt(hash);
 
-console.log(numbers + " => " + hash);
+console.log(hash + " => [" + numbers + "]");
 		</script>
 		
 		<script id="template-lang-ruby-input" type="text/template">
 hashes = Hashids.new('this is my salt')
-hash = hashes.encode(1, 2, 3)
-numbers = hashes.decode(hash)
+hash = hashes.encrypt(1, 2, 3)
+numbers = hashes.decrypt(hash)
 
-puts numbers + " => " + hash
+puts hash + " => " + numbers
 		</script>
 		
 		<script id="template-lang-ruby-output" type="text/template">
-1,2,3 => 6utsa
+eGfrS8 => 1,2,3
 		</script>
 		
 		<script id="template-lang-php-input" type="text/template">
 $hashes = new hashids('this is my salt');
-$hash = $hashes->encode(1, 2, 3);
-$numbers = $hashes->decode($hash);
+$hash = $hashes->encrypt(1, 2, 3);
+$numbers = $hashes->decrypt($hash);
 
-var_dump($numbers, $hash);
+var_dump($hash, $numbers);
 		</script>
 		
 		<script id="template-lang-php-output" type="text/template">
+string(5) "eGfrS8"
 array(3) {
   [0]=>
   int(1)
@@ -115,7 +118,6 @@ array(3) {
   [2]=>
   int(3)
 }
-string(5) "6utsa"
 		</script>
 		
 		<script id="template-playground" type="text/template">
@@ -129,13 +131,13 @@ string(5) "6utsa"
 					<pre id="output" class="bg">{{output}}</pre>
 				</div>
 			</div>
-			<h2>Installation &amp; source:</h2>
+			<h2>Documentation:</h2>
 			<div id="source" class="bg split-50 clearfix">
 				<div>
 					<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
 				</div>
 				<div>
-					<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
+					<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">download</a>
 				</div>
 			</div>
 		</script>
@@ -148,75 +150,8 @@ string(5) "6utsa"
 	<script type="text/javascript" src="/js/lib/jquery.history.js"></script>
 	<script type="text/javascript" src="/js/lib/prettify.js"></script>
 	<script type="text/javascript" src="/js/lib/app.js"></script>
-	<script type="text/javascript" src="/js/lib/hashids.js"></script>
+	<script type="text/javascript" src="/js/lib/hashids.min.js"></script>
 	<script type="text/javascript" src="/js/lib/coffee-script.js"></script>
-	
-	<script type="text/javascript">
-		
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-31950226-1']);
-		_gaq.push(['_trackPageview']);
-		
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-		
-	</script>
-	
-</body>
-</html></a>
-			</div>
-			<div>
-				<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
-			</div>
-		</div>
-	</script>
-	
-	<script class="template-php" type="text/template">
-		<h2>{{title}}:</h2>
-		<div id="examples" class="split-50 clearfix">
-			<div>
-				<pre class="bg prettyprint">
-$hashes = new hashids('this is my salt');
-$hash = $hashes->encode(1, 2, 3);
-$numbers = $hashes->decode($hash);
-
-var_dump($numbers, $hash);</pre>
-			</div>
-			<div>
-				<pre id="output" class="bg">
-array(3) {
-  [0]=>
-  int(1)
-  [1]=>
-  int(2)
-  [2]=>
-  int(3)
-}
-string(5) "6utsa"</pre>
-			</div>
-		</div>
-		<h2>Installation &amp; source:</h2>
-		<div id="source" class="bg split-50 clearfix">
-			<div>
-				<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
-			</div>
-			<div>
-				<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">zip</a>
-			</div>
-		</div>
-	</script>
-	
-	<!-- ಠ_ಠ -->
-	
-	<script type="text/javascript" src="/js/lib/hashids.js"></script>
-	<script type="text/javascript" src="/js/lib/prettify.js"></script>
-	<script type="text/javascript" src="/js/lib/mustache.js"></script>
-	<script type="text/javascript" src="/js/lib/coffee-script.js"></script>
-	<script type="text/javascript" src="/js/lib/jquery.history.js"></script>
-	<script type="text/javascript" src="/js/lib/app.js"></script>
 	
 	<script type="text/javascript">
 		

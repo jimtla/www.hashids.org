@@ -41,7 +41,7 @@ html, body {
 		h1 {
 			font-family: 'Leckerli One', cursive;
 			font-weight: normal;
-			margin: 80px 0 60px;
+			margin: 80px 0;
 			font-size: 700%;
 			letter-spacing: -0.04em;
 			text-shadow: 0 5px 0 #49974d;
@@ -50,21 +50,17 @@ html, body {
 			}
 		}
 		
-		.description {
-			color: $description-green;
-			font-size: 140%;
-			margin: 0 auto;
-			padding: 0 10px;
-			line-height: 1.1em;
-			text-shadow: 0 1px 0 #4d9951;
-		}
-		
 		.available {
+			color: $description-green;
+			text-shadow: 0 1px 0 #4d9951;
+			line-height: 1.1em;
 			position: relative;
-			margin-top: 10px;
+			margin: 0 auto;
 			font-size: 120%;
 			background: darken($green, 3%);
 			padding: 8px 15px;
+			@include border-radius(4px);
+			max-width: 500px;
 			a {
 				line-height: 2em;
 				margin-left: 1px;
@@ -76,7 +72,7 @@ html, body {
 					cursor: text;
 				}
 				&:first-child {
-					margin-left: 5px;
+					margin-left: 10px;
 				}
 			}
 		}
@@ -104,6 +100,35 @@ a {
 	&:hover {
 		color: darken($green, 35%);
 	}
+}
+
+#about {
+	position: relative;
+	width: $playground-width;
+	background: $pre-bg;
+	margin: 20px auto;
+	@include border-radius(4px);
+	text-align: left;
+	list-style-type: none;
+	
+	& > li {
+		font-size: 115%;
+		padding: 15px 10px 15px 55px;
+		background: url("/img/arrow.png") 15px center no-repeat;
+		
+		&:nth-child(even) {
+			background-color: darken($pre-bg, 3%);
+		}
+		
+	}
+	
+	code {
+		background: lighten($pre-bg, 5%);
+		border: 1px solid $green;
+		padding: 1px 5px;
+		@include border-radius(4px);
+	}
+	
 }
 
 #playground {
@@ -201,10 +226,12 @@ a {
 	line-height: 24px;
 }
 
-.me {
-	padding: 5px 0 5px 45px;
-	background: url("/img/me.png") 10px center no-repeat;
-	line-height: 24px;
+.twitter-follow-button {
+	margin-left: 10px;
+}
+
+#follow-button {
+	border: 1px solid #000 !important;
 }
 
 #footer {
@@ -213,13 +240,13 @@ a {
 	margin: $footer-height * -1 auto 0;
 	height: $footer-height;
 	& > div {
+		padding-top: 10px;
 		text-align: left;
 		&:first-child {
 			text-align: right;
 			line-height: 1em;
 		}
 		& > a {
-			font-size: 180%;
 			line-height: 1em;
 			span {
 				color: #3c8940;
@@ -231,6 +258,10 @@ a {
 /* smaller */
 
 @media screen and (max-width: 1000px) {
+	
+	#about {
+		width: 90% !important;
+	}
 	
 	#playground {
 		width: 90% !important;
@@ -260,6 +291,10 @@ a {
 	#wrap-inner h1 {
 		font-size: 500% !important;
 		margin: 40px 0 !important;
+	}
+	
+	#about {
+		width: 90% !important;
 	}
 	
 	#playground {

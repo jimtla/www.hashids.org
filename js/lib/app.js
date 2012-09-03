@@ -16,6 +16,8 @@ app = {
   changeUrl: false,
   changeTitle: false,
   retarded: $.browser.msie === true && parseInt($.browser.version) <= 9,
+  loop: [2300, 2000, 1500, 1000, 1000, 750, 750, 500, 300, 300, 300, 300, 300, 300, 300],
+  hashids: void 0,
   checkPath: function() {
     var lang;
     lang = window.location.pathname.replace(/\//g, '');
@@ -52,11 +54,37 @@ app = {
       History.pushState({}, data.title, "/" + lang + "/");
     }
     return this.changeUrl = true;
+  },
+  logo: function(original) {
+    var $logo, hash;
+    if (original == null) {
+      original = true;
+    }
+    $logo = $("#wrap-inner h1 a");
+    if (original) {
+      return $logo.text("hashids");
+    } else {
+      hash = this.hashids.encrypt(Math.floor(Math.random() * 1000));
+      return $logo.text(hash);
+    }
+  },
+  loopLogo: function(index) {
+    if (index == null) {
+      index = 0;
+    }
+    if (this.loop[index]) {
+      this.logo(false);
+      return setTimeout(function() { app.loopLogo(++index) }, this.loop[index]);
+    } else {
+      this.logo(true);
+      return setTimeout("app.loopLogo()", 30000);
+    }
   }
 };
 
 $(function() {
   var History;
+  app.hashids = new hashids("this is my salt", 7);
   History = window.History;
   if (typeof console !== "undefined") {
     window.console = {
@@ -100,7 +128,8 @@ $(function() {
     }
   });
   app.checkPath();
-  return History.Adapter.bind(window, 'statechange', function() {
+  History.Adapter.bind(window, 'statechange', function() {
     return app.checkPath();
   });
+  return setTimeout("app.loopLogo()", 20000);
 });
