@@ -37,6 +37,7 @@
 				<a id="coffeescript" class="clickable" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
 				<a id="node-js" class="clickable" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
 				<a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">PHP</a>
+				<a id="go" class="clickable" href="https://github.com/speps/go-hashids">Go</a>
 				<span>Ruby <span>coming</span></span>
 				<span>C++ <span>coming</span></span>
 			</p>
@@ -98,7 +99,7 @@ var_dump($hash, $numbers);
 		</script>
 		
 		<script id="template-lang-php-output" type="text/template">
-string(5) "eGfrS8"
+string(5) "eGtrS8"
 array(3) {
   [0]=>
   int(1)
@@ -107,6 +108,20 @@ array(3) {
   [2]=>
   int(3)
 }
+		</script>
+		
+		<script id="template-lang-go-input" type="text/template">
+h := hashids.New()
+h.Salt = "this is my salt"
+
+e := h.Encrypt([]int{1, 2, 3})
+d := h.Decrypt(e)
+
+fmt.Println(e, d)
+		</script>
+		
+		<script id="template-lang-go-output" type="text/template">
+eGtrS8 [1 2 3]
 		</script>
 		
 		<script id="template-playground" type="text/template">
@@ -123,10 +138,10 @@ array(3) {
 			<h2>Documentation:</h2>
 			<div id="source" class="bg split-50 clearfix">
 				<div>
-					<a class="github" href="https://github.com/ivanakimov/{{project}}">https://github.com/ivanakimov/{{project}}</a>
+					<a class="github" href="{{github}}">{{github}}</a>
 				</div>
 				<div>
-					<a class="zip" href="https://github.com/ivanakimov/{{project}}/zipball/master">download</a>
+					<a class="zip" href="{{github}}/zipball/master">download</a>
 				</div>
 			</div>
 		</script>

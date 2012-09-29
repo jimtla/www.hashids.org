@@ -37,7 +37,7 @@
 			template = $('#template-playground').html()
 			data =
 				title: that.text()
-				project: that.attr('href').split('/')[4]
+				github: that.attr('href')
 				input: $input.text().trim()
 				output: $output.text().trim()
 				run: not $output.length
@@ -67,7 +67,7 @@
 				setTimeout `function() { app.loopLogo(++index) }`, @loop[index]
 			else
 				@logo true
-				setTimeout "app.loopLogo()", 30000
+				setTimeout "app.loopLogo()", 40000
 			
 	$ ->
 		

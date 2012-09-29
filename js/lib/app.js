@@ -38,7 +38,7 @@ app = {
     template = $('#template-playground').html();
     data = {
       title: that.text(),
-      project: that.attr('href').split('/')[4],
+      github: that.attr('href'),
       input: $input.text().trim(),
       output: $output.text().trim(),
       run: !$output.length
@@ -77,7 +77,7 @@ app = {
       return setTimeout(function() { app.loopLogo(++index) }, this.loop[index]);
     } else {
       this.logo(true);
-      return setTimeout("app.loopLogo()", 30000);
+      return setTimeout("app.loopLogo()", 40000);
     }
   }
 };
