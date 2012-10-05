@@ -71,7 +71,7 @@
 			
 	$ ->
 		
-		app.hashids = new hashids "this is my salt", 7
+		app.hashids = new Hashids "this is my salt", 7
 		History = window.History
 		
 		if typeof console isnt "undefined"

@@ -84,7 +84,7 @@ app = {
 
 $(function() {
   var History;
-  app.hashids = new hashids("this is my salt", 7);
+  app.hashids = new Hashids("this is my salt", 7);
   History = window.History;
   if (typeof console !== "undefined") {
     window.console = {

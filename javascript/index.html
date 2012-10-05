@@ -67,17 +67,17 @@
 	<div class="hidden">
 		
 		<script id="template-lang-javascript-input" type="text/template">
-var hashes = new hashids("this is my salt"),
-    hash = hashes.encrypt(1, 2, 3),
-    numbers = hashes.decrypt(hash);
+var hashids = new Hashids("this is my salt"),
+    hash = hashids.encrypt(1, 2, 3),
+    numbers = hashids.decrypt(hash);
 
 $("#output").text(hash + " => [" + numbers + "]");
 		</script>
 		
 		<script id="template-lang-coffeescript-input" type="text/template">
-hashes = new hashids "this is my salt"
-hash = hashes.encrypt 1, 2, 3
-numbers = hashes.decrypt hash
+hashids = new Hashids "this is my salt"
+hash = hashids.encrypt 1, 2, 3
+numbers = hashids.decrypt hash
 
 $("#output").text hash + " => [" + numbers + "]"
 		</script>
