@@ -38,7 +38,7 @@
 				<a id="node-js" class="clickable" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
 				<a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">PHP</a>
 				<a id="go" class="clickable" href="https://github.com/speps/go-hashids">Go</a>
-				<span>Ruby <span>coming</span></span>
+				<a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">Ruby</a>
 				<span>C++ <span>coming</span></span>
 			</p>
 			
@@ -122,6 +122,21 @@ fmt.Println(e, d)
 		
 		<script id="template-lang-go-output" type="text/template">
 eGtrS8 [1 2 3]
+		</script>
+		
+		<script id="template-lang-ruby-input" type="text/template">
+hashids = Hashids.new "this is my salt"
+hash = hashids.encrypt 1, 2, 3
+numbers = hashids.decrypt hash
+
+puts hash, numbers
+		</script>
+		
+		<script id="template-lang-ruby-output" type="text/template">
+eGtrS8
+1
+2
+3
 		</script>
 		
 		<script id="template-playground" type="text/template">
