@@ -256,7 +256,7 @@ a {
 
 #footer {
 	color: #333;
-	font-size: 90%;
+	font-size: 100%;
 	margin: $footer-height * -1 auto 0;
 	height: $footer-height;
 	& > div {
@@ -264,10 +264,8 @@ a {
 		text-align: left;
 		&:first-child {
 			text-align: right;
-			line-height: 1em;
 		}
 		& > a {
-			line-height: 1em;
 			span {
 				color: #3c8940;
 			}
@@ -336,6 +334,12 @@ a {
 		font-size: 130% !important;
 	}
 	
+}
+
+ul.contrib {
+	font-size: 90%;
+	list-style-type: none;
+	margin-left: 10px;
 }
 
 /* clearfix */

@@ -209,19 +209,16 @@ a {
 
 #footer {
   color: #333;
-  font-size: 90%;
+  font-size: 100%;
   margin: -70px auto 0;
   height: 70px; }
   #footer > div {
     padding-top: 10px;
     text-align: left; }
     #footer > div:first-child {
-      text-align: right;
-      line-height: 1em; }
-    #footer > div > a {
-      line-height: 1em; }
-      #footer > div > a span {
-        color: #3c8940; }
+      text-align: right; }
+    #footer > div > a span {
+      color: #3c8940; }
 
 /* smaller */
 @media screen and (max-width: 1000px) {
@@ -258,6 +255,11 @@ a {
 
   .me {
     font-size: 130% !important; } }
+ul.contrib {
+  font-size: 90%;
+  list-style-type: none;
+  margin-left: 10px; }
+
 /* clearfix */
 .clearfix:after {
   content: ".";
