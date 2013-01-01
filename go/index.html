@@ -39,16 +39,22 @@
 				<a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">PHP</a>
 				<a id="go" class="clickable" href="https://github.com/speps/go-hashids">Go</a>
 				<a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">Ruby</a>
+				<a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.NET</a>
 				<span>C++ <span>coming</span></span>
 			</p>
 			
 			<ul id="about">
-				<li><strong>hashids</strong> - generate unique decryptable hashes from numbers. Use hashids when you do not want to expose your database ids to the user.</li>
+				<li><strong>hashids</strong> - Generate hashes from numbers, like YouTube or Bitly. Use hashids when you do not want to expose your database ids to the user.</li>
 				<li>Turn numbers like these: <code>3</code>, <code>5</code>, <code>7</code> into hashes like these: <code>U6dc</code>, <code>u87U</code> and <code>HMou</code>.</li>
 				<li>Use them in URL shortening, tracking stuff, or making pages private.</li>
 			</ul>
 			
 			<div id="playground"></div>
+			
+			<div id="do-you-know">
+				<p>Do you know <strong>Python</strong>, <strong>Java</strong>, <strong>Perl</strong>, <strong>C</strong>, <strong>Objective-C</strong> or something else?</p>
+				<p>Help us port it over, it's only ~300 lines. Message me <a href="https://twitter.com/ivanakimov">@IvanAkimov</a></p>
+			</div>
 			
 		</div>
 	</div>
@@ -64,6 +70,7 @@
 				<li><a href="https://twitter.com/ivanakimov">@ivanakimov</a> - <a id="javascript" class="clickable" href="https://github.com/ivanakimov/hashids.js">javascript</a>, <a id="coffeescript" class="clickable" href="https://github.com/ivanakimov/hashids.coffee">coffeescript</a>, <a id="node-js" class="clickable" href="https://github.com/ivanakimov/hashids.node.js">node.js</a>, <a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">php</a></li>
 				<li><a href="https://twitter.com/remigillig">@remigillig</a> - <a id="go" class="clickable" href="https://github.com/speps/go-hashids">go</a></li>
 				<li><a href="https://twitter.com/peterhellberg">@peterhellberg</a> - <a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">ruby</a></li>
+				<li><a href="https://twitter.com/ullmark">@ullmark</a> - <a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.net</a></li>
 			</ul>
 		</div>
 	</div>
@@ -141,6 +148,20 @@ eGtrS8
 1
 2
 3
+		</script>
+		
+		<script id="template-lang-net-input" type="text/template">
+var hashids = new Hashids("this is my salt");
+var hash = hashids.Encrypt(1, 2, 3);
+var numbers = hashids.Decrypt(hash);
+
+Console.WriteLine(hash);
+Console.WriteLine(string.Join(", ", numbers));
+		</script>
+		
+		<script id="template-lang-net-output" type="text/template">
+eGtrS8
+1, 2, 3
 		</script>
 		
 		<script id="template-playground" type="text/template">

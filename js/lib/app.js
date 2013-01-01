@@ -16,7 +16,7 @@ app = {
   changeUrl: false,
   changeTitle: false,
   retarded: $.browser.msie === true && parseInt($.browser.version) <= 9,
-  loop: [2300, 2000, 1500, 1000, 1000, 750, 750, 500, 300, 300, 300, 300, 300, 300, 300],
+  loop: [2000, 1500, 1000, 1000, 750, 750, 500, 300, 300, 300, 300, 200, 150, 130, 120, 110, 100],
   hashids: void 0,
   checkPath: function() {
     var lang;

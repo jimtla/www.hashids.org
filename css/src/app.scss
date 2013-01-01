@@ -60,7 +60,7 @@ html, body {
 			background: darken($green, 3%);
 			padding: 8px 15px;
 			@include border-radius(4px);
-			max-width: 560px;
+			max-width: 680px;
 			a {
 				line-height: 2em;
 				margin-left: 1px;
@@ -232,6 +232,21 @@ a {
 		
 	}
 	
+}
+
+#do-you-know {
+	margin: 60px 20px 20px;
+	font-size: 100%;
+	color: darken($green, 30%);
+	text-shadow: 0 1px 0 lighten(#73b977, 10%);
+	p:first-child {
+		font-size: 140%;
+		color: #0D6317;
+		letter-spacing: -0.1em;
+	}
+	strong {
+		color: darken($green, 35%);
+	}
 }
 
 .github {
