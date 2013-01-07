@@ -40,6 +40,7 @@
 				<a id="go" class="clickable" href="https://github.com/speps/go-hashids">Go</a>
 				<a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">Ruby</a>
 				<a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.NET</a>
+				<a id="python" class="clickable" href="https://github.com/ericmartel/hashids.py">Python</a>
 				<span>C++ <span>coming</span></span>
 			</p>
 			
@@ -71,6 +72,7 @@
 				<li><a href="https://twitter.com/remigillig">@remigillig</a> - <a id="go" class="clickable" href="https://github.com/speps/go-hashids">go</a></li>
 				<li><a href="https://twitter.com/peterhellberg">@peterhellberg</a> - <a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">ruby</a></li>
 				<li><a href="https://twitter.com/ullmark">@ullmark</a> - <a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.net</a></li>
+				<li><a href="https://twitter.com/emartelai">@emartelai</a> - <a id="python" class="clickable" href="https://github.com/ericmartel/hashids.py">python</a></li>
 			</ul>
 		</div>
 	</div>
@@ -162,6 +164,22 @@ Console.WriteLine(string.Join(", ", numbers));
 		<script id="template-lang-net-output" type="text/template">
 eGtrS8
 1, 2, 3
+		</script>
+		
+		<script id="template-lang-python-input" type="text/template">
+from hashids import hashids;
+
+hashids_lib = hashids("this is my salt")
+hash = hashids_lib.encrypt(1, 2, 3)
+numbers = hashids_lib.decrypt(hash)
+
+print(hash)
+print(numbers)
+		</script>
+		
+		<script id="template-lang-python-output" type="text/template">
+eGtrS8
+[1, 2, 3]
 		</script>
 		
 		<script id="template-playground" type="text/template">
