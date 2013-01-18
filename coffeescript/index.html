@@ -41,6 +41,7 @@
 				<a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">Ruby</a>
 				<a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.NET</a>
 				<a id="python" class="clickable" href="https://github.com/ericmartel/hashids.py">Python</a>
+				<a id="java" class="clickable" href="https://github.com/peet/hashids.java">Java</a>
 				<span>C++ <span>coming</span></span>
 			</p>
 			
@@ -53,7 +54,7 @@
 			<div id="playground"></div>
 			
 			<div id="do-you-know">
-				<p>Do you know <strong>Scala</strong>, <strong>Java</strong>, <strong>Erlang</strong>, <strong>Perl</strong>, <strong>C</strong>, <strong>Objective-C</strong> or something else?</p>
+				<p>Do you know <strong>Scala</strong>, <strong>Erlang</strong>, <strong>Scheme</strong>, <strong>Perl</strong>, <strong>C</strong>, <strong>Objective-C</strong> or something else?</p>
 				<p>Help us port it over, it's only ~300 lines. Message me <a href="https://twitter.com/ivanakimov">@IvanAkimov</a></p>
 			</div>
 			
@@ -73,6 +74,7 @@
 				<li><a href="https://twitter.com/peterhellberg">@peterhellberg</a> - <a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">ruby</a></li>
 				<li><a href="https://twitter.com/ullmark">@ullmark</a> - <a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.net</a></li>
 				<li><a href="https://twitter.com/emartelai">@emartelai</a> - <a id="python" class="clickable" href="https://github.com/ericmartel/hashids.py">python</a></li>
+				<li><a href="https://twitter.com/beadza">@beadza</a> - <a id="java" class="clickable" href="https://github.com/peet/hashids.java">java</a></li>
 			</ul>
 		</div>
 	</div>
@@ -178,6 +180,20 @@ print(numbers)
 		</script>
 		
 		<script id="template-lang-python-output" type="text/template">
+eGtrS8
+[1, 2, 3]
+		</script>
+		
+		<script id="template-lang-java-input" type="text/template">
+Hashids hashids = new Hashids("this is my salt");
+String hash = hashids.encrypt(1, 2, 3);
+long[] numbers = hashids.decrypt(hash);
+
+System.out.println(hash);
+System.out.println(numbers);
+		</script>
+		
+		<script id="template-lang-java-output" type="text/template">
 eGtrS8
 [1, 2, 3]
 		</script>
