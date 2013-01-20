@@ -37,7 +37,7 @@
 			template = $('#template-playground').html()
 			data =
 				title: that.text()
-				github: that.attr('href')
+				github: that.attr 'github'
 				input: $input.text().trim()
 				output: $output.text().trim()
 				run: not $output.length
@@ -74,14 +74,18 @@
 		app.hashids = new Hashids "this is my salt", 7
 		History = window.History
 		
-		if typeof console isnt "undefined"
-			window.console = log: ->
-				output = $('#output')
-				output.text ""
-				for argument in arguments
-					if output.text().length
-						output.append ', '
-					output.append argument
+		window.console2 = log: ->
+			output = $('#output')
+			output.text ""
+			for argument in arguments
+				if output.text().length
+					output.append ', '
+				output.append argument
+		
+		$('#read-more button').click (e) ->
+			
+			$('#initial').remove()
+			$('#documentation > *').css 'display', 'block'
 		
 		$('.clickable').click (e) ->
 			
@@ -98,7 +102,7 @@
 			
 		$('#run').live 'click', ->
 			try
-				code = $(@).prev().text()
+				code = $(@).prev().text().replace /console\.log/gi, 'console2.log'
 				if $('.clickable.selected').attr('id') == 'coffeescript'
 					code = CoffeeScript.compile code
 				eval code

@@ -38,7 +38,7 @@ app = {
     template = $('#template-playground').html();
     data = {
       title: that.text(),
-      github: that.attr('href'),
+      github: that.attr('github'),
       input: $input.text().trim(),
       output: $output.text().trim(),
       run: !$output.length
@@ -86,24 +86,26 @@ $(function() {
   var History;
   app.hashids = new Hashids("this is my salt", 7);
   History = window.History;
-  if (typeof console !== "undefined") {
-    window.console = {
-      log: function() {
-        var argument, output, _i, _len, _results;
-        output = $('#output');
-        output.text("");
-        _results = [];
-        for (_i = 0, _len = arguments.length; _i < _len; _i++) {
-          argument = arguments[_i];
-          if (output.text().length) {
-            output.append(', ');
-          }
-          _results.push(output.append(argument));
+  window.console2 = {
+    log: function() {
+      var argument, output, _i, _len, _results;
+      output = $('#output');
+      output.text("");
+      _results = [];
+      for (_i = 0, _len = arguments.length; _i < _len; _i++) {
+        argument = arguments[_i];
+        if (output.text().length) {
+          output.append(', ');
         }
-        return _results;
+        _results.push(output.append(argument));
       }
-    };
-  }
+      return _results;
+    }
+  };
+  $('#read-more button').click(function(e) {
+    $('#initial').remove();
+    return $('#documentation > *').css('display', 'block');
+  });
   $('.clickable').click(function(e) {
     var lang, that;
     e.preventDefault();
@@ -118,7 +120,7 @@ $(function() {
   $('#run').live('click', function() {
     var code;
     try {
-      code = $(this).prev().text();
+      code = $(this).prev().text().replace(/console\.log/gi, 'console2.log');
       if ($('.clickable.selected').attr('id') === 'coffeescript') {
         code = CoffeeScript.compile(code);
       }

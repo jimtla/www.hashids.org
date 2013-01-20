@@ -1,4 +1,4 @@
-hashids.org loves these:
+hashids.org is awesome'd with:
  - CoffeeScript http://coffeescript.org/
  - Sass http://sass-lang.com/
  - Mustache https://github.com/janl/mustache.js/

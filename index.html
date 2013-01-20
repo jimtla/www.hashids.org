@@ -5,7 +5,7 @@
 	<title>hashids - generate short unique hashes like youtube or bitly</title>
 	
 	<meta name="keywords" content="hashids, short hashes, youtube like hashes">
-	<meta name="description" content="Generate unique decryptable hashes from one or many ids - like YouTube or Bitly.">
+	<meta name="description" content="Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.">
 	<meta name="author" content="Ivan Akimov">
 	<meta name="robots" content="noarchive">
 	
@@ -15,10 +15,11 @@
 	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	
-	<link rel="icon" type="image/png" href="/img/favicon.16.png?1" />
+	<link rel="icon" type="image/png" href="/public/img/favicon.16.png?1" />
 	
-	<link href="/css/lib/app.css" rel="stylesheet" type="text/css" media="screen" />
-	<link href="/css/lib/prettify.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/public/css/lib/app.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="/public/css/lib/prettify.css" rel="stylesheet" type="text/css" media="screen" />
+	<!--[if lt IE 10]><link href="/public/css/lib/retarded.css" rel="stylesheet" type="text/css" media="screen" /><![endif]-->
 	<link href="//fonts.googleapis.com/css?family=Leckerli+One" rel="stylesheet" type="text/css" media="screen" />
 	
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -29,51 +30,175 @@
 	<div id="wrap">
 		<div id="wrap-inner">
 			
-			<h1><a href="/">hashids</a></h1>
-			
-			<p class="available">
-				Available for
-				<a id="javascript" class="clickable" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>
-				<a id="coffeescript" class="clickable" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
-				<a id="node-js" class="clickable" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
-				<a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">PHP</a>
-				<a id="go" class="clickable" href="https://github.com/speps/go-hashids">Go</a>
-				<a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">Ruby</a>
-				<a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.NET</a>
-				<a id="python" class="clickable" href="https://github.com/ericmartel/hashids.py">Python</a>
-				<span>C++ <span>coming</span></span>
+			<p id="languages">
+				<span>Available in</span>
+				<a id="javascript" class="clickable" href="/javascript/" github="https://github.com/ivanakimov/hashids.js">JavaScript</a>
+				<a id="ruby" class="clickable" href="/ruby/" github="https://github.com/peterhellberg/hashids.rb">Ruby</a>
+				<a id="python" class="clickable" href="/python/" github="https://github.com/ericmartel/hashids.py">Python</a>
+				<a id="java" class="clickable" href="/java/" github="https://github.com/peet/hashids.java">Java</a>
+				<a id="php" class="clickable" href="/php/" github="https://github.com/ivanakimov/hashids.php">PHP</a>
+				<a id="coffeescript" class="clickable" href="/coffeescript/" github="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
+				<a id="go" class="clickable" href="/go/" github="https://github.com/speps/go-hashids">Go</a>
+				<span>and for</span>
+				<a id="node-js" class="clickable" href="/node-js/" github="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
+				<a id="net" class="clickable" href="/net/" github="https://github.com/ullmark/hashids.net">.NET</a>
 			</p>
 			
-			<ul id="about">
-				<li><strong>hashids</strong> - Generate hashes from numbers, like YouTube or Bitly. Use hashids when you do not want to expose your database ids to the user.</li>
-				<li>Turn numbers like these: <code>3</code>, <code>5</code>, <code>7</code> into hashes like these: <code>U6dc</code>, <code>u87U</code> and <code>HMou</code>.</li>
-				<li>Use them in URL shortening, tracking stuff, or making pages private.</li>
-			</ul>
+			<h1><a href="/">hashids</a></h1>
 			
-			<div id="playground"></div>
-			
-			<div id="do-you-know">
-				<p>Do you know <strong>Scala</strong>, <strong>Java</strong>, <strong>Erlang</strong>, <strong>Perl</strong>, <strong>C</strong>, <strong>Objective-C</strong> or something else?</p>
-				<p>Help us port it over, it's only ~300 lines. Message me <a href="https://twitter.com/ivanakimov">@IvanAkimov</a></p>
+			<div id="page">
+				
+				<p id="about">Generate hashes <span>(like <a href="http://www.youtube.com/">YouTube</a> or <a href="https://bitly.com/">Bitly</a>)</span> from numbers to obfuscate your database IDs, or navigate to the right shard.</p>
+				<div id="playground"></div>
+				
+				<h2>Documentation:</h2>
+				<div id="documentation">
+					
+					<div id="initial">
+						<p>Hashids was designed for use in URL shortening, tracking stuff, validating accounts or making pages private (through abstraction). Instead of showing items as <code>1</code>, <code>2</code>, or <code>3</code>, you could show them as <code>b9iLXiAa</code>, <code>EATedTBy</code>, and <code>Aaco9cy5</code>. Hashes change depending on your salt value.</p>
+						<center><p id="read-more"><button>read more</button></p></center>
+					</div>
+					
+					<div>
+						<p>Hashids was designed for use in URL shortening, tracking stuff, validating accounts or making pages private (through abstraction). Instead of showing items as <code>1</code>, <code>2</code>, or <code>3</code>, you could show them as <code>b9iLXiAa</code>, <code>EATedTBy</code>, and <code>Aaco9cy5</code>. Hashes change depending on your salt value.</p>
+						<p>This algorithm tries to satisfy 4 requirements:</p>
+						<ol>
+							<li>Hashes must be unique and decryptable.</li>
+							<li>Must support encoding several numbers into one hash.</li>
+							<li><strong>Minimum</strong> hash length should be adjustable.</li>
+							<li>Formed hashes should avoid forming basic curse words.</li>
+						</ol>
+					</div>
+					<h2 class="sub">Parameters</h2>
+					<div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th></th>
+									<th>Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="l">1</td>
+									<td><strong>salt</strong></td>
+									<td class="l"><i>optional</i></td>
+									<td>Custom value that will make your hashes unique to your salt. If salt is changed, your hashes cannot be decrypted properly. Empty string by default.</td>
+								</tr>
+								<tr>
+									<td class="l">2</td>
+									<td><strong>min_hash_length</strong></td>
+									<td class="l"><i>optional</i></td>
+									<td>Minimum hash length to set for your hashes. Default is 0, meaning your hashes will be the shortest possible.</td>
+								</tr>
+								<tr>
+									<td class="l">3</td>
+									<td><strong>alphabet</strong></td>
+									<td class="l"><i>optional</i></td>
+									<td>Custom alphabet to set for your hashes. By default it's set to lower case letters, upper case letters, and numbers.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<h2 class="sub">Encrypting Examples</h2>
+					<div>
+						<pre class="light prettyprint">
+/* using custom salt value */
+
+var hashids = new Hashids("this is my salt");
+var hash1 = hashids.encrypt(1),                  /* LX */
+    hash2 = hashids.encrypt(2),                  /* ed */
+    hash3 = hashids.encrypt(3),                  /* o9 */
+    hash4 = hashids.encrypt(1, 2, 3),            /* eGtrS8 */
+    hash5 = hashids.encrypt(5, 5, 5, 5, 5),      /* 8bsBI4U5tj */
+    hash6 = hashids.encrypt(0, 0, 1);            /* nrUKF7 */
+
+/* setting minimum hash length */
+
+var hashidsMinLength = new Hashids("this is my salt", 16);
+var hash1 = hashidsMinLength.encrypt(1),         /* AA6Fb9iLXiAaBFB5 */
+    hash2 = hashidsMinLength.encrypt(1, 2, 3);   /* rIgkTeGtrS8cbRrI */
+
+/* setting custom alphabet */
+
+var hashidsCustom = new Hashids("this is my salt", 0, "ABCDEFGHIJKLMNOPQR");
+var hash1 = hashidsCustom.encrypt(1234),         /* ROFF */
+    hash2 = hashidsCustom.encrypt(5678);         /* ANDID */</pre>
+					</div>
+					<h2 class="sub">Decrypting Examples</h2>
+					<div>
+						<pre class="light prettyprint">
+/* using correct salt value */
+
+var hashids = new Hashids("this is my salt");
+var numbers1 = hashids.decrypt("eGtrS8"),        /* [1, 2, 3] */
+    numbers2 = hashids.decrypt("8bsBI4U5tj");    /* [5, 5, 5, 5, 5] */
+
+/* using incorrect salt value */
+
+var hashids = new Hashids("this is my pepper");
+var numbers1 = hashids.decrypt("eGtrS8"),        /* [] */
+    numbers2 = hashids.decrypt("8bsBI4U5tj");    /* [] */</pre>
+					</div>
+					<h2 class="sub">Uses in <acronym title="relational database management system">RDBMS</acronym></h2>
+					<div>
+						<p>If you are <strong>using a relational database</strong>, you could store hashes for each row, so you could select by them. But then you'd need to index them to speed up reads.</p>
+						<p>Since <strong>all primary keys are already indexed</strong>, you could instead encrypt/decrypt your primary keys on the fly and select by those.</p>
+						<p>
+							If you have a <strong>complex clustered system</strong>, you could encrypt several numbers at once. For example, your shard number and your primary key <code>2, 1337</code> and turn them into a single hash: <code>zKIa5e</code>.
+						</p>
+					</div>
+					<h2 class="sub">Curses! #$%@</h2>
+					<div>
+						<p>This code was written with the intent of placing created hashes in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.</p>
+						<p>Therefore, the algorithm tries to avoid generating most common English curse words. This is done by never placing the following letters next to each other:</p>
+						<p><code>c, C, s, S, f, F, h, H, u, U, i, I, t, T</code></p>
+					</div>
+					<h2 class="sub">Collisions</h2>
+					<div>
+						<p>There are no hash collisions if you use constructor parameters consistently. In other words, once you've started generating hashes, don't change your salt or the alphabet.</p>
+					</div>
+					<h2 class="sub">Decryptable ...hash?</h2>
+					<div>
+						<p>A true cryptographic hash cannot be decrypted. However, to keep things simple the word <strong>hash</strong> is used loosely to refer to the random set of characters that are generated. Take a deep breath, relax. It's only a name :]</p>
+					</div>
+					<h2 class="sub">License</h2>
+					<div>
+						<p>Hashids is under <a href="http://opensource.org/licenses/mit-license.php/">MIT License</a> &mdash; use it in commercial or open-source projects.<br/>Don't break the Internet.</p>
+					</div>
+					
+				</div>
+				
 			</div>
 			
 		</div>
 	</div>
 	
-	<div id="footer" class="split-50 clearfix">
-		<div>
-			<p>hashids is under <a href="http://opensource.org/licenses/mit-license.php/">mit license</a></p>
-			<p>this intimidatingly green website &copy; 2012</p>
+	<div id="footer">
+		<div id="names" class="split-50 clearfix">
+			<div id="do-you-know">
+				<p>
+					Do you know<br/>
+					<strong>Scala</strong>, <strong>Erlang</strong>, <strong>Perl</strong>, <strong>C</strong>, <strong>Scheme</strong><br/>
+					or something else?
+				</p>
+				<p class="port">Help us port it over, it's only ~300 lines.<br/>Message me <a href="https://twitter.com/ivanakimov">@IvanAkimov</a></p>
+			</div>
+			<div id="contributors">
+				<ul class="contrib">
+					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
+					<li>Rémi Gillig (<a href="https://twitter.com/remigillig">@remigillig</a>) &mdash; <a id="go" class="" href="https://github.com/speps/go-hashids">Go</a></li>
+					<li>Peter Hellberg (<a href="https://twitter.com/peterhellberg">@peterhellberg</a>) &mdash; <a id="ruby" class="" href="https://github.com/peterhellberg/hashids.rb">Ruby</a></li>
+					<li>Markus Ullmark (<a href="https://twitter.com/ullmark">@ullmark</a>) &mdash; <a id="net" class="" href="https://github.com/ullmark/hashids.net">.NET</a></li>
+					<li>Eric Martel (<a href="https://twitter.com/emartelai">@emartelai</a>) &mdash; <a id="python" class="" href="https://github.com/ericmartel/hashids.py">Python</a></li>
+					<li>Peet Goddard (<a href="https://twitter.com/beadza">@beadza</a>) &mdash; <a id="java" class="" href="https://github.com/peet/hashids.java">Java</a></li>
+				</ul>
+			</div>
 		</div>
-		<div>
-			<ul class="contrib">
-				<li><strong>contributors:</strong></li>
-				<li><a href="https://twitter.com/ivanakimov">@ivanakimov</a> - <a id="javascript" class="clickable" href="https://github.com/ivanakimov/hashids.js">javascript</a>, <a id="coffeescript" class="clickable" href="https://github.com/ivanakimov/hashids.coffee">coffeescript</a>, <a id="node-js" class="clickable" href="https://github.com/ivanakimov/hashids.node.js">node.js</a>, <a id="php" class="clickable" href="https://github.com/ivanakimov/hashids.php">php</a></li>
-				<li><a href="https://twitter.com/remigillig">@remigillig</a> - <a id="go" class="clickable" href="https://github.com/speps/go-hashids">go</a></li>
-				<li><a href="https://twitter.com/peterhellberg">@peterhellberg</a> - <a id="ruby" class="clickable" href="https://github.com/peterhellberg/hashids.rb">ruby</a></li>
-				<li><a href="https://twitter.com/ullmark">@ullmark</a> - <a id="net" class="clickable" href="https://github.com/ullmark/hashids.net">.net</a></li>
-				<li><a href="https://twitter.com/emartelai">@emartelai</a> - <a id="python" class="clickable" href="https://github.com/ericmartel/hashids.py">python</a></li>
-			</ul>
+		<div id="copyright">
+			hashids is under <a href="http://opensource.org/licenses/mit-license.php/">MIT License</a> &middot; this <a href="https://github.com/ivanakimov/www.hashids.org">intimidatingly green website</a> &copy; Ivan Akimov 2013
 		</div>
 	</div>
 	
@@ -84,7 +209,7 @@ var hashids = new Hashids("this is my salt"),
     hash = hashids.encrypt(1, 2, 3),
     numbers = hashids.decrypt(hash);
 
-$("#output").text(hash + " => [" + numbers + "]");
+$("#output").text(hash + " ~> " + numbers);
 		</script>
 		
 		<script id="template-lang-coffeescript-input" type="text/template">
@@ -92,7 +217,7 @@ hashids = new Hashids "this is my salt"
 hash = hashids.encrypt 1, 2, 3
 numbers = hashids.decrypt hash
 
-$("#output").text hash + " => [" + numbers + "]"
+$("#output").text hash + " ~> " + numbers
 		</script>
 		
 		<script id="template-lang-node-js-input" type="text/template">
@@ -100,7 +225,7 @@ var hashids = new Hashids("this is my salt"),
     hash = hashids.encrypt(1, 2, 3),
     numbers = hashids.decrypt(hash);
 
-console.log(hash + " => [" + numbers + "]");
+console.log(hash + " ~> " + numbers);
 		</script>
 		
 		<script id="template-lang-php-input" type="text/template">
@@ -182,24 +307,38 @@ eGtrS8
 [1, 2, 3]
 		</script>
 		
+		<script id="template-lang-java-input" type="text/template">
+Hashids hashids = new Hashids("this is my salt");
+String hash = hashids.encrypt(1, 2, 3);
+long[] numbers = hashids.decrypt(hash);
+
+System.out.println(hash);
+System.out.println(numbers);
+		</script>
+		
+		<script id="template-lang-java-output" type="text/template">
+eGtrS8
+[1, 2, 3]
+		</script>
+		
 		<script id="template-playground" type="text/template">
 			<h2>{{title}}:</h2>
 			<div id="examples" class="split-50 clearfix">
 				<div>
-					<pre class="bg prettyprint"{{#run}} contentEditable="true"{{/run}}>{{input}}</pre>
+					<pre class="dark prettyprint"{{#run}} contentEditable="true"{{/run}}>{{input}}</pre>
 					{{#run}}<button id="run">run</button>{{/run}}
 				</div>
 				<div>
-					<pre id="output" class="bg">{{output}}</pre>
+					<pre class="dark prettyprint" id="output">{{output}}</pre>
 				</div>
 			</div>
-			<h2>Documentation:</h2>
-			<div id="source" class="bg split-50 clearfix">
+			<h2>Source:</h2>
+			<div id="source" class="bg split-70-30 clearfix">
 				<div>
-					<a class="github" href="{{github}}">{{github}}</a>
+					<a class="icon github" href="{{github}}">{{github}}</a>
 				</div>
 				<div>
-					<a class="zip" href="{{github}}/zipball/master">download</a>
+					<a class="icon zip" href="{{github}}/zipball/master">download</a>
 				</div>
 			</div>
 		</script>
@@ -208,12 +347,12 @@ eGtrS8
 	
 	<!-- ಠ_ಠ -->
 	
-	<script type="text/javascript" src="/js/lib/mustache.js"></script>
-	<script type="text/javascript" src="/js/lib/jquery.history.js"></script>
-	<script type="text/javascript" src="/js/lib/prettify.js"></script>
-	<script type="text/javascript" src="/js/lib/app.js"></script>
-	<script type="text/javascript" src="/js/lib/hashids.min.js"></script>
-	<script type="text/javascript" src="/js/lib/coffee-script.js"></script>
+	<script type="text/javascript" src="/public/js/lib/mustache.js"></script>
+	<script type="text/javascript" src="/public/js/lib/jquery.history.js"></script>
+	<script type="text/javascript" src="/public/js/lib/prettify.js"></script>
+	<script type="text/javascript" src="/public/js/lib/app.js"></script>
+	<script type="text/javascript" src="/public/js/lib/hashids.min.js"></script>
+	<script type="text/javascript" src="/public/js/lib/coffee-script.js"></script>
 	
 	<script type="text/javascript">
 		
