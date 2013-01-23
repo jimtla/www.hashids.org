@@ -102,7 +102,7 @@
 							</tbody>
 						</table>
 					</div>
-					<h2 class="sub">Encrypting Examples</h2>
+					<h2 class="sub">Encrypting</h2>
 					<div>
 						<pre class="light prettyprint">
 /* using custom salt value */
@@ -127,7 +127,7 @@ var hashidsCustom = new Hashids("this is my salt", 0, "ABCDEFGHIJKLMNOPQR");
 var hash1 = hashidsCustom.encrypt(1234),         /* ROFF */
     hash2 = hashidsCustom.encrypt(5678);         /* ANDID */</pre>
 					</div>
-					<h2 class="sub">Decrypting Examples</h2>
+					<h2 class="sub">Decrypting</h2>
 					<div>
 						<pre class="light prettyprint">
 /* using correct salt value */
@@ -229,7 +229,7 @@ console.log(hash + " ~> " + numbers);
 		</script>
 		
 		<script id="template-lang-php-input" type="text/template">
-$hashes = new hashids('this is my salt');
+$hashes = new Hashids('this is my salt');
 $hash = $hashes->encrypt(1, 2, 3);
 $numbers = $hashes->decrypt($hash);
 
@@ -237,7 +237,7 @@ var_dump($hash, $numbers);
 		</script>
 		
 		<script id="template-lang-php-output" type="text/template">
-string(5) "eGtrS8"
+string(5) "laUqtq"
 array(3) {
   [0]=>
   int(1)
