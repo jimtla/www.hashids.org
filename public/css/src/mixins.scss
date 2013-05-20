@@ -25,7 +25,15 @@
 
 @mixin rotate($deg) {
 	-moz-transform: rotate($deg);
-	-webkit-transform:rotate($deg);
-	-o-transform:rotate($deg);
-	-ms-transform:rotate($deg);
+	-webkit-transform: rotate($deg);
+	-o-transform: rotate($deg);
+	-ms-transform: rotate($deg);
+}
+
+@mixin background-transition($delay) {
+	-webkit-transition: background-color $delay linear;
+	-moz-transition: background-color $delay linear;
+	-o-transition: background-color $delay linear;
+	-ms-transition: background-color $delay linear;
+	transition: background-color $delay linear;
 }

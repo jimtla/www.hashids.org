@@ -43,6 +43,31 @@ html, body {
 
 /* general */
 
+ul {
+	list-style-type: none;
+}
+
+.section {
+	background: $pre-bg;
+	@include border-radius(4px);
+	padding: 15px;
+	
+	&.lighten {
+		background: lighten($pre-bg, 3%);
+	}
+	
+	&.top-joined {
+		padding-top: 10px;
+		@include border-radius(0 0 4px 4px);
+	}
+	
+	&.bottom-joined {
+		padding-bottom: 10px;
+		@include border-radius(4px 4px 0 0);
+	}
+	
+}
+
 button {
 	background: #8ad68e;
     border-style: solid;
@@ -106,10 +131,20 @@ a {
 
 .icon {
 	padding: 5px 5px 5px 30px;
-	line-height: 24px;
+	background-position: left center;
+	background-repeat: no-repeat;
 	
-	&.github { background: url("#{$public-img}/octocat.png") left center no-repeat; }
-	&.zip { background: url("#{$public-img}/zip.png") left center no-repeat; }
+	&.github { background-image: url("#{$public-img}/octocat.png"); }
+	&.laravel { background-image: url("#{$public-img}/laravel.png"); }
+	&.packagist { background-image: url("#{$public-img}/packagist.png"); }
+	&.code-igniter { background-image: url("#{$public-img}/code_igniter.png"); }
+	&.kohana { background-image: url("#{$public-img}/kohana.png"); }
+	&.wordpress { background-image: url("#{$public-img}/wordpress.png"); }
+	&.rubygem { background-image: url("#{$public-img}/ruby.png"); }
+	&.npm { background-image: url("#{$public-img}/npm.png"); }
+	&.meteor { background-image: url("#{$public-img}/meteor.png"); }
+	&.godoc { background-image: url("#{$public-img}/godoc.png"); }
+	&.nuget { background-image: url("#{$public-img}/nuget.png"); }
 	
 }
 
@@ -118,8 +153,8 @@ a {
 h1 {
 	font-family: 'Leckerli One', cursive;
 	font-weight: normal;
-	margin: 70px 0 60px;
-	font-size: 580%;
+	margin: 90px 0 70px;
+	font-size: 640%;
 	letter-spacing: -0.04em;
 	text-shadow: 0 5px 0 #49974d;
 	a {
@@ -172,12 +207,13 @@ h1 {
 
 #about {
 	@include border-radius(4px);
-	font-size: 115%;
+	font-size: 120%;
 	padding: 15px 10px 15px 55px;
 	background: $pre-bg url("#{$public-img}/arrow.png") 15px center no-repeat;
 	
 	span {
-		color: #006309;
+		font-size: 85%;
+		color: rgb(69, 124, 74);
 	}
 	
 }
@@ -187,13 +223,13 @@ h1 {
 pre {
 	font-family: Monaco, Consolas, "Lucida Console", monospace;
 	@include border-radius(4px);
-	padding: 4px 8px !important;
-	font-size: 12px;
+	padding: 8px 12px !important;
+	font-size: 14px;
 	line-height: 1.5em;
 	border: none !important;
 	white-space: pre-wrap;
 	word-wrap: break-word;
-	min-height: 170px;
+	min-height: 200px;
 	outline: none;
 	margin: 5px 0 0;
 	
@@ -217,8 +253,9 @@ pre {
 	}
 	
 	&.light {
-		background: darken($pre-bg, 4%) !important;
-		margin: 0;
+		background: #eee !important;
+		margin: 0 0 15px 0;
+		min-height: auto;
 		
 		span.str { color: #034600; }
 		span.com { color: #107020; }
@@ -234,28 +271,36 @@ pre {
 	font-size: 100%;
 	margin: ($footer-height * -1) auto 0;
 	
-	#names {
+	.split-50 {
 		height: 180px;
 		max-width: $playground-width;
 		margin: 0 auto;
 		padding-top: 50px;
 		
-		#do-you-know {
+		.contact {
+			@include border-radius(4px);
 			text-align: right;
-			padding-right: 1%;
-			width: 49%;
+			font-size: 110%;
+			padding: 15px;
+			background: $pre-bg;
+			line-height: 1.6em;
 			
-			& > p:first-child {
-				font-size: 120%;
-				line-height: 1.3em;
+			&:first-line {
+				font-size: 130%;
+			}
+		}
+		
+		.social {
+			margin: 15px 0;
+			text-align: right;
+			
+			& > div {
+				margin: 5px 0;
 			}
 			
-			.port {
-				border-top: 10px solid #73B977;
-				padding-top: 10px;
-				margin-top: 10px;
+			.twitter-share-button {
+				width: 81px !important;
 			}
-			
 		}
 		
 		#contributors {
@@ -264,15 +309,22 @@ pre {
 			padding-left: 1%;
 			width: 49%;
 			
-			li {
-				margin-bottom: 5px;
+			ul {
+				font-size: 100%;
+				list-style-type: none;
+				margin-left: 10px;
+				
+				li {
+					margin-bottom: 5px;
+				}
+				
 			}
 			
 		}
 		
 	}
 	
-	#copyright {
+	#copyleft {
 		text-align: center;
 		color: darken(#3c8940, 5%);
 		padding: 15px 0;
@@ -281,82 +333,9 @@ pre {
 	
 }
 
-/* table */
-
-table {
-	max-width: 100%;
-	background-color: transparent;
-	border-collapse: collapse;
-	border-spacing: 2px;
-	display: table;
-	border-color: $green;
-	
-	thead {
-		display: table-header-group;
-		vertical-align: middle;
-		border-color: inherit;
-		
-		th {
-			vertical-align: bottom;
-			font-weight: normal;
-			color: #496F4C;
-			color: darken($green, 15%);
-			padding: 8px;
-			line-height: 20px;
-			text-align: left;
-		}
-		
-	}
-	
-	tbody {
-		display: table-row-group;
-		vertical-align: middle;
-		border-color: inherit;
-		
-		tr {
-			display: table-row;
-			vertical-align: inherit;
-			border-color: inherit;
-		}
-		
-	}
-	
-	tr {
-		display: table-row;
-		vertical-align: inherit;
-		border-color: inherit;	
-		
-		.l {
-			color: darken($pre-bg, 20%);
-		}
-		
-	}
-	
-}
-
-.table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
-	background-color: darken($pre-bg, 1%);
-}
-
-.table th, .table td {
-	padding: 8px;
-	line-height: 20px;
-	text-align: left;
-	vertical-align: top;
-	@include border-radius(4px);
-}
-
 /* playground */
 
 #playground {
-	
-	.bg {
-		font-family: Monaco, Consolas, "Lucida Console", monospace;
-		margin: 5px 0 0;
-		background: $pre-bg;
-		padding: 1%;
-		@include border-radius(4px);
-	}
 	
 	#examples {
 		
@@ -374,8 +353,66 @@ table {
 			
 			#run {
 				position: absolute;
-				bottom: 9px;
-				right: 12px;
+				bottom: 13px;
+				right: 16px;
+			}
+			
+		}
+		
+	}
+	
+}
+
+/* source */
+
+#source {
+	
+	#lib .github {
+		font-family: Monaco, Consolas, "Lucida Console", monospace;
+		font-size: 105%;
+		line-height: 1.9em;
+	}
+	
+	#links {
+		padding: 20px 15px 5px 15px;
+		
+		p {
+			color: darken($green, 7%);
+			text-shadow: 1px 1px 0 rgb(146, 201, 141);
+			font-size: 90%;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin: 0 0 10px 30px;
+		}
+		
+		ul {
+			position: relative;
+			
+			li {
+				float: left;
+				width: ($playground-width - 200px) / 3;
+				margin: 0 15px 15px 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				
+				font-size: 110%;
+				padding-left: 30px;
+				
+				&.icon {
+					background-position: 7px 6px !important;
+				}
+				
+				a {
+					display: block;
+					
+					span {
+						color: darken($green, 12%);
+						font-size: 85%;
+					}
+					
+				}
+				
 			}
 			
 		}
@@ -390,59 +427,46 @@ table {
 	position: relative;
 	margin: 5px 0 0;
 	padding: 15px;
-	background: $pre-bg;
+	background: #e2e2e2;
+	@include background-transition(250ms);
 	@include border-radius(4px);
 	font-size: 105%;
 	
-	#initial {
-		display: block !important;
-	}
-	
-	#read-more {
-		margin: 15px 0 10px !important;
-	}
-	
-	h2.sub {
-		display: none;
-		font-size: 130%;
-		color: #3B6F3E;
-		letter-spacing: -0.05em;
-		font-weight: normal;
-		padding: 35px 0 10px 10px;
-	}
-	
-	div {
-		display: none;
-		position: relative;
-		padding: 10px;
-		background: #77bd7b;
-		@include border-radius(4px);
-		
-		acronym {
-			font-weight: bold;
-			border-bottom: 1px dotted #333;
-		}
-		
-		p {
-			line-height: 1.6em;
-			margin: 20px 0 0;
-			&:first-child {
-				margin: 0;
-			}
-		}
-		
-		ol {
-			li {
-				margin: 10px 0 10px 40px;
-			}
-		}
+	&.section {
+		background: $pre-bg;
 		
 		code {
-			background: #6DB671;
-			padding: 2px 4px;
-			font-weight: bold;
+			background: $green;
 		}
 		
+	}
+	
+	h3 {
+		color: #fff;
+		font-weight: normal;
+		font-size: 200%;
+		margin: 30px 0 25px;
+		text-transform: lowercase;
+	}
+	
+	p {
+		margin: 0 0 15px 0;
+	}
+	
+	a {
+		color: rgb(0, 129, 214);
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	code {
+		@include border-radius(4px);
+		@include background-transition(250ms);
+		color: #000;
+		background: #eee;
+		padding: 1px 4px;
+		font-weight: bold;
 	}
 	
 }
@@ -463,7 +487,7 @@ table {
 		
 		#source {
 			word-wrap: break-word;
-			width: 98% !important;
+			//width: 98% !important;
 		}
 		
 	}
@@ -472,12 +496,6 @@ table {
 		width: 100% !important;
 	}
 	
-}
-
-ul.contrib {
-	font-size: 100%;
-	list-style-type: none;
-	margin-left: 10px;
 }
 
 /* clearfix */

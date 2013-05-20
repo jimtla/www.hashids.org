@@ -16,6 +16,57 @@
 		retarded: $.browser.msie is true and parseInt($.browser.version) <= 9
 		loop: [2000, 1500, 1000, 1000, 750, 750, 500, 300, 300, 300, 300, 200, 150, 130, 120, 110, 100]
 		hashids: undefined
+		additionalLinks: {
+			javascript: []
+			ruby: [{
+				title: 'Ruby Gem'
+				class: 'rubygem'
+				url: 'http://rubygems.org/gems/hashids'
+			}]
+			python: []
+			java: []
+			php: [{
+				title: 'Composer Package'
+				class: 'packagist'
+				url: 'https://packagist.org/packages/hashids/hashids'
+			}, {
+				title: 'Laravel Bundle'
+				class: 'laravel'
+				url: 'http://bundles.laravel.com/bundle/hashids'
+			}, {
+				title: 'CodeIgniter Spark'
+				class: 'code-igniter'
+				url: 'http://getsparks.org/packages/sk-hashids/versions/HEAD/show'
+			}, {
+				title: 'Kohana Module'
+				class: 'kohana'
+				url: 'http://kohana-modules.com/modules/pocesar/hashids-kohana'
+			}, {
+				title: 'WordPress Plugin'
+				class: 'wordpress'
+				url: 'http://wordpress.org/support/plugin/wp-hashed-ids'
+			}]
+			coffeescript: []
+			go: [{
+				title: 'GoDoc'
+				class: 'godoc'
+				url: 'http://godoc.org/github.com/speps/go-hashids'
+			}]
+			'node-js': [{
+				title: 'Node Package'
+				class: 'npm'
+				url: 'https://npmjs.org/package/hashids'
+			}, {
+				title: 'Meteor Package'
+				class: 'meteor'
+				url: 'https://github.com/crapthings/meteor-hashids'
+			}]
+			net: [{
+				title: 'NuGet Package'
+				class: 'nuget'
+				url: 'http://nuget.org/packages/Hashids.net/'
+			}]
+		}
 		
 		checkPath: ->
 			lang = window.location.pathname.replace(/\//g, '')
@@ -36,13 +87,22 @@
 			
 			template = $('#template-playground').html()
 			data =
+				lang: lang
 				title: that.text()
 				github: that.attr 'github'
 				input: $input.text().trim()
 				output: $output.text().trim()
 				run: not $output.length
+				links: app.additionalLinks[lang]
+				linksExist: !!app.additionalLinks[lang].length
 			
 			$('#playground').html Mustache.render template, data
+			
+			examples = (num) ->
+				example = $('#template-example-'+num+'-lang-'+lang).html().trim()
+				$('#template-example-'+num).html(example)
+			
+			examples number for number in [1..9]
 			
 			prettyPrint() if not @retarded
 			$('title').text data.title if @changeTitle
@@ -82,10 +142,11 @@
 					output.append ', '
 				output.append argument
 		
-		$('#read-more button').click (e) ->
+		$('#documentation button').click (e) ->
 			
-			$('#initial').remove()
-			$('#documentation > *').css 'display', 'block'
+			$(@).parent().remove()
+			$('#documentation .hidden').removeClass 'hidden'
+			$('#documentation').removeClass 'section'
 		
 		$('.clickable').click (e) ->
 			

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:og="http://opengraphprotocol.org/schema/">
 <head>
 	
 	<title>Ruby</title>
 	
-	<meta name="keywords" content="hashids, short hashes, youtube like hashes">
+	<meta name="keywords" content="hashids, hashid, short hashes, youtube like hashes">
 	<meta name="description" content="Ruby port of hashids. Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.">
 	<meta name="author" content="Ivan Akimov">
 	<meta name="robots" content="noarchive">
@@ -15,9 +15,15 @@
 	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	
-	<link rel="icon" type="image/png" href="/public/img/favicon.16.png?1" />
+	<meta property="og:title" content="Hashids" />
+	<meta property="og:site_name" content="Hashids" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.hashids.org/" />
+	<meta property="og:image" content="http://www.hashids.org/public/img/hashids-screenshot.png" />
 	
-	<link href="/public/css/lib/app.css" rel="stylesheet" type="text/css" media="screen" />
+	<link rel="icon" type="image/png" href="/public/img/favicon.16.png?2" />
+	
+	<link href="/public/css/lib/app.css?2" rel="stylesheet" type="text/css" media="screen" />
 	<link href="/public/css/lib/prettify.css" rel="stylesheet" type="text/css" media="screen" />
 	<!--[if lt IE 10]><link href="/public/css/lib/retarded.css" rel="stylesheet" type="text/css" media="screen" /><![endif]-->
 	<link href="//fonts.googleapis.com/css?family=Leckerli+One" rel="stylesheet" type="text/css" media="screen" />
@@ -34,7 +40,7 @@
 				<span>Available in</span>
 				<a id="javascript" class="clickable" href="/javascript/" github="https://github.com/ivanakimov/hashids.js">JavaScript</a>
 				<a id="ruby" class="clickable" href="/ruby/" github="https://github.com/peterhellberg/hashids.rb">Ruby</a>
-				<a id="python" class="clickable" href="/python/" github="https://github.com/ericmartel/hashids.py">Python</a>
+				<a id="python" class="clickable" href="/python/" github="https://github.com/ivanakimov/hashids.py">Python</a>
 				<a id="java" class="clickable" href="/java/" github="https://github.com/peet/hashids.java">Java</a>
 				<a id="php" class="clickable" href="/php/" github="https://github.com/ivanakimov/hashids.php">PHP</a>
 				<a id="coffeescript" class="clickable" href="/coffeescript/" github="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
@@ -48,127 +54,123 @@
 			
 			<div id="page">
 				
-				<p id="about">Generate hashes <span>(like <a href="http://www.youtube.com/">YouTube</a> or <a href="https://bitly.com/">Bitly</a>)</span> from numbers to obfuscate your database IDs, or navigate to the right shard.</p>
+				<p id="about" class="section">
+					Generate short hashes from numbers (like YouTube and Bitly).<br/>
+					<span>obfuscate database IDs &middot; use them as forgotten password hashes &middot; invitation codes &middot; store shard numbers</span>
+				</p>
 				<div id="playground"></div>
 				
 				<h2>Documentation:</h2>
-				<div id="documentation">
-					
-					<div id="initial">
-						<p>Hashids was designed for use in URL shortening, tracking stuff, validating accounts or making pages private (through abstraction). Instead of showing items as <code>1</code>, <code>2</code>, or <code>3</code>, you could show them as <code>b9iLXiAa</code>, <code>EATedTBy</code>, and <code>Aaco9cy5</code>. Hashes change depending on your salt value.</p>
-						<center><p id="read-more"><button>read more</button></p></center>
+				<div id="documentation" class="section">
+					<p>
+						Hashids was designed for use in URL shortening, tracking stuff, validating accounts or making pages private (through abstraction). Instead of showing items as <code>1</code>, <code>2</code>, or <code>3</code>, you could show them as <code>b9iLXiAa</code>, <code>EATedTBy</code>, and <code>Aaco9cy5</code>. Hashes depend on your salt value.
+					</p>
+					<div style="text-align:right"><button>full documentation</button></div>
+					<div class="hidden">
+					<h3>Why</h3>
+					<p>
+						One of the main reasons it's beneficial to have hashes instead of numbers is because you might not want to disclose your count, or let users navigate by incrementing the numbers. If you are using integers to keep track of users, it's very easy to see how many users you have or who joined last. Having hashes solves that problem.
+					</p>
+					<h3>Basic Usage</h3>
+					<p>
+						To encrypt a simple number:
+					</p>
+					<pre id="template-example-1" class="prettyprint light"></pre>
+					<p>
+						To decrypt a hash:
+					</p>
+					<pre id="template-example-2" class="prettyprint light"></pre>
+					<p>
+						To encrypt several numbers, pass them all at once:
+					</p>
+					<pre id="template-example-3" class="prettyprint light"></pre>
+					<p>
+						Decryption is done the same way:
+					</p>
+					<pre id="template-example-4" class="prettyprint light"></pre>
+					<h3>Using Custom Salt</h3>
+					<p>
+						Hashids supports personalizing your hashes by accepting a salt value. If you don't want others to decrypt your hashes, provide a unique string to the constructor.
+					</p>
+					<pre id="template-example-5" class="prettyprint light"></pre>
+					<p>
+						If you change the salt, the generated hash changes:
+					</p>
+					<pre id="template-example-6" class="prettyprint light"></pre>
+					<p>
+						There's not a way to guess the correct numbers behind the hash without knowing the salt value first.
+					</p>
+					<p>
+						Your salt string does not have to be too long to be random. It's a balance between speed and randomness, so if you pick something between <strong>6</strong> and <strong>32</strong> characters your hashes should be randomized pretty well already.
+					</p>
+					<h3>Controlling Hash Length</h3>
+					<p>
+						By default, hashes are going to be the shortest possible. One reason you might want to increase the hash length is to obfuscate how large the number behind the hash is.
+					</p>
+					<p>
+						This is done by passing the <strong>minimum</strong> hash length to the constructor (for example 16):
+					</p>
+					<pre id="template-example-7" class="prettyprint light"></pre>
+					<p>
+						That way even though your number is small, the hash is padded with extra characters to make it seem longer.
+					</p>
+					<p>
+						It's now <strong>at least</strong> 16 characters long. Note that this is a <strong>minimum</strong> hash length - produced hashes can end up being longer.
+					</p>
+					<p>
+						Not passing a minimum hash length, we'll get a regular short hash:
+					</p>
+					<pre id="template-example-8" class="prettyprint light"></pre>
+					<h3>Using Custom Alphabet</h3>
+					<p>
+						It's also possible to set a custom alphabet for your hashes.
+					</p>
+					<p>
+						The default alphabet contains all lowercase and uppercase letters and numbers:
+					</p>
+					<p>
+						<code>a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0</code>
+					</p>
+					<p>
+						If you wish to have only lowercase letters in your hashes, you could pass in the following custom alphabet:
+					</p>
+					<pre id="template-example-9" class="prettyprint light"></pre>
+					<p>
+						With latest versions of Hashids, your alphabet should contain at least 16 characters.
+					</p>
+					<h3>#%@&</h3>
+					<p>This code was written with the intent of placing generated hashes in visible places - like the URL.</p>
+					<p>Therefore, the algorithm tries to avoid generating most common English curse words by never placing the following letters next to each other:</p>
+					<p><code>c, C, s, S, f, F, h, H, u, U, i, I, t, T</code></p>
+					<h3>Uses in RDBMS</h3>
+					<p>If you are using a relational database, you could store hashes for each row, so you could select by them. But then you'd need to index them to speed up reads.</p>
+					<p>Since <strong>all primary keys are already indexed</strong>, you could instead encrypt/decrypt your primary keys on the fly and select by them.</p>
+					<p>
+						If you have a complex clustered system, you could <strong>encrypt several numbers at once</strong>. For example, your shard number and your primary key <code>2, 1337</code> and turn them into a single hash: <code>zKIa5e</code>. Upon decryption, you could do the reverse: decrypt the hash and get the numbers, jump to the right shard, select by primary id &mdash; and you have the right record.
+					</p>
+					<h3>Collisions</h3>
+					<p>
+						There are <strong>no collisions</strong>. Your generated hashes should be unique.
+					</p>
+					<h3>Decryptable Hash &iquest;Qué?</h3>
+					<p>
+						A true cryptographic hash cannot be decrypted. However, to keep things simple the word <strong>hash</strong> is used loosely to refer to the random set of characters that are generated. Like a YouTube hash.
+					</p>
+					<h3>Contribute</h3>
+					<p>
+						There are many ways to contribute. Although Hashids has been ported to a few languages, there are still many more: <code>C</code>, <code>C++</code>, <code>Objective-C</code>, <code>Scala</code>, <code>Erlang</code>, <code>Perl</code>, <code>Clojure</code>, <code>Groovy</code>, <code>Haskell</code>, <code>Lolcode</code> etc etc... If you'd like your port added to the list, please message <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>.
+					</p>
+					<p>
+						All main libraries are hosted on <a href="https://github.com/">Github</a>. If you see a bug in code, or have an improvement you'd like to add, please <strong>open an issue on Github</strong> for the correct library.
+					</p>
+					<p>
+						You can also turn Hashids into a plugin for your favorite framework. If a link is missing, <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">ping to add it</a>.
+					</p>
+					<h3>License</h3>
+					<p>
+						All Hashids libraries are under <a href="http://opensource.org/licenses/mit-license.php/">MIT License</a>. You can use them in open source projects and commercial products. Don't break the Internet. Kthxbye.
+					</p>
 					</div>
-					
-					<div>
-						<p>Hashids was designed for use in URL shortening, tracking stuff, validating accounts or making pages private (through abstraction). Instead of showing items as <code>1</code>, <code>2</code>, or <code>3</code>, you could show them as <code>b9iLXiAa</code>, <code>EATedTBy</code>, and <code>Aaco9cy5</code>. Hashes change depending on your salt value.</p>
-						<p>This algorithm tries to satisfy 4 requirements:</p>
-						<ol>
-							<li>Hashes must be unique and decryptable.</li>
-							<li>Must support encoding several numbers into one hash.</li>
-							<li><strong>Minimum</strong> hash length should be adjustable.</li>
-							<li>Formed hashes should avoid forming basic curse words.</li>
-						</ol>
-					</div>
-					<h2 class="sub">Parameters</h2>
-					<div>
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th></th>
-									<th>Name</th>
-									<th></th>
-									<th>Description</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="l">1</td>
-									<td><strong>salt</strong></td>
-									<td class="l"><i>optional</i></td>
-									<td>Custom value that will make your hashes unique to your salt. If salt is changed, your hashes cannot be decrypted properly. Empty string by default.</td>
-								</tr>
-								<tr>
-									<td class="l">2</td>
-									<td><strong>min_hash_length</strong></td>
-									<td class="l"><i>optional</i></td>
-									<td>Minimum hash length to set for your hashes. Default is 0, meaning your hashes will be the shortest possible.</td>
-								</tr>
-								<tr>
-									<td class="l">3</td>
-									<td><strong>alphabet</strong></td>
-									<td class="l"><i>optional</i></td>
-									<td>Custom alphabet to set for your hashes. By default it's set to lower case letters, upper case letters, and numbers.</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<h2 class="sub">Encrypting</h2>
-					<div>
-						<pre class="light prettyprint">
-/* using custom salt value */
-
-var hashids = new Hashids("this is my salt");
-var hash1 = hashids.encrypt(1),                  /* LX */
-    hash2 = hashids.encrypt(2),                  /* ed */
-    hash3 = hashids.encrypt(3),                  /* o9 */
-    hash4 = hashids.encrypt(1, 2, 3),            /* eGtrS8 */
-    hash5 = hashids.encrypt(5, 5, 5, 5, 5),      /* 8bsBI4U5tj */
-    hash6 = hashids.encrypt(0, 0, 1);            /* nrUKF7 */
-
-/* setting minimum hash length */
-
-var hashidsMinLength = new Hashids("this is my salt", 16);
-var hash1 = hashidsMinLength.encrypt(1),         /* AA6Fb9iLXiAaBFB5 */
-    hash2 = hashidsMinLength.encrypt(1, 2, 3);   /* rIgkTeGtrS8cbRrI */
-
-/* setting custom alphabet */
-
-var hashidsCustom = new Hashids("this is my salt", 0, "ABCDEFGHIJKLMNOPQR");
-var hash1 = hashidsCustom.encrypt(1234),         /* ROFF */
-    hash2 = hashidsCustom.encrypt(5678);         /* ANDID */</pre>
-					</div>
-					<h2 class="sub">Decrypting</h2>
-					<div>
-						<pre class="light prettyprint">
-/* using correct salt value */
-
-var hashids = new Hashids("this is my salt");
-var numbers1 = hashids.decrypt("eGtrS8"),        /* [1, 2, 3] */
-    numbers2 = hashids.decrypt("8bsBI4U5tj");    /* [5, 5, 5, 5, 5] */
-
-/* using incorrect salt value */
-
-var hashids = new Hashids("this is my pepper");
-var numbers1 = hashids.decrypt("eGtrS8"),        /* [] */
-    numbers2 = hashids.decrypt("8bsBI4U5tj");    /* [] */</pre>
-					</div>
-					<h2 class="sub">Uses in <acronym title="relational database management system">RDBMS</acronym></h2>
-					<div>
-						<p>If you are <strong>using a relational database</strong>, you could store hashes for each row, so you could select by them. But then you'd need to index them to speed up reads.</p>
-						<p>Since <strong>all primary keys are already indexed</strong>, you could instead encrypt/decrypt your primary keys on the fly and select by those.</p>
-						<p>
-							If you have a <strong>complex clustered system</strong>, you could encrypt several numbers at once. For example, your shard number and your primary key <code>2, 1337</code> and turn them into a single hash: <code>zKIa5e</code>.
-						</p>
-					</div>
-					<h2 class="sub">Curses! #$%@</h2>
-					<div>
-						<p>This code was written with the intent of placing created hashes in visible places - like the URL. Which makes it unfortunate if generated hashes accidentally formed a bad word.</p>
-						<p>Therefore, the algorithm tries to avoid generating most common English curse words. This is done by never placing the following letters next to each other:</p>
-						<p><code>c, C, s, S, f, F, h, H, u, U, i, I, t, T</code></p>
-					</div>
-					<h2 class="sub">Collisions</h2>
-					<div>
-						<p>There are no hash collisions if you use constructor parameters consistently. In other words, once you've started generating hashes, don't change your salt or the alphabet.</p>
-					</div>
-					<h2 class="sub">Decryptable ...hash?</h2>
-					<div>
-						<p>A true cryptographic hash cannot be decrypted. However, to keep things simple the word <strong>hash</strong> is used loosely to refer to the random set of characters that are generated. Take a deep breath, relax. It's only a name :]</p>
-					</div>
-					<h2 class="sub">License</h2>
-					<div>
-						<p>Hashids is under <a href="http://opensource.org/licenses/mit-license.php/">MIT License</a> &mdash; use it in commercial or open-source projects.<br/>Don't break the Internet.</p>
-					</div>
-					
 				</div>
 				
 			</div>
@@ -177,32 +179,46 @@ var numbers1 = hashids.decrypt("eGtrS8"),        /* [] */
 	</div>
 	
 	<div id="footer">
-		<div id="names" class="split-50 clearfix">
-			<div id="do-you-know">
-				<p>
-					Do you know<br/>
-					<strong>C</strong>, <strong>Scala</strong>, <strong>Erlang</strong>, <strong>Perl</strong>, <strong>Clojure</strong>, <strong>Groovy</strong>, <strong>Haskell</strong><br/>
-					or something else?
-				</p>
-				<p class="port">Help us port it over, it's only ~300 lines.<br/>Message me <a href="https://twitter.com/ivanakimov">@IvanAkimov</a></p>
+		<div class="split-50 clearfix">
+			<div>
+				<div class="contact section">
+					Missing a link, found an issue, or ported it over<br/>
+					to another language? Message me <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>
+				</div>
+				<div class="social">
+					<div class="facebook">
+						<div class="fb-like" data-href="http://www.hashids.org" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-colorscheme="dark"></div>
+					</div>
+					<div class="twitter">
+						<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.hashids.org" data-text="Hashids - generate short hashes (like YouTube or Bitly) from numbers to obfuscate your database IDs" data-hashtags="hashids" data-dnt="true">Tweet</a>
+					</div>
+				</div>
 			</div>
 			<div id="contributors">
-				<ul class="contrib">
-					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
+				<ul>
 					<li>Rémi Gillig (<a href="https://twitter.com/remigillig">@remigillig</a>) &mdash; <a id="go" class="" href="https://github.com/speps/go-hashids">Go</a></li>
 					<li>Peter Hellberg (<a href="https://twitter.com/peterhellberg">@peterhellberg</a>) &mdash; <a id="ruby" class="" href="https://github.com/peterhellberg/hashids.rb">Ruby</a></li>
 					<li>Markus Ullmark (<a href="https://twitter.com/ullmark">@ullmark</a>) &mdash; <a id="net" class="" href="https://github.com/ullmark/hashids.net">.NET</a></li>
-					<li>Eric Martel (<a href="https://twitter.com/emartelai">@emartelai</a>) &mdash; <a id="python" class="" href="https://github.com/ericmartel/hashids.py">Python</a></li>
+					<li>Eric Martel (<a href="https://twitter.com/emartelai">@emartelai</a>) &mdash; <a id="python" class="" href="https://github.com/ivanakimov/hashids.py">Python</a></li>
 					<li>Peet Goddard (<a href="https://twitter.com/beadza">@beadza</a>) &mdash; <a id="java" class="" href="https://github.com/peet/hashids.java">Java</a></li>
+					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
 				</ul>
 			</div>
 		</div>
-		<div id="copyright">
-			hashids is under <a href="http://opensource.org/licenses/mit-license.php/">MIT License</a> &middot; this <a href="https://github.com/ivanakimov/www.hashids.org">intimidatingly green website</a> &copy; Ivan Akimov 2013
+		<div id="copyleft">
+			all <strong>hashids</strong> libraries are under <a href="http://opensource.org/licenses/mit-license.php/">MIT License</a> &middot; this <a href="https://github.com/ivanakimov/www.hashids.org">intimidatingly green website</a>
+			<!--[if lte IE 8]><span style="filter: FlipH; -ms-filter: "FlipH"; display: inline-block;"><![endif]-->
+			<span style="-moz-transform: scaleX(-1); -o-transform: scaleX(-1); -webkit-transform: scaleX(-1); transform: scaleX(-1); display: inline-block;">
+				&copy;
+			</span>
+			<!--[if lte IE 8]></span><![endif]-->
+			Ivan Akimov 2013
 		</div>
 	</div>
 	
 	<div class="hidden">
+		
+		<!-- javascript -->
 		
 		<script id="template-lang-javascript-input" type="text/template">
 var hashids = new Hashids("this is my salt"),
@@ -212,6 +228,8 @@ var hashids = new Hashids("this is my salt"),
 $("#output").text(hash + " ~> " + numbers);
 		</script>
 		
+		<!-- coffeescript -->
+		
 		<script id="template-lang-coffeescript-input" type="text/template">
 hashids = new Hashids "this is my salt"
 hash = hashids.encrypt 1, 2, 3
@@ -220,6 +238,8 @@ numbers = hashids.decrypt hash
 $("#output").text hash + " ~> " + numbers
 		</script>
 		
+		<!-- node -->
+		
 		<script id="template-lang-node-js-input" type="text/template">
 var hashids = new Hashids("this is my salt"),
     hash = hashids.encrypt(1, 2, 3),
@@ -227,6 +247,8 @@ var hashids = new Hashids("this is my salt"),
 
 console.log(hash + " ~> " + numbers);
 		</script>
+		
+		<!-- php -->
 		
 		<script id="template-lang-php-input" type="text/template">
 $hashids = new Hashids\Hashids('this is my salt');
@@ -248,6 +270,8 @@ array(3) {
 }
 		</script>
 		
+		<!-- go -->
+		
 		<script id="template-lang-go-input" type="text/template">
 h := hashids.New()
 h.Salt = "this is my salt"
@@ -261,6 +285,8 @@ fmt.Println(e, d)
 		<script id="template-lang-go-output" type="text/template">
 eGtrS8 [1 2 3]
 		</script>
+		
+		<!-- ruby -->
 		
 		<script id="template-lang-ruby-input" type="text/template">
 hashids = Hashids.new "this is my salt"
@@ -277,6 +303,8 @@ eGtrS8
 3
 		</script>
 		
+		<!-- .net -->
+		
 		<script id="template-lang-net-input" type="text/template">
 var hashids = new Hashids("this is my salt");
 var hash = hashids.Encrypt(1, 2, 3);
@@ -290,6 +318,8 @@ Console.WriteLine(string.Join(", ", numbers));
 eGtrS8
 1, 2, 3
 		</script>
+		
+		<!-- python -->
 		
 		<script id="template-lang-python-input" type="text/template">
 from hashids import hashids
@@ -307,6 +337,8 @@ eGtrS8
 [1, 2, 3]
 		</script>
 		
+		<!-- java -->
+		
 		<script id="template-lang-java-input" type="text/template">
 Hashids hashids = new Hashids("this is my salt");
 String hash = hashids.encrypt(1, 2, 3);
@@ -321,6 +353,438 @@ eGtrS8
 [1, 2, 3]
 		</script>
 		
+		<!-- javascript examples -->
+		
+		<script id="template-example-1-lang-javascript" type="text/template">
+var Hashids = new Hashids();
+var hash = Hashids.encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-javascript" type="text/template">
+var Hashids = new Hashids();
+var numbers = Hashids.decrypt('eGtrS8');
+		</script>
+		
+		<script id="template-example-3-lang-javascript" type="text/template">
+var Hashids = new Hashids();
+var hash = Hashids.encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-javascript" type="text/template">
+var Hashids = new Hashids();
+var numbers = Hashids.decrypt('yn8t46hen');
+		</script>
+		
+		<script id="template-example-5-lang-javascript" type="text/template">
+var Hashids = new Hashids('this is my salt 1');
+var hash = Hashids.encrypt(123); /* hash is now "rnR" */
+		</script>
+		
+		<script id="template-example-6-lang-javascript" type="text/template">
+var Hashids = new Hashids('this is my salt 2');
+var hash = Hashids.encrypt(123); /* hash is now "XBn" */
+		</script>
+		
+		<script id="template-example-7-lang-javascript" type="text/template">
+var Hashids = new Hashids('this is my salt', 16);
+var hash = Hashids.encrypt(1); /* hash is now "AA6Fb9iLXiAaBFB5" */
+		</script>
+		
+		<script id="template-example-8-lang-javascript" type="text/template">
+var Hashids = new Hashids('this is my salt');
+var hash = Hashids.encrypt(1); /* hash is now "LX" */
+		</script>
+		
+		<script id="template-example-9-lang-javascript" type="text/template">
+var Hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
+var hash = Hashids.encrypt(123456789); /* hash is now "zdrnoaor" */
+		</script>
+		
+		<!-- node-js examples -->
+		
+		<script id="template-example-1-lang-node-js" type="text/template">
+var Hashids = new Hashids();
+var hash = Hashids.encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-node-js" type="text/template">
+var Hashids = new Hashids();
+var numbers = Hashids.decrypt('eGtrS8');
+		</script>
+		
+		<script id="template-example-3-lang-node-js" type="text/template">
+var Hashids = new Hashids();
+var hash = Hashids.encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-node-js" type="text/template">
+var Hashids = new Hashids();
+var numbers = Hashids.decrypt('yn8t46hen');
+		</script>
+		
+		<script id="template-example-5-lang-node-js" type="text/template">
+var Hashids = new Hashids('this is my salt 1');
+var hash = Hashids.encrypt(123); /* hash is now "rnR" */
+		</script>
+		
+		<script id="template-example-6-lang-node-js" type="text/template">
+var Hashids = new Hashids('this is my salt 2');
+var hash = Hashids.encrypt(123); /* hash is now "XBn" */
+		</script>
+		
+		<script id="template-example-7-lang-node-js" type="text/template">
+var Hashids = new Hashids('this is my salt', 16);
+var hash = Hashids.encrypt(1); /* hash is now "AA6Fb9iLXiAaBFB5" */
+		</script>
+		
+		<script id="template-example-8-lang-node-js" type="text/template">
+var Hashids = new Hashids('this is my salt');
+var hash = Hashids.encrypt(1); /* hash is now "LX" */
+		</script>
+		
+		<script id="template-example-9-lang-node-js" type="text/template">
+var Hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
+var hash = Hashids.encrypt(123456789); /* hash is now "zdrnoaor" */
+		</script>
+		
+		<!-- coffeescript examples -->
+		
+		<script id="template-example-1-lang-coffeescript" type="text/template">
+Hashids = new Hashids()
+hash = Hashids.encrypt 123
+		</script>
+		
+		<script id="template-example-2-lang-coffeescript" type="text/template">
+Hashids = new Hashids()
+numbers = Hashids.decrypt 'eGtrS8'
+		</script>
+		
+		<script id="template-example-3-lang-coffeescript" type="text/template">
+Hashids = new Hashids()
+hash = Hashids.encrypt 123, 456, 789
+		</script>
+		
+		<script id="template-example-4-lang-coffeescript" type="text/template">
+Hashids = new Hashids()
+numbers = Hashids.decrypt 'yn8t46hen'
+		</script>
+		
+		<script id="template-example-5-lang-coffeescript" type="text/template">
+Hashids = new Hashids 'this is my salt 1'
+hash = Hashids.encrypt 123 # hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-coffeescript" type="text/template">
+Hashids = new Hashids 'this is my salt 2'
+hash = Hashids.encrypt 123 # hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-coffeescript" type="text/template">
+Hashids = new Hashids 'this is my salt', 16
+hash = Hashids.encrypt 1 # hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-coffeescript" type="text/template">
+Hashids = new Hashids 'this is my salt'
+hash = Hashids.encrypt 1 # hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-coffeescript" type="text/template">
+Hashids = new Hashids 'this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz'
+hash = Hashids.encrypt 123456789 # hash is now "zdrnoaor"
+		</script>
+		
+		<!-- ruby examples -->
+		
+		<script id="template-example-1-lang-ruby" type="text/template">
+hashids = Hashids.new()
+hash = hashids.encrypt(123)
+		</script>
+		
+		<script id="template-example-2-lang-ruby" type="text/template">
+hashids = Hashids.new()
+numbers = hashids.decrypt("eGtrS8")
+		</script>
+		
+		<script id="template-example-3-lang-ruby" type="text/template">
+hashids = Hashids.new()
+hash = hashids.encrypt(123, 456, 789)
+		</script>
+		
+		<script id="template-example-4-lang-ruby" type="text/template">
+hashids = Hashids.new()
+numbers = hashids.decrypt("yn8t46hen")
+		</script>
+		
+		<script id="template-example-5-lang-ruby" type="text/template">
+hashids = Hashids.new("this is my salt 1")
+hash = hashids.encrypt(123) # hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-ruby" type="text/template">
+hashids = Hashids.new("this is my salt 2")
+hash = hashids.encrypt(123) # hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-ruby" type="text/template">
+hashids = Hashids.new("this is my salt", 16)
+hash = hashids.encrypt(1) # hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-ruby" type="text/template">
+hashids = Hashids.new("this is my salt")
+hash = hashids.encrypt(1) # hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-ruby" type="text/template">
+hashids = Hashids.new("this is my salt", 0, "abcdefghijklmnopqrstuvwxyz")
+hash = hashids.encrypt(123456789) # hash is now "zdrnoaor"
+		</script>
+		
+		<!-- python examples -->
+		
+		<script id="template-example-1-lang-python" type="text/template">
+hashids_lib = hashids()
+hash = hashids_lib.encrypt(123)
+		</script>
+		
+		<script id="template-example-2-lang-python" type="text/template">
+hashids_lib = hashids()
+numbers = hashids_lib.decrypt("eGtrS8")
+		</script>
+		
+		<script id="template-example-3-lang-python" type="text/template">
+hashids_lib = hashids()
+hash = hashids_lib.encrypt(123, 456, 789)
+		</script>
+		
+		<script id="template-example-4-lang-python" type="text/template">
+hashids_lib = hashids()
+numbers = hashids_lib.decrypt("yn8t46hen")
+		</script>
+		
+		<script id="template-example-5-lang-python" type="text/template">
+hashids_lib = hashids("this is my salt 1")
+hash = hashids_lib.encrypt(123) # hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-python" type="text/template">
+hashids_lib = hashids("this is my salt 2")
+hash = hashids_lib.encrypt(123) # hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-python" type="text/template">
+hashids_lib = hashids("this is my salt", 16)
+hash = hashids_lib.encrypt(1) # hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-python" type="text/template">
+hashids_lib = hashids("this is my salt")
+hash = hashids_lib.encrypt(1) # hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-python" type="text/template">
+hashids_lib = hashids("this is my salt", 0, "abcdefghijklmnopqrstuvwxyz")
+hash = hashids_lib.encrypt(123456789) # hash is now "zdrnoaor"
+		</script>
+		
+		<!-- java examples -->
+		
+		<script id="template-example-1-lang-java" type="text/template">
+Hashids hashids = new Hashids();
+String hash = hashids.encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-java" type="text/template">
+Hashids hashids = new Hashids();
+long[] numbers = hashids.decrypt("eGtrS8");
+		</script>
+		
+		<script id="template-example-3-lang-java" type="text/template">
+Hashids hashids = new Hashids();
+String hash = hashids.encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-java" type="text/template">
+Hashids hashids = new Hashids();
+long[] numbers = hashids.decrypt("yn8t46hen");
+		</script>
+		
+		<script id="template-example-5-lang-java" type="text/template">
+Hashids hashids = new Hashids("this is my salt 1");
+String hash = hashids.encrypt(123); // hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-java" type="text/template">
+Hashids hashids = new Hashids("this is my salt 2");
+String hash = hashids.encrypt(123); // hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-java" type="text/template">
+Hashids hashids = new Hashids("this is my salt", 16);
+String hash = hashids.encrypt(1); // hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-java" type="text/template">
+Hashids hashids = new Hashids("this is my salt");
+String hash = hashids.encrypt(1); // hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-java" type="text/template">
+Hashids hashids = new Hashids("this is my salt", 0, "abcdefghijklmnopqrstuvwxyz");
+String hash = hashids.encrypt(123456789); // hash is now "zdrnoaor"
+		</script>
+		
+		<!-- go examples -->
+		
+		<script id="template-example-1-lang-go" type="text/template">
+h := hashids.New()
+hash := h.Encrypt([]int{123})
+		</script>
+		
+		<script id="template-example-2-lang-go" type="text/template">
+h := hashids.New()
+numbers := h.Decrypt("eGtrS8")
+		</script>
+		
+		<script id="template-example-3-lang-go" type="text/template">
+h := hashids.New()
+hash := h.Encrypt([]int{123, 456, 789})
+		</script>
+		
+		<script id="template-example-4-lang-go" type="text/template">
+h := hashids.New()
+numbers := h.Decrypt("yn8t46hen")
+		</script>
+		
+		<script id="template-example-5-lang-go" type="text/template">
+h := hashids.New()
+h.Salt = "this is my salt 1"
+hash := h.Encrypt([]int{123}) // hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-go" type="text/template">
+h := hashids.New()
+h.Salt = "this is my salt 2"
+hash := h.Encrypt([]int{123}) // hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-go" type="text/template">
+h := hashids.New()
+h.Salt = "this is my salt"
+h.MinLength = 16
+hash := h.Encrypt([]int{1}) // hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-go" type="text/template">
+h := hashids.New()
+h.Salt = "this is my salt"
+hash := h.Encrypt([]int{1}) // hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-go" type="text/template">
+h := hashids.New()
+h.Salt = "this is my salt"
+h.Alphabet = "abcdefghijklmnopqrstuvwxyz"
+hash := h.Encrypt([]int{123456789}) // hash is now "zdrnoaor"
+		</script>
+		
+		<!-- php examples -->
+		
+		<script id="template-example-1-lang-php" type="text/template">
+$hashids = new Hashids\Hashids();
+$hash = $hashids->encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-php" type="text/template">
+$hashids = new Hashids\Hashids();
+$numbers = $hashids->decrypt('eGtrS8');
+		</script>
+		
+		<script id="template-example-3-lang-php" type="text/template">
+$hashids = new Hashids\Hashids();
+$hash = $hashids->encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-php" type="text/template">
+$hashids = new Hashids\Hashids();
+$numbers = $hashids->decrypt('yn8t46hen');
+		</script>
+		
+		<script id="template-example-5-lang-php" type="text/template">
+$hashids = new Hashids\Hashids('this is my salt 1');
+$numbers = $hashids->encrypt(123); // hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-php" type="text/template">
+$hashids = new Hashids\Hashids('this is my salt 2');
+$numbers = $hashids->encrypt(123); // hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-php" type="text/template">
+$hashids = new Hashids\Hashids('this is my salt', 16);
+$numbers = $hashids->encrypt(1); // hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-php" type="text/template">
+$hashids = new Hashids\Hashids('this is my salt');
+$numbers = $hashids->encrypt(1); // hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-php" type="text/template">
+$hashids = new Hashids\Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
+$numbers = $hashids->encrypt(123456789); // hash is now "zdrnoaor"
+		</script>
+		
+		<!-- net examples -->
+		
+		<script id="template-example-1-lang-net" type="text/template">
+var hashids = new Hashids();
+var hash = hashids.Encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-net" type="text/template">
+var hashids = new Hashids();
+var numbers = hashids.Decrypt("eGtrS8");
+		</script>
+		
+		<script id="template-example-3-lang-net" type="text/template">
+var hashids = new Hashids();
+var hash = hashids.Encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-net" type="text/template">
+var hashids = new Hashids();
+var numbers = hashids.Decrypt("yn8t46hen");
+		</script>
+		
+		<script id="template-example-5-lang-net" type="text/template">
+var hashids = new Hashids("this is my salt 1");
+var hash = hashids.Encrypt(123); // hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-net" type="text/template">
+var hashids = new Hashids("this is my salt 2");
+var hash = hashids.Encrypt(123); // hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-net" type="text/template">
+var hashids = new Hashids("this is my salt", 16);
+var hash = hashids.Encrypt(1); // hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-net" type="text/template">
+var hashids = new Hashids("this is my salt");
+var hash = hashids.Encrypt(1); // hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-net" type="text/template">
+var hashids = new Hashids("this is my salt", 0, "abcdefghijklmnopqrstuvwxyz");
+var hash = hashids.Encrypt(123456789); // hash is now "zdrnoaor"
+		</script>
+		
+		<!-- playground template -->
+		
 		<script id="template-playground" type="text/template">
 			<h2>{{title}}:</h2>
 			<div id="examples" class="split-50 clearfix">
@@ -333,13 +797,27 @@ eGtrS8
 				</div>
 			</div>
 			<h2>Source:</h2>
-			<div id="source" class="bg split-70-30 clearfix">
-				<div>
-					<a class="icon github" href="{{github}}">{{github}}</a>
+			<div id="source">
+				<div id="lib" class="split-70-30 clearfix section {{#linksExist}}bottom-joined{{/linksExist}}">
+					<div>
+						<a class="icon github" href="{{github}}">{{github}}</a>
+					</div>
+					<div>
+						<a href="{{github}}/zipball/master" download="hashids-{{lang}}.zip"><button>download</button></a>
+					</div>
 				</div>
-				<div>
-					<a class="icon zip" href="{{github}}/zipball/master">download</a>
+				{{#linksExist}}
+				<div id="links" class="section lighten top-joined">
+					<p>additional links</p>
+					<ul class="clearfix">
+						{{#links}}
+						<li class="icon {{class}}">
+							<a href="{{url}}">{{title}}<br/><span>{{url}}</span></a>
+						</li>
+						{{/links}}
+					</ul>
 				</div>
+				{{/linksExist}}
 			</div>
 		</script>
 		
@@ -350,9 +828,20 @@ eGtrS8
 	<script type="text/javascript" src="/public/js/lib/mustache.js"></script>
 	<script type="text/javascript" src="/public/js/lib/jquery.history.js"></script>
 	<script type="text/javascript" src="/public/js/lib/prettify.js"></script>
-	<script type="text/javascript" src="/public/js/lib/app.js"></script>
+	<script type="text/javascript" src="/public/js/lib/app.js?2"></script>
 	<script type="text/javascript" src="/public/js/lib/hashids.min.js"></script>
 	<script type="text/javascript" src="/public/js/lib/coffee-script.js"></script>
+	
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	
 	<script type="text/javascript">
 		
