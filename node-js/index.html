@@ -40,7 +40,7 @@
 				<span>Available in</span>
 				<a id="javascript" class="clickable" href="/javascript/" github="https://github.com/ivanakimov/hashids.js">JavaScript</a>
 				<a id="ruby" class="clickable" href="/ruby/" github="https://github.com/peterhellberg/hashids.rb">Ruby</a>
-				<a id="python" class="clickable" href="/python/" github="https://github.com/ivanakimov/hashids.py">Python</a>
+				<a id="python" class="clickable" href="/python/" github="https://github.com/davidaurelio/hashids-python">Python</a>
 				<a id="java" class="clickable" href="/java/" github="https://github.com/peet/hashids.java">Java</a>
 				<a id="php" class="clickable" href="/php/" github="https://github.com/ivanakimov/hashids.php">PHP</a>
 				<a id="coffeescript" class="clickable" href="/coffeescript/" github="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
@@ -199,7 +199,7 @@
 					<li>Rémi Gillig (<a href="https://twitter.com/remigillig">@remigillig</a>) &mdash; <a id="go" class="" href="https://github.com/speps/go-hashids">Go</a></li>
 					<li>Peter Hellberg (<a href="https://twitter.com/peterhellberg">@peterhellberg</a>) &mdash; <a id="ruby" class="" href="https://github.com/peterhellberg/hashids.rb">Ruby</a></li>
 					<li>Markus Ullmark (<a href="https://twitter.com/ullmark">@ullmark</a>) &mdash; <a id="net" class="" href="https://github.com/ullmark/hashids.net">.NET</a></li>
-					<li>Eric Martel (<a href="https://twitter.com/emartelai">@emartelai</a>) &mdash; <a id="python" class="" href="https://github.com/ivanakimov/hashids.py">Python</a></li>
+					<li>David Aurelio (<a href="https://twitter.com/void_0">@void_0</a>) &mdash; <a id="python" class="" href="https://github.com/davidaurelio/hashids-python">Python</a></li>
 					<li>Peet Goddard (<a href="https://twitter.com/beadza">@beadza</a>) &mdash; <a id="java" class="" href="https://github.com/peet/hashids.java">Java</a></li>
 					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
 				</ul>
@@ -324,9 +324,9 @@ eGtrS8
 		<script id="template-lang-python-input" type="text/template">
 from hashids import hashids
 
-hashids_lib = hashids("this is my salt")
-hash = hashids_lib.encrypt(1, 2, 3)
-numbers = hashids_lib.decrypt(hash)
+hashids = Hashids(salt="this is my salt")
+hash = hashids.encrypt(1, 2, 3)
+numbers = hashids.decrypt(hash)
 
 print(hash)
 print(numbers)
@@ -544,48 +544,48 @@ hash = hashids.encrypt(123456789) # hash is now "zdrnoaor"
 		<!-- python examples -->
 		
 		<script id="template-example-1-lang-python" type="text/template">
-hashids_lib = hashids()
-hash = hashids_lib.encrypt(123)
+hashids = Hashids()
+hash = hashids.encrypt(123)
 		</script>
 		
 		<script id="template-example-2-lang-python" type="text/template">
-hashids_lib = hashids()
-numbers = hashids_lib.decrypt("eGtrS8")
+hashids = Hashids()
+numbers = hashids.decrypt("eGtrS8")
 		</script>
 		
 		<script id="template-example-3-lang-python" type="text/template">
-hashids_lib = hashids()
-hash = hashids_lib.encrypt(123, 456, 789)
+hashids = Hashids()
+hash = hashids.encrypt(123, 456, 789)
 		</script>
 		
 		<script id="template-example-4-lang-python" type="text/template">
-hashids_lib = hashids()
-numbers = hashids_lib.decrypt("yn8t46hen")
+hashids = Hashids()
+numbers = hashids.decrypt("yn8t46hen")
 		</script>
 		
 		<script id="template-example-5-lang-python" type="text/template">
-hashids_lib = hashids("this is my salt 1")
-hash = hashids_lib.encrypt(123) # hash is now "rnR"
+hashids = Hashids(salt="this is my salt 1")
+hash = hashids.encrypt(123) # hash is now "rnR"
 		</script>
 		
 		<script id="template-example-6-lang-python" type="text/template">
-hashids_lib = hashids("this is my salt 2")
-hash = hashids_lib.encrypt(123) # hash is now "XBn"
+hashids = Hashids(salt="this is my salt 2")
+hash = hashids.encrypt(123) # hash is now "XBn"
 		</script>
 		
 		<script id="template-example-7-lang-python" type="text/template">
-hashids_lib = hashids("this is my salt", 16)
-hash = hashids_lib.encrypt(1) # hash is now "AA6Fb9iLXiAaBFB5"
+hashids = Hashids(salt="this is my salt", min_length=16)
+hash = hashids.encrypt(1) # hash is now "AA6Fb9iLXiAaBFB5"
 		</script>
 		
 		<script id="template-example-8-lang-python" type="text/template">
-hashids_lib = hashids("this is my salt")
-hash = hashids_lib.encrypt(1) # hash is now "LX"
+hashids = Hashids(salt="this is my salt")
+hash = hashids.encrypt(1) # hash is now "LX"
 		</script>
 		
 		<script id="template-example-9-lang-python" type="text/template">
-hashids_lib = hashids("this is my salt", 0, "abcdefghijklmnopqrstuvwxyz")
-hash = hashids_lib.encrypt(123456789) # hash is now "zdrnoaor"
+hashids = Hashids(salt="this is my salt", min_length=0, alphabet="abcdefghijklmnopqrstuvwxyz")
+hash = hashids.encrypt(123456789) # hash is now "zdrnoaor"
 		</script>
 		
 		<!-- java examples -->

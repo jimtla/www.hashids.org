@@ -23,7 +23,11 @@
 				class: 'rubygem'
 				url: 'http://rubygems.org/gems/hashids'
 			}]
-			python: []
+			python: [{
+				title: 'PyPI Package'
+				class: 'pypi'
+				url: 'https://pypi.python.org/pypi/hashids/'
+			}]
 			java: []
 			php: [{
 				title: 'Composer Package'

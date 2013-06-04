@@ -145,6 +145,7 @@ a {
 	&.meteor { background-image: url("#{$public-img}/meteor.png"); }
 	&.godoc { background-image: url("#{$public-img}/godoc.png"); }
 	&.nuget { background-image: url("#{$public-img}/nuget.png"); }
+	&.pypi { background-image: url("#{$public-img}/pypi.png"); }
 	
 }
 
@@ -431,6 +432,10 @@ pre {
 	@include background-transition(250ms);
 	@include border-radius(4px);
 	font-size: 105%;
+	
+	&:not(.section) {
+		color: #000;
+	}
 	
 	&.section {
 		background: $pre-bg;
