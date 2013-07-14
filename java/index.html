@@ -44,6 +44,7 @@
 				<a id="java" class="clickable" href="/java/" github="https://github.com/peet/hashids.java">Java</a>
 				<a id="php" class="clickable" href="/php/" github="https://github.com/ivanakimov/hashids.php">PHP</a>
 				<a id="coffeescript" class="clickable" href="/coffeescript/" github="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
+				<a id="objective-c" class="clickable" href="/objective-c/" github="https://github.com/jofell/hashids-objc">Objective-C</a>
 				<a id="go" class="clickable" href="/go/" github="https://github.com/speps/go-hashids">Go</a>
 				<span>and for</span>
 				<a id="node-js" class="clickable" href="/node-js/" github="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
@@ -201,6 +202,7 @@
 					<li>Markus Ullmark (<a href="https://twitter.com/ullmark">@ullmark</a>) &mdash; <a id="net" class="" href="https://github.com/ullmark/hashids.net">.NET</a></li>
 					<li>David Aurelio (<a href="https://twitter.com/void_0">@void_0</a>) &mdash; <a id="python" class="" href="https://github.com/davidaurelio/hashids-python">Python</a></li>
 					<li>Peet Goddard (<a href="https://twitter.com/beadza">@beadza</a>) &mdash; <a id="java" class="" href="https://github.com/peet/hashids.java">Java</a></li>
+					<li>Jofell Gallardo (<a href="https://twitter.com/jofell">@jofell</a>) &mdash; <a id="objective-c" class="" href="https://github.com/jofell/hashids-objc">Objective-C</a></li>
 					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
 				</ul>
 			</div>
@@ -268,6 +270,25 @@ array(3) {
   [2]=>
   int(3)
 }
+		</script>
+		
+		<!-- objective-c -->
+		
+		<script id="template-lang-objective-c-input" type="text/template">
+Hashids *hashids = [Hashids hashidWithSalt:@"this is my salt"];
+
+NSString *hash = [hashids encrypt:@1, @2, @3, nil];
+NSLog(@"%@", hash);
+NSLog(@"%@", [hashids decrypt:hash]);
+		</script>
+		
+		<script id="template-lang-objective-c-output" type="text/template">
+eGtrS8
+(
+  1,
+  2,
+  3
+)
 		</script>
 		
 		<!-- go -->
@@ -492,6 +513,56 @@ hash = Hashids.encrypt 1 # hash is now "LX"
 		<script id="template-example-9-lang-coffeescript" type="text/template">
 Hashids = new Hashids 'this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz'
 hash = Hashids.encrypt 123456789 # hash is now "zdrnoaor"
+		</script>
+		
+		<!-- objective-c examples -->
+		
+		<script id="template-example-1-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids new];
+NSString *hash = [hashids encrypt:@123, nil];
+		</script>
+		
+		<script id="template-example-2-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids new];
+NSArray *ints = [hashids decrypt:@"eGtrS8"];
+		</script>
+		
+		<script id="template-example-3-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids new];
+NSString *hash = [hashids encrypt:@123, @456, @789, nil];
+		</script>
+		
+		<script id="template-example-4-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids new];
+NSArray *ints = [hashids decrypt:@"yn8t46hen"];
+		</script>
+		
+		<script id="template-example-5-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids hashidWithSalt:@"this is my salt 1"];
+NSString *hash = [hashids encrypt:@123, nil]; // hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids hashidWithSalt:@"this is my salt 2"];
+NSString *hash = [hashids encrypt:@123, nil]; // hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids hashidWithSalt:@"this is my salt" 
+                                 andMinLength:16];
+NSString *hash = [hashids encrypt:@1, nil]; // hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids hashidWithSalt:@"this is my salt"];
+NSString *hash = [hashids encrypt:@1, nil]; // hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-objective-c" type="text/template">
+Hashids *hashids = [Hashids hashidWithSalt:@"this is my salt" 
+                                 minLength:0
+                                   andAlpha:@"abcdefghijklmnopqrstuvwxyz"];
+NSString *hash = [hashids encrypt:@123456789, nil]; // hash is now "zdrnoaor"
 		</script>
 		
 		<!-- ruby examples -->
@@ -828,7 +899,7 @@ var hash = hashids.Encrypt(123456789); // hash is now "zdrnoaor"
 	<script type="text/javascript" src="/public/js/lib/mustache.js"></script>
 	<script type="text/javascript" src="/public/js/lib/jquery.history.js"></script>
 	<script type="text/javascript" src="/public/js/lib/prettify.js"></script>
-	<script type="text/javascript" src="/public/js/lib/app.js?2"></script>
+	<script type="text/javascript" src="/public/js/lib/app.js?3"></script>
 	<script type="text/javascript" src="/public/js/lib/hashids.min.js"></script>
 	<script type="text/javascript" src="/public/js/lib/coffee-script.js"></script>
 	

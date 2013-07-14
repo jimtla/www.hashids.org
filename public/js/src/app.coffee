@@ -65,6 +65,7 @@
 				class: 'meteor'
 				url: 'https://github.com/crapthings/meteor-hashids'
 			}]
+			'objective-c': []
 			net: [{
 				title: 'NuGet Package'
 				class: 'nuget'
