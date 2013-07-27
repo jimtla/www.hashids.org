@@ -254,9 +254,9 @@ pre {
 	}
 	
 	&.light {
-		background: #eee !important;
+		background: #eee;
 		margin: 0 0 15px 0;
-		min-height: auto;
+		min-height: inherit;
 		
 		span.str { color: #034600; }
 		span.com { color: #107020; }
