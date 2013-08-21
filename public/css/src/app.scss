@@ -146,6 +146,7 @@ a {
 	&.godoc { background-image: url("#{$public-img}/godoc.png"); }
 	&.nuget { background-image: url("#{$public-img}/nuget.png"); }
 	&.pypi { background-image: url("#{$public-img}/pypi.png"); }
+	&.cpan { background-image: url("#{$public-img}/cpan.png"); }
 	
 }
 
@@ -273,7 +274,7 @@ pre {
 	margin: ($footer-height * -1) auto 0;
 	
 	.split-50 {
-		height: 180px;
+		height: 200px;
 		max-width: $playground-width;
 		margin: 0 auto;
 		padding-top: 50px;

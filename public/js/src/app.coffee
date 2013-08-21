@@ -50,6 +50,11 @@
 				class: 'wordpress'
 				url: 'http://wordpress.org/support/plugin/wp-hashed-ids'
 			}]
+			perl: [{
+				title: 'CPAN Module'
+				class: 'cpan'
+				url: 'https://metacpan.org/module/Hashids'
+			}]
 			coffeescript: []
 			go: [{
 				title: 'GoDoc'

@@ -43,6 +43,7 @@
 				<a id="python" class="clickable" href="/python/" github="https://github.com/davidaurelio/hashids-python">Python</a>
 				<a id="java" class="clickable" href="/java/" github="https://github.com/peet/hashids.java">Java</a>
 				<a id="php" class="clickable" href="/php/" github="https://github.com/ivanakimov/hashids.php">PHP</a>
+				<a id="perl" class="clickable" href="/perl/" github="https://github.com/zakame/hashids.pm">Perl</a>
 				<a id="coffeescript" class="clickable" href="/coffeescript/" github="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
 				<a id="objective-c" class="clickable" href="/objective-c/" github="https://github.com/jofell/hashids-objc">Objective-C</a>
 				<a id="go" class="clickable" href="/go/" github="https://github.com/speps/go-hashids">Go</a>
@@ -183,8 +184,8 @@
 		<div class="split-50 clearfix">
 			<div>
 				<div class="contact section">
-					Missing a link, found an issue, or ported it over<br/>
-					to another language? Message me <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>
+					Found an issue or wrote your own version?<br/>
+					Ping me <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>
 				</div>
 				<div class="social">
 					<div class="facebook">
@@ -203,7 +204,8 @@
 					<li>David Aurelio (<a href="https://twitter.com/void_0">@void_0</a>) &mdash; <a id="python" class="" href="https://github.com/davidaurelio/hashids-python">Python</a></li>
 					<li>Peet Goddard (<a href="https://twitter.com/beadza">@beadza</a>) &mdash; <a id="java" class="" href="https://github.com/peet/hashids.java">Java</a></li>
 					<li>Jofell Gallardo (<a href="https://twitter.com/jofell">@jofell</a>) &mdash; <a id="objective-c" class="" href="https://github.com/jofell/hashids-objc">Objective-C</a></li>
-					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JavaScript</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
+					<li>Zak Elep (<a href="https://twitter.com/zakame">@zakame</a>) &mdash; <a id="perl" class="" href="https://github.com/zakame/hashids.pm">Perl</a></li>
+					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JS</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
 				</ul>
 			</div>
 		</div>
@@ -270,6 +272,22 @@ array(3) {
   [2]=>
   int(3)
 }
+		</script>
+		
+		<!-- perl -->
+		
+		<script id="template-lang-perl-input" type="text/template">
+my $hashids = Hashids->new('this is my salt');
+my $hash = $hashids->encrypt(1, 2, 3);
+my $numbers = $hashids->decrypt('eGtrS8');
+
+print $hash;
+print $numbers;
+		</script>
+		
+		<script id="template-lang-perl-output" type="text/template">
+eGtrS8
+1 2 3
 		</script>
 		
 		<!-- objective-c -->
@@ -343,8 +361,6 @@ eGtrS8
 		<!-- python -->
 		
 		<script id="template-lang-python-input" type="text/template">
-from hashids import hashids
-
 hashids = Hashids(salt="this is my salt")
 hash = hashids.encrypt(1, 2, 3)
 numbers = hashids.decrypt(hash)
@@ -419,6 +435,53 @@ var hash = Hashids.encrypt(1); /* hash is now "LX" */
 		<script id="template-example-9-lang-javascript" type="text/template">
 var Hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
 var hash = Hashids.encrypt(123456789); /* hash is now "zdrnoaor" */
+		</script>
+		
+		<!-- perl examples -->
+		
+		<script id="template-example-1-lang-perl" type="text/template">
+my $hashids = Hashids->new();
+my $hash = $hashids->encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-perl" type="text/template">
+my $hashids = Hashids->new();
+my $number = $hashids->decrypt('eGtrS8');
+		</script>
+		
+		<script id="template-example-3-lang-perl" type="text/template">
+my $hashids = Hashids->new();
+my $hash = $hashids->encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-perl" type="text/template">
+my $hashids = Hashids->new();
+my $numbers = $hashids->decrypt('yn8t46hen');
+		</script>
+		
+		<script id="template-example-5-lang-perl" type="text/template">
+my $hashids = Hashids->new('this is my salt 1');
+my $hash = $hashids->encrypt(123); # hash is now "rnR"
+		</script>
+		
+		<script id="template-example-6-lang-perl" type="text/template">
+my $hashids = Hashids->new('this is my salt 2');
+my $hash = $hashids->encrypt(123); # hash is now "XBn"
+		</script>
+		
+		<script id="template-example-7-lang-perl" type="text/template">
+my $hashids = Hashids->new(salt => 'this is my salt', minHashLength => 16);
+my $hash = $hashids->encrypt(1); # hash is now "AA6Fb9iLXiAaBFB5"
+		</script>
+		
+		<script id="template-example-8-lang-perl" type="text/template">
+my $hashids = Hashids->new('this is my salt');
+my $hash = $hashids->encrypt(1); # hash is now "LX"
+		</script>
+		
+		<script id="template-example-9-lang-perl" type="text/template">
+my $hashids = Hashids->new(salt => 'this is my salt', minHashLength => 0, alphabet => 'abcdefghijklmnopqrstuvwxyz');
+my $hash = $hashids->encrypt(123456789); # hash is now "zdrnoaor"
 		</script>
 		
 		<!-- node-js examples -->
