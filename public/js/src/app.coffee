@@ -96,10 +96,13 @@
 			$output = $ "#template-lang-#{lang}-output"
 			
 			template = $('#template-playground').html()
+			githubData = that.attr('github').split('/')
 			data =
 				lang: lang
 				title: that.text()
 				github: that.attr 'github'
+				username: githubData[3]
+				repo: githubData[4]
 				input: $input.text().trim()
 				output: $output.text().trim()
 				run: not $output.length

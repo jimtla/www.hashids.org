@@ -220,7 +220,8 @@ pre {
   pre.light {
     background: #eee;
     margin: 0 0 15px 0;
-    min-height: inherit; }
+    min-height: inherit;
+    padding: 18px !important; }
     pre.light span.str {
       color: #034600; }
     pre.light span.com {
@@ -231,9 +232,11 @@ pre {
   position: relative;
   color: #333;
   font-size: 100%;
-  margin: -300px auto 0; }
+  margin: -300px auto 0;
+  background: #63ac68;
+  border-top: 1px solid #55a15a; }
   #footer .split-50 {
-    height: 200px;
+    height: 198px;
     max-width: 860px;
     margin: 0 auto;
     padding-top: 50px; }
@@ -270,7 +273,7 @@ pre {
     text-align: center;
     color: #347738;
     padding: 15px 0;
-    border-top: 1px solid #59a75e; }
+    border-top: 1px solid #57a45c; }
 
 /* playground */
 #playground #examples #output {
@@ -290,6 +293,12 @@ pre {
   font-family: Monaco, Consolas, "Lucida Console", monospace;
   font-size: 105%;
   line-height: 1.9em; }
+#source .buttons {
+  position: relative; }
+  #source .buttons > * {
+    float: right; }
+  #source .buttons iframe {
+    margin: 3px 0 2px; }
 #source #links {
   padding: 20px 15px 5px 15px; }
   #source #links p {
@@ -321,7 +330,7 @@ pre {
 /* documentation */
 #documentation {
   position: relative;
-  margin: 5px 0 0;
+  margin: 5px 0 40px;
   padding: 15px;
   background: #e2e2e2;
   -webkit-transition: background-color 250ms linear;

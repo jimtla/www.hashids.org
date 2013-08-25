@@ -6,7 +6,7 @@
 	
 	<meta name="keywords" content="hashids, hashid, short hashes, youtube like hashes">
 	<meta name="description" content="Java port of hashids. Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.">
-	<meta name="author" content="Ivan Akimov">
+	<meta name="author" content="Peet Goddard">
 	<meta name="robots" content="noarchive">
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -65,13 +65,13 @@
 				<h2>Documentation:</h2>
 				<div id="documentation" class="section">
 					<p>
-						Hashids was designed for use in URL shortening, tracking stuff, validating accounts or making pages private (through abstraction). Instead of showing items as <code>1</code>, <code>2</code>, or <code>3</code>, you could show them as <code>b9iLXiAa</code>, <code>EATedTBy</code>, and <code>Aaco9cy5</code>. Hashes depend on your salt value.
+						Hashids was designed for use in URL shortening, tracking stuff, validating accounts and making pages private (through abstraction). Instead of showing items as <code>1</code>, <code>2</code>, or <code>3</code>, you could show them as <code>b9iLXiAa</code>, <code>EATedTBy</code>, and <code>Aaco9cy5</code>. Hashes depend on your salt value.
 					</p>
 					<div style="text-align:right"><button>full documentation</button></div>
 					<div class="hidden">
 					<h3>Why</h3>
 					<p>
-						One of the main reasons it's beneficial to have hashes instead of numbers is because you might not want to disclose your count, or let users navigate by incrementing the numbers. If you are using integers to keep track of users, it's very easy to see how many users you have or who joined last. Having hashes solves that problem.
+						One of the main reasons it's beneficial to have hashes instead of numbers is when you want to obfuscate your object count (like number of users). If you are using plain integers, it's very easy to see how many users you have and browse them by incrementing the IDs. Having hashes solves that problem.
 					</p>
 					<h3>Basic Usage</h3>
 					<p>
@@ -107,10 +107,10 @@
 					</p>
 					<h3>Controlling Hash Length</h3>
 					<p>
-						By default, hashes are going to be the shortest possible. One reason you might want to increase the hash length is to obfuscate how large the number behind the hash is.
+						By default, hashes are going to be the shortest possible. You can also set the <strong>minimum</strong> hash length to obfuscate how large the number behind the hash is.
 					</p>
 					<p>
-						This is done by passing the <strong>minimum</strong> hash length to the constructor (for example 16):
+						This is done by passing the <strong>minimum</strong> hash length to the constructor (for example 16).
 					</p>
 					<pre id="template-example-7" class="prettyprint light"></pre>
 					<p>
@@ -134,7 +134,7 @@
 						<code>a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0</code>
 					</p>
 					<p>
-						If you wish to have only lowercase letters in your hashes, you could pass in the following custom alphabet:
+						If you'd like to make it longer, you can add more characters like <code>- @ $ % ^ & * ( ) [ ] { }</code>. For example to have hashes made of only lowercase characters, you could pass in the following custom alphabet:
 					</p>
 					<pre id="template-example-9" class="prettyprint light"></pre>
 					<p>
@@ -148,7 +148,7 @@
 					<p>If you are using a relational database, you could store hashes for each row, so you could select by them. But then you'd need to index them to speed up reads.</p>
 					<p>Since <strong>all primary keys are already indexed</strong>, you could instead encrypt/decrypt your primary keys on the fly and select by them.</p>
 					<p>
-						If you have a complex clustered system, you could <strong>encrypt several numbers at once</strong>. For example, your shard number and your primary key <code>2, 1337</code> and turn them into a single hash: <code>zKIa5e</code>. Upon decryption, you could do the reverse: decrypt the hash and get the numbers, jump to the right shard, select by primary id &mdash; and you have the right record.
+						If you have a complex clustered system, you could <strong>encrypt several numbers at once</strong>. For example, your shard number and your primary key <code>2, 1337</code> and turn them into a single hash: <code>zKIa5e</code>. Upon decryption, you could do the reverse: decrypt the hash and get the numbers, jump to the right shard and select by the primary id.
 					</p>
 					<h3>Collisions</h3>
 					<p>
@@ -156,17 +156,17 @@
 					</p>
 					<h3>Decryptable Hash &iquest;Qué?</h3>
 					<p>
-						A true cryptographic hash cannot be decrypted. However, to keep things simple the word <strong>hash</strong> is used loosely to refer to the random set of characters that are generated. Like a YouTube hash.
+						A true cryptographic hash cannot be decrypted. However, to keep things simple the word <strong>hash</strong> is used loosely to refer to the random set of characters that is generated -- like a YouTube hash.
 					</p>
 					<h3>Contribute</h3>
 					<p>
-						There are many ways to contribute. Although Hashids has been ported to a few languages, there are still many more: <code>C</code>, <code>C++</code>, <code>Scala</code>, <code>Erlang</code>, <code>Clojure</code>, <code>Groovy</code>, <code>Haskell</code>, <code>Lolcode</code> etc etc... If you'd like your port added to the list, please message <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>.
+						There are many ways to contribute. Although Hashids has been ported to a few languages, there are still many more: <code>C</code>, <code>C++</code>, <code>Scala</code>, <code>Erlang</code>, <code>Clojure</code>, <code>Groovy</code>, <code>Haskell</code>, <code>Lolcode</code> etc etc... If you'd like your port added to the list, holler <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>.
 					</p>
 					<p>
-						All main libraries are hosted on <a href="https://github.com/">Github</a>. If you see a bug in code, or have an improvement you'd like to add, please <strong>open an issue on Github</strong> for the correct library.
+						All main libraries are hosted on <a href="https://github.com/">Github</a>. If you see a bug in code, or have an improvement you'd like to add, please <strong>open an issue on Github</strong> for the correct library, or fork the library and <a href="https://help.github.com/articles/using-pull-requests">issue a pull request</a>.
 					</p>
 					<p>
-						You can also turn Hashids into a plugin for your favorite framework. If a link is missing, <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">ping to add it</a>.
+						You can also turn Hashids into a plugin for your favorite framework. If it's missing here, it will be added under the right library.
 					</p>
 					<h3>License</h3>
 					<p>
@@ -399,7 +399,7 @@ var hash = Hashids.encrypt(123);
 		
 		<script id="template-example-2-lang-javascript" type="text/template">
 var Hashids = new Hashids();
-var numbers = Hashids.decrypt('eGtrS8');
+var numbers = Hashids.decrypt('Mj3');
 		</script>
 		
 		<script id="template-example-3-lang-javascript" type="text/template">
@@ -409,32 +409,32 @@ var hash = Hashids.encrypt(123, 456, 789);
 		
 		<script id="template-example-4-lang-javascript" type="text/template">
 var Hashids = new Hashids();
-var numbers = Hashids.decrypt('yn8t46hen');
+var numbers = Hashids.decrypt('El3fkRIo3');
 		</script>
 		
 		<script id="template-example-5-lang-javascript" type="text/template">
 var Hashids = new Hashids('this is my salt 1');
-var hash = Hashids.encrypt(123); /* hash is now "rnR" */
+var hash = Hashids.encrypt(123); /* hash is now "nVB" */
 		</script>
 		
 		<script id="template-example-6-lang-javascript" type="text/template">
 var Hashids = new Hashids('this is my salt 2');
-var hash = Hashids.encrypt(123); /* hash is now "XBn" */
+var hash = Hashids.encrypt(123); /* hash is now "ojK" */
 		</script>
 		
 		<script id="template-example-7-lang-javascript" type="text/template">
 var Hashids = new Hashids('this is my salt', 16);
-var hash = Hashids.encrypt(1); /* hash is now "AA6Fb9iLXiAaBFB5" */
+var hash = Hashids.encrypt(1); /* hash is now "jV34xpAYDx0mQNvl" */
 		</script>
 		
 		<script id="template-example-8-lang-javascript" type="text/template">
 var Hashids = new Hashids('this is my salt');
-var hash = Hashids.encrypt(1); /* hash is now "LX" */
+var hash = Hashids.encrypt(1); /* hash is now "NV" */
 		</script>
 		
 		<script id="template-example-9-lang-javascript" type="text/template">
 var Hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
-var hash = Hashids.encrypt(123456789); /* hash is now "zdrnoaor" */
+var hash = Hashids.encrypt(123456789); /* hash is now "jrpjaxap" */
 		</script>
 		
 		<!-- perl examples -->
@@ -493,7 +493,7 @@ var hash = Hashids.encrypt(123);
 		
 		<script id="template-example-2-lang-node-js" type="text/template">
 var Hashids = new Hashids();
-var numbers = Hashids.decrypt('eGtrS8');
+var numbers = Hashids.decrypt('Mj3');
 		</script>
 		
 		<script id="template-example-3-lang-node-js" type="text/template">
@@ -503,32 +503,32 @@ var hash = Hashids.encrypt(123, 456, 789);
 		
 		<script id="template-example-4-lang-node-js" type="text/template">
 var Hashids = new Hashids();
-var numbers = Hashids.decrypt('yn8t46hen');
+var numbers = Hashids.decrypt('El3fkRIo3');
 		</script>
 		
 		<script id="template-example-5-lang-node-js" type="text/template">
 var Hashids = new Hashids('this is my salt 1');
-var hash = Hashids.encrypt(123); /* hash is now "rnR" */
+var hash = Hashids.encrypt(123); /* hash is now "nVB" */
 		</script>
 		
 		<script id="template-example-6-lang-node-js" type="text/template">
 var Hashids = new Hashids('this is my salt 2');
-var hash = Hashids.encrypt(123); /* hash is now "XBn" */
+var hash = Hashids.encrypt(123); /* hash is now "ojK" */
 		</script>
 		
 		<script id="template-example-7-lang-node-js" type="text/template">
 var Hashids = new Hashids('this is my salt', 16);
-var hash = Hashids.encrypt(1); /* hash is now "AA6Fb9iLXiAaBFB5" */
+var hash = Hashids.encrypt(1); /* hash is now "jV34xpAYDx0mQNvl" */
 		</script>
 		
 		<script id="template-example-8-lang-node-js" type="text/template">
 var Hashids = new Hashids('this is my salt');
-var hash = Hashids.encrypt(1); /* hash is now "LX" */
+var hash = Hashids.encrypt(1); /* hash is now "NV" */
 		</script>
 		
 		<script id="template-example-9-lang-node-js" type="text/template">
 var Hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
-var hash = Hashids.encrypt(123456789); /* hash is now "zdrnoaor" */
+var hash = Hashids.encrypt(123456789); /* hash is now "jrpjaxap" */
 		</script>
 		
 		<!-- coffeescript examples -->
@@ -540,7 +540,7 @@ hash = Hashids.encrypt 123
 		
 		<script id="template-example-2-lang-coffeescript" type="text/template">
 Hashids = new Hashids()
-numbers = Hashids.decrypt 'eGtrS8'
+numbers = Hashids.decrypt 'Mj3'
 		</script>
 		
 		<script id="template-example-3-lang-coffeescript" type="text/template">
@@ -550,32 +550,32 @@ hash = Hashids.encrypt 123, 456, 789
 		
 		<script id="template-example-4-lang-coffeescript" type="text/template">
 Hashids = new Hashids()
-numbers = Hashids.decrypt 'yn8t46hen'
+numbers = Hashids.decrypt 'El3fkRIo3'
 		</script>
 		
 		<script id="template-example-5-lang-coffeescript" type="text/template">
 Hashids = new Hashids 'this is my salt 1'
-hash = Hashids.encrypt 123 # hash is now "rnR"
+hash = Hashids.encrypt 123 # hash is now "nVB"
 		</script>
 		
 		<script id="template-example-6-lang-coffeescript" type="text/template">
 Hashids = new Hashids 'this is my salt 2'
-hash = Hashids.encrypt 123 # hash is now "XBn"
+hash = Hashids.encrypt 123 # hash is now "ojK"
 		</script>
 		
 		<script id="template-example-7-lang-coffeescript" type="text/template">
 Hashids = new Hashids 'this is my salt', 16
-hash = Hashids.encrypt 1 # hash is now "AA6Fb9iLXiAaBFB5"
+hash = Hashids.encrypt 1 # hash is now "jV34xpAYDx0mQNvl"
 		</script>
 		
 		<script id="template-example-8-lang-coffeescript" type="text/template">
 Hashids = new Hashids 'this is my salt'
-hash = Hashids.encrypt 1 # hash is now "LX"
+hash = Hashids.encrypt 1 # hash is now "NV"
 		</script>
 		
 		<script id="template-example-9-lang-coffeescript" type="text/template">
 Hashids = new Hashids 'this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz'
-hash = Hashids.encrypt 123456789 # hash is now "zdrnoaor"
+hash = Hashids.encrypt 123456789 # hash is now "jrpjaxap"
 		</script>
 		
 		<!-- objective-c examples -->
@@ -932,12 +932,13 @@ var hash = hashids.Encrypt(123456789); // hash is now "zdrnoaor"
 			</div>
 			<h2>Source:</h2>
 			<div id="source">
-				<div id="lib" class="split-70-30 clearfix section {{#linksExist}}bottom-joined{{/linksExist}}">
+				<div id="lib" class="split-70-30 section {{#linksExist}}bottom-joined{{/linksExist}} clearfix">
 					<div>
 						<a class="icon github" href="{{github}}">{{github}}</a>
 					</div>
-					<div>
-						<a href="{{github}}/zipball/master" download="hashids-{{lang}}.zip"><button>download</button></a>
+					<div class="buttons" class="clearfix">
+						<a href="{{github}}/zipball/master" download="hashids-{{lang}}.zip"><button>download zip</button></a>
+						<iframe src="http://ghbtns.com/github-btn.html?user={{username}}&repo={{repo}}&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="90" height="20"></iframe>
 					</div>
 				</div>
 				{{#linksExist}}

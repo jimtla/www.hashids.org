@@ -258,6 +258,7 @@ pre {
 		background: #eee;
 		margin: 0 0 15px 0;
 		min-height: inherit;
+		padding: 18px !important;
 		
 		span.str { color: #034600; }
 		span.com { color: #107020; }
@@ -272,9 +273,11 @@ pre {
 	color: #333;
 	font-size: 100%;
 	margin: ($footer-height * -1) auto 0;
+	background: darken($green, 2%);
+	border-top: 1px solid darken($green, 7%);
 	
 	.split-50 {
-		height: 200px;
+		height: 198px;
 		max-width: $playground-width;
 		margin: 0 auto;
 		padding-top: 50px;
@@ -330,7 +333,7 @@ pre {
 		text-align: center;
 		color: darken(#3c8940, 5%);
 		padding: 15px 0;
-		border-top: 1px solid darken($green, 5%);
+		border-top: 1px solid darken($green, 6%);
 	}
 	
 }
@@ -373,6 +376,19 @@ pre {
 		font-family: Monaco, Consolas, "Lucida Console", monospace;
 		font-size: 105%;
 		line-height: 1.9em;
+	}
+	
+	.buttons {
+		position: relative;
+		
+		& > * {
+			float: right;
+		}
+		
+		iframe {
+			margin: 3px 0 2px;
+		}
+		
 	}
 	
 	#links {
@@ -427,7 +443,7 @@ pre {
 
 #documentation {
 	position: relative;
-	margin: 5px 0 0;
+	margin: 5px 0 40px;
 	padding: 15px;
 	background: #e2e2e2;
 	@include background-transition(250ms);
