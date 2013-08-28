@@ -132,6 +132,8 @@ a {
     background-image: url("/public/img/pypi.png"); }
   .icon.cpan {
     background-image: url("/public/img/cpan.png"); }
+  .icon.symfony {
+    background-image: url("/public/img/symfony.png"); }
 
 /* containers */
 h1 {

@@ -49,6 +49,10 @@ app = {
         "class": 'code-igniter',
         url: 'http://getsparks.org/packages/sk-hashids/versions/HEAD/show'
       }, {
+        title: 'Symfony Bundle',
+        "class": 'symfony',
+        url: 'https://github.com/neoshadybeat/hashidsBundle'
+      }, {
         title: 'Kohana Module',
         "class": 'kohana',
         url: 'http://kohana-modules.com/modules/pocesar/hashids-kohana'
