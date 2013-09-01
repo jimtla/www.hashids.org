@@ -94,6 +94,10 @@ app = {
         title: 'NuGet Package',
         "class": 'nuget',
         url: 'http://nuget.org/packages/Hashids.net/'
+      }, {
+        title: 'v0.3.0 by @Mindflash',
+        "class": 'github',
+        url: 'https://github.com/Mindflash/hashids.net'
       }
     ]
   },
