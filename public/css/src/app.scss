@@ -134,7 +134,7 @@ a {
 	background-position: left center;
 	background-repeat: no-repeat;
 	
-	&.github { background-image: url("#{$public-img}/octocat.png"); }
+	&.octocat { background-image: url("#{$public-img}/octocat.png"); }
 	&.laravel { background-image: url("#{$public-img}/laravel.png"); }
 	&.packagist { background-image: url("#{$public-img}/packagist.png"); }
 	&.code-igniter { background-image: url("#{$public-img}/code_igniter.png"); }
@@ -374,7 +374,7 @@ pre {
 
 #source {
 	
-	#lib .github {
+	#lib .octocat {
 		font-family: Monaco, Consolas, "Lucida Console", monospace;
 		font-size: 105%;
 		line-height: 1.9em;
