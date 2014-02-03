@@ -55,6 +55,7 @@
 				<a id="coffeescript" class="clickable" href="/coffeescript/" github="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
 				<a id="objective-c" class="clickable" href="/objective-c/" github="https://github.com/jofell/hashids-objc">Objective-C</a>
 				<a id="go" class="clickable" href="/go/" github="https://github.com/speps/go-hashids">Go</a>
+				<a id="lua" class="clickable" href="/lua/" github="https://github.com/leihog/hashids.lua">Lua</a>
 				<span>and for</span>
 				<a id="node-js" class="clickable" href="/node-js/" github="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
 				<a id="net" class="clickable" href="/net/" github="https://github.com/ullmark/hashids.net">.NET</a>
@@ -213,6 +214,7 @@
 					<li>Peet Goddard (<a href="https://twitter.com/beadza">@beadza</a>) &mdash; <a id="java" class="" href="https://github.com/peet/hashids.java">Java</a></li>
 					<li>Jofell Gallardo (<a href="https://twitter.com/jofell">@jofell</a>) &mdash; <a id="objective-c" class="" href="https://github.com/jofell/hashids-objc">Objective-C</a></li>
 					<li>Zak Elep (<a href="https://twitter.com/zakame">@zakame</a>) &mdash; <a id="perl" class="" href="https://github.com/zakame/hashids.pm">Perl</a></li>
+					<li>Leif Högberg (<a href="https://twitter.com/leihog">@leihog</a>) &mdash; <a id="lua" class="" href="https://github.com/leihog/hashids.lua">Lua</a></li>
 					<li>Ivan Akimov (<a href="https://twitter.com/ivanakimov">@ivanakimov</a>) &mdash; <a id="javascript" class="" href="https://github.com/ivanakimov/hashids.js">JS</a>, <a id="coffeescript" class="" href="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>, <a id="node-js" class="" href="https://github.com/ivanakimov/hashids.node.js">Node.js</a>, <a id="php" class="" href="https://github.com/ivanakimov/hashids.php">PHP</a></li>
 				</ul>
 			</div>
@@ -390,6 +392,23 @@ System.out.println(numbers);
 		<script id="template-lang-java-output" type="text/template">
 eGtrS8
 [1, 2, 3]
+		</script>
+		
+		<!-- lua -->
+		
+		<script id="template-lang-lua-input" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new("this is my salt");
+local e = h:encrypt(1, 2, 3);
+local d = h:decrypt(e);
+
+print(e);
+print(d);
+		</script>
+		
+		<script id="template-lang-lua-output" type="text/template">
+laHquq
+1 2 3
 		</script>
 		
 		<!-- javascript examples -->
@@ -917,6 +936,63 @@ var hash = hashids.Encrypt(1); // hash is now "LX"
 		<script id="template-example-9-lang-net" type="text/template">
 var hashids = new Hashids("this is my salt", 0, "abcdefghijklmnopqrstuvwxyz");
 var hash = hashids.Encrypt(123456789); // hash is now "zdrnoaor"
+		</script>
+		
+		<!-- lua examples -->
+		
+		<script id="template-example-1-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new();
+local hash = h:encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new();
+local numbers = h:decrypt("laHquq");
+		</script>
+		
+		<script id="template-example-3-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new();
+local hash = h:encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new();
+local numbers = h:decrypt("El3fkRIo3");
+		</script>
+		
+		<script id="template-example-5-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new("this is my salt 1");
+local hash = h:encrypt(123); -- hash is now "nVB"
+		</script>
+		
+		<script id="template-example-6-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new("this is my salt 2");
+local hash = h:encrypt(123); -- hash is now "ojK"
+		</script>
+		
+		<script id="template-example-7-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new("this is my salt", 16);
+local hash = h:encrypt(1); -- hash is now "JEDngB0NV05ev1Ww"
+		</script>
+		
+		<script id="template-example-8-lang-lua" type="text/template">
+local hashids = require("hashids");
+local h = hashids.new("this is my salt");
+local hash = h:encrypt(1); -- hash is now "NV"
+		</script>
+		
+		<script id="template-example-9-lang-lua" type="text/template">
+local hashids = require("hashids");
+local alphabet = "abcdefghijklmnopqrstuvwxyz";
+local h = hashids.new("this is my salt", 0, alphabet);
+local hash = h:encrypt(123456789); -- hash is now "jrpjaxap"
 		</script>
 		
 		<!-- playground template -->

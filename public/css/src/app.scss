@@ -279,10 +279,10 @@ pre {
 	border-top: 1px solid darken($green, 7%);
 	
 	.split-50 {
-		height: 198px;
+		height: 218px;
 		max-width: $playground-width;
 		margin: 0 auto;
-		padding-top: 50px;
+		padding-top: 30px;
 		
 		.contact {
 			@include border-radius(4px);

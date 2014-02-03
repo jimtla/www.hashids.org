@@ -83,7 +83,8 @@
 				title: 'v0.3.0 by @Mindflash'
 				class: 'github'
 				url: 'https://github.com/Mindflash/hashids.net'
-			}]
+			}],
+			lua: []
 		}
 		
 		checkPath: ->

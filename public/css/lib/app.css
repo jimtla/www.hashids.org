@@ -58,7 +58,7 @@ button {
   border-style: solid;
   box-shadow: 0 2px 0 0 #1b8120;
   color: #09680F;
-  font: bold 13px/1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  font: bold 13px/1 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
   padding: 6px 12px;
   text-align: center;
   cursor: pointer;
@@ -214,13 +214,13 @@ pre {
     pre.dark span.pun {
       color: #ebefe7; }
     pre.dark span.pln {
-      color: #C2C9BC; }
+      color: #c2c9bc; }
     pre.dark span.str {
-      color: #D9BF8C; }
+      color: #d9bf8c; }
     pre.dark span.typ {
-      color: #B35E4D; }
+      color: #b35e4d; }
     pre.dark span.lit {
-      color: #C2B470; }
+      color: #c2b470; }
   pre.light {
     background: #eee;
     margin: 0 0 15px 0;
@@ -240,10 +240,10 @@ pre {
   background: #63ac68;
   border-top: 1px solid #55a15a; }
   #footer .split-50 {
-    height: 198px;
+    height: 218px;
     max-width: 860px;
     margin: 0 auto;
-    padding-top: 50px; }
+    padding-top: 30px; }
     #footer .split-50 .contact {
       -moz-border-radius: 4px;
       -webkit-border-radius: 4px;

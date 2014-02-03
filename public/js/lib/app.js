@@ -99,7 +99,8 @@ app = {
         "class": 'github',
         url: 'https://github.com/Mindflash/hashids.net'
       }
-    ]
+    ],
+    lua: []
   },
   checkPath: function() {
     var lang;
