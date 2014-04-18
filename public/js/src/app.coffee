@@ -28,7 +28,11 @@
 				class: 'pypi'
 				url: 'https://pypi.python.org/pypi/hashids/'
 			}]
-			java: []
+			java: [{
+				title: 'v0.1.4 by @peet'
+				class: 'github'
+				url: 'https://github.com/peet/hashids.java'
+			}]
 			php: [{
 				title: 'Composer Package'
 				class: 'packagist'
@@ -53,6 +57,10 @@
 				title: 'WordPress Plugin'
 				class: 'wordpress'
 				url: 'http://wordpress.org/support/plugin/wp-hashed-ids'
+			}, {
+				title: 'Silex Service Provider'
+				class: 'packagist'
+				url: 'https://packagist.org/packages/redpanda/hashids-service-provider'
 			}]
 			perl: [{
 				title: 'CPAN Module'
