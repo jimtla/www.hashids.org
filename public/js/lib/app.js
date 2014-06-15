@@ -70,6 +70,10 @@ app = {
         title: 'Silex Service Provider',
         "class": 'packagist',
         url: 'https://packagist.org/packages/redpanda/hashids-service-provider'
+      }, {
+        title: 'CakePHP Component',
+        "class": 'cakephp',
+        url: 'https://github.com/FinalDevStudio/cakephp-hashids'
       }
     ],
     perl: [
