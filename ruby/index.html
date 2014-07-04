@@ -56,6 +56,7 @@
 				<a id="objective-c" class="clickable" href="/objective-c/" github="https://github.com/jofell/hashids-objc">Objective-C</a>
 				<a id="go" class="clickable" href="/go/" github="https://github.com/speps/go-hashids">Go</a>
 				<a id="lua" class="clickable" href="/lua/" github="https://github.com/leihog/hashids.lua">Lua</a>
+				<a id="elixir" class="clickable" href="/elixir/" github="https://github.com/alco/saltie">Elixir</a>
 				<span>and for</span>
 				<a id="node-js" class="clickable" href="/node-js/" github="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
 				<a id="net" class="clickable" href="/net/" github="https://github.com/ullmark/hashids.net">.NET</a>
@@ -399,6 +400,21 @@ print(d);
 		<script id="template-lang-lua-output" type="text/template">
 laHquq
 1 2 3
+		</script>
+		
+		<!-- elixir -->
+		
+		<script id="template-lang-elixir-input" type="text/template">
+s = Saltie.new([
+  key: 'this is my salt'
+])
+cipher = Saltie.encrypt(s, [1, 2, 3])
+numbers = Saltie.decrypt(s, cipher)
+		</script>
+		
+		<script id="template-lang-elixir-output" type="text/template">
+#=> 'laHquq'
+#=> [1, 2, 3]
 		</script>
 		
 		<!-- javascript examples -->
@@ -983,6 +999,60 @@ local hashids = require("hashids");
 local alphabet = "abcdefghijklmnopqrstuvwxyz";
 local h = hashids.new("this is my salt", 0, alphabet);
 local hash = h:encrypt(123456789); -- hash is now "jrpjaxap"
+		</script>
+		
+		<!-- elixir examples -->
+		
+		<script id="template-example-1-lang-elixir" type="text/template">
+s = Saltie.new()
+cipher = Saltie.encrypt(s, 123)
+		</script>
+		
+		<script id="template-example-2-lang-elixir" type="text/template">
+s = Saltie.new()
+numbers = Saltie.decrypt(s, 'laHquq')
+		</script>
+		
+		<script id="template-example-3-lang-elixir" type="text/template">
+s = Saltie.new()
+cipher = Saltie.encrypt(s, [123, 456, 789])
+		</script>
+		
+		<script id="template-example-4-lang-elixir" type="text/template">
+s = Saltie.new()
+numbers = Saltie.decrypt(s, 'El3fkRIo3')
+		</script>
+		
+		<script id="template-example-5-lang-elixir" type="text/template">
+s = Saltie.new(key: 'this is my salt 1')
+cipher = Saltie.encrypt(s, 123) # cipher is now 'nVB'
+		</script>
+		
+		<script id="template-example-6-lang-elixir" type="text/template">
+s = Saltie.new(key: 'this is my salt 2')
+cipher = Saltie.encrypt(s, 123) # cipher is now 'ojK'
+		</script>
+		
+		<script id="template-example-7-lang-elixir" type="text/template">
+s = Saltie.new([
+	key: 'this is my salt',
+	min_len: 16
+])
+cipher = Saltie.encrypt(s, 1) # cipher is now 'JEDngB0NV05ev1Ww'
+		</script>
+		
+		<script id="template-example-8-lang-elixir" type="text/template">
+s = Saltie.new(key: 'this is my salt')
+cipher = Saltie.encrypt(s, 1) # cipher is now 'NV'
+		</script>
+		
+		<script id="template-example-9-lang-elixir" type="text/template">
+s = Saltie.new([
+	key: 'this is my salt',
+	min_len: 1,
+	alphabet: 'abcdefghijklmnopqrstuvwxyz'
+])
+cipher = Saltie.encrypt(s, 123456789) # cipher is now 'jrpjaxap'
 		</script>
 		
 		<!-- playground template -->

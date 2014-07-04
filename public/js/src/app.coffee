@@ -97,6 +97,11 @@
 				url: 'https://github.com/Mindflash/hashids.net'
 			}],
 			lua: []
+			elixir: [{
+				title: 'hex.pm package'
+				class: 'elixir'
+				url: 'https://hex.pm/packages/saltie'
+			}]
 		}
 		
 		checkPath: ->

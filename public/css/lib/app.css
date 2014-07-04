@@ -138,6 +138,8 @@ a {
     background-image: url("/public/img/github.png"); }
   .icon.cakephp {
     background-image: url("/public/img/cakephp.png"); }
+  .icon.elixir {
+    background-image: url("/public/img/elixir.png"); }
 
 /* containers */
 h1 {

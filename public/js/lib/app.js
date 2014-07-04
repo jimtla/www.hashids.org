@@ -114,7 +114,14 @@ app = {
         url: 'https://github.com/Mindflash/hashids.net'
       }
     ],
-    lua: []
+    lua: [],
+    elixir: [
+      {
+        title: 'hex.pm package',
+        "class": 'elixir',
+        url: 'https://hex.pm/packages/saltie'
+      }
+    ]
   },
   checkPath: function() {
     var lang;
