@@ -121,7 +121,8 @@ app = {
         "class": 'elixir',
         url: 'https://hex.pm/packages/saltie'
       }
-    ]
+    ],
+    coldfusion: []
   },
   checkPath: function() {
     var lang;

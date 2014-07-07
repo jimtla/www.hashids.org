@@ -102,6 +102,7 @@
 				class: 'elixir'
 				url: 'https://hex.pm/packages/saltie'
 			}]
+			coldfusion: []
 		}
 		
 		checkPath: ->

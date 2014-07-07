@@ -57,6 +57,7 @@
 				<a id="go" class="clickable" href="/go/" github="https://github.com/speps/go-hashids">Go</a>
 				<a id="lua" class="clickable" href="/lua/" github="https://github.com/leihog/hashids.lua">Lua</a>
 				<a id="elixir" class="clickable" href="/elixir/" github="https://github.com/alco/saltie">Elixir</a>
+				<a id="coldfusion" class="clickable" href="/coldfusion/" github="https://github.com/dswitzer/hashids.coldfusion">ColdFusion</a>
 				<span>and for</span>
 				<a id="node-js" class="clickable" href="/node-js/" github="https://github.com/ivanakimov/hashids.node.js">Node.js</a>
 				<a id="net" class="clickable" href="/net/" github="https://github.com/ullmark/hashids.net">.NET</a>
@@ -415,6 +416,19 @@ numbers = Saltie.decrypt(s, cipher)
 		<script id="template-lang-elixir-output" type="text/template">
 #=> 'laHquq'
 #=> [1, 2, 3]
+		</script>
+		
+		<!-- coldfusion -->
+		
+		<script id="template-lang-coldfusion-input" type="text/template">
+var hashids = new Hashids("this is my salt");
+var hash = hashids.encrypt(1, 2, 3);
+var numbers = hashids.decrypt(hash);
+		</script>
+		
+		<script id="template-lang-coldfusion-output" type="text/template">
+laHquq
+[ 1, 2, 3 ]
 		</script>
 		
 		<!-- javascript examples -->
@@ -1053,6 +1067,53 @@ s = Saltie.new([
 	alphabet: 'abcdefghijklmnopqrstuvwxyz'
 ])
 cipher = Saltie.encrypt(s, 123456789) # cipher is now 'jrpjaxap'
+		</script>
+		
+		<!-- coldfusion examples -->
+		
+		<script id="template-example-1-lang-coldfusion" type="text/template">
+var hashids = new Hashids();
+var hash = hashids.encrypt(123);
+		</script>
+		
+		<script id="template-example-2-lang-coldfusion" type="text/template">
+var hashids = new Hashids();
+var numbers = hashids.decrypt("Mj3");
+		</script>
+		
+		<script id="template-example-3-lang-coldfusion" type="text/template">
+var hashids = new Hashids();
+var hash = hashids.encrypt(123, 456, 789);
+		</script>
+		
+		<script id="template-example-4-lang-coldfusion" type="text/template">
+var hashids = new Hashids();
+var numbers = hashids.decrypt("El3fkRIo3");
+		</script>
+		
+		<script id="template-example-5-lang-coldfusion" type="text/template">
+var hashids = new Hashids("this is my salt 1");
+var hash = hashids.encrypt(123); /* hash is now "nVB" */
+		</script>
+		
+		<script id="template-example-6-lang-coldfusion" type="text/template">
+var hashids = new Hashids("this is my salt 2");
+var hash = hashids.encrypt(123); /* hash is now "ojK" */
+		</script>
+		
+		<script id="template-example-7-lang-coldfusion" type="text/template">
+var hashids = new Hashids("this is my salt", 16);
+var hash = hashids.encrypt(1); /* hash is now "jV34xpAYDx0mQNvl" */
+		</script>
+		
+		<script id="template-example-8-lang-coldfusion" type="text/template">
+var hashids = new Hashids("this is my salt");
+var hash = hashids.encrypt(1); /* hash is now "NV" */
+		</script>
+		
+		<script id="template-example-9-lang-coldfusion" type="text/template">
+var hashids = new Hashids(salt="this is my salt", minLen=0, alphabet="abcdefghijklmnopqrstuvwxyz");
+var hash = hashids.encrypt(123456789); /* hash is now "jrpjaxap" */
 		</script>
 		
 		<!-- playground template -->
