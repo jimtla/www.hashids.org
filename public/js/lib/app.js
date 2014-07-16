@@ -103,6 +103,7 @@ app = {
       }
     ],
     'objective-c': [],
+    cpp: [],
     net: [
       {
         title: 'NuGet Package',

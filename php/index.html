@@ -54,6 +54,7 @@
 				<a id="perl" class="clickable" href="/perl/" github="https://github.com/zakame/hashids.pm">Perl</a>
 				<a id="coffeescript" class="clickable" href="/coffeescript/" github="https://github.com/ivanakimov/hashids.coffee">CoffeeScript</a>
 				<a id="objective-c" class="clickable" href="/objective-c/" github="https://github.com/jofell/hashids-objc">Objective-C</a>
+				<a id="cpp" class="clickable" href="/cpp/" github="https://github.com/schoentoon/hashidsxx">C++</a>
 				<a id="go" class="clickable" href="/go/" github="https://github.com/speps/go-hashids">Go</a>
 				<a id="lua" class="clickable" href="/lua/" github="https://github.com/leihog/hashids.lua">Lua</a>
 				<a id="elixir" class="clickable" href="/elixir/" github="https://github.com/alco/saltie">Elixir</a>
@@ -171,7 +172,7 @@
 					</p>
 					<h3>Contribute</h3>
 					<p>
-						There are many ways to contribute. Although Hashids has been ported to a few languages, there are still many more: <code>C</code>, <code>C++</code>, <code>Rust</code>, <code>Scala</code>, <code>Erlang</code>, <code>Clojure</code>, <code>Groovy</code>, <code>Haskell</code>, <code>Lolcode</code> etc etc... If you'd like your port added to the list, holler <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>.
+						There are many ways to contribute. Although Hashids has been ported to a few languages, there are still many more: <code>C</code>, <code>Swift</code>, <code>Rust</code>, <code>Scala</code>, <code>Erlang</code>, <code>Clojure</code>, <code>Groovy</code>, <code>Haskell</code>, <code>Lolcode</code> etc etc... If you'd like your port added to the list, holler <a href="https://twitter.com/intent/tweet?screen_name=IvanAkimov&text=%23hashids">@IvanAkimov</a>.
 					</p>
 					<p>
 						All main libraries are hosted on <a href="https://github.com/">Github</a>. If you see a bug in code, or have an improvement you'd like to add, please <strong>open an issue on Github</strong> for the correct library, or fork the library and <a href="https://help.github.com/articles/using-pull-requests">issue a pull request</a>.
@@ -305,6 +306,24 @@ eGtrS8
 )
 		</script>
 		
+		<!-- cpp -->
+		
+		<script id="template-lang-cpp-input" type="text/template">
+hashidsxx::Hashids hash("this is my salt");
+std::string e = hash.encrypt({1, 2, 3});
+std::vector<uint32_t> d = hash.decrypt(e);
+
+std::cout << e << std::endl;
+for (uin32_t n : d) std::cout << n << std::endl;
+		</script>
+		
+		<script id="template-lang-cpp-output" type="text/template">
+'laHquq'
+1
+2
+3
+		</script>
+		
 		<!-- go -->
 		
 		<script id="template-lang-go-input" type="text/template">
@@ -434,48 +453,48 @@ laHquq
 		<!-- javascript examples -->
 		
 		<script id="template-example-1-lang-javascript" type="text/template">
-var Hashids = new Hashids();
-var hash = Hashids.encrypt(123);
+var hashids = new Hashids();
+var hash = hashids.encrypt(123);
 		</script>
 		
 		<script id="template-example-2-lang-javascript" type="text/template">
-var Hashids = new Hashids();
-var numbers = Hashids.decrypt('Mj3');
+var hashids = new Hashids();
+var numbers = hashids.decrypt('Mj3');
 		</script>
 		
 		<script id="template-example-3-lang-javascript" type="text/template">
-var Hashids = new Hashids();
-var hash = Hashids.encrypt(123, 456, 789);
+var hashids = new Hashids();
+var hash = hashids.encrypt(123, 456, 789);
 		</script>
 		
 		<script id="template-example-4-lang-javascript" type="text/template">
-var Hashids = new Hashids();
-var numbers = Hashids.decrypt('El3fkRIo3');
+var hashids = new Hashids();
+var numbers = hashids.decrypt('El3fkRIo3');
 		</script>
 		
 		<script id="template-example-5-lang-javascript" type="text/template">
-var Hashids = new Hashids('this is my salt 1');
-var hash = Hashids.encrypt(123); /* hash is now "nVB" */
+var hashids = new Hashids('this is my salt 1');
+var hash = hashids.encrypt(123); /* hash is now "nVB" */
 		</script>
 		
 		<script id="template-example-6-lang-javascript" type="text/template">
-var Hashids = new Hashids('this is my salt 2');
-var hash = Hashids.encrypt(123); /* hash is now "ojK" */
+var hashids = new Hashids('this is my salt 2');
+var hash = hashids.encrypt(123); /* hash is now "ojK" */
 		</script>
 		
 		<script id="template-example-7-lang-javascript" type="text/template">
-var Hashids = new Hashids('this is my salt', 16);
-var hash = Hashids.encrypt(1); /* hash is now "jV34xpAYDx0mQNvl" */
+var hashids = new Hashids('this is my salt', 16);
+var hash = hashids.encrypt(1); /* hash is now "JEDngB0NV05ev1Ww" */
 		</script>
 		
 		<script id="template-example-8-lang-javascript" type="text/template">
-var Hashids = new Hashids('this is my salt');
-var hash = Hashids.encrypt(1); /* hash is now "NV" */
+var hashids = new Hashids('this is my salt');
+var hash = hashids.encrypt(1); /* hash is now "NV" */
 		</script>
 		
 		<script id="template-example-9-lang-javascript" type="text/template">
-var Hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
-var hash = Hashids.encrypt(123456789); /* hash is now "jrpjaxap" */
+var hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
+var hash = hashids.encrypt(123456789); /* hash is now "jrpjaxap" */
 		</script>
 		
 		<!-- perl examples -->
@@ -528,95 +547,95 @@ my $hash = $hashids->encrypt(123456789); # hash is now "zdrnoaor"
 		<!-- node-js examples -->
 		
 		<script id="template-example-1-lang-node-js" type="text/template">
-var Hashids = new Hashids();
-var hash = Hashids.encrypt(123);
+var hashids = new Hashids();
+var hash = hashids.encrypt(123);
 		</script>
 		
 		<script id="template-example-2-lang-node-js" type="text/template">
-var Hashids = new Hashids();
-var numbers = Hashids.decrypt('Mj3');
+var hashids = new Hashids();
+var numbers = hashids.decrypt('Mj3');
 		</script>
 		
 		<script id="template-example-3-lang-node-js" type="text/template">
-var Hashids = new Hashids();
-var hash = Hashids.encrypt(123, 456, 789);
+var hashids = new Hashids();
+var hash = hashids.encrypt(123, 456, 789);
 		</script>
 		
 		<script id="template-example-4-lang-node-js" type="text/template">
-var Hashids = new Hashids();
-var numbers = Hashids.decrypt('El3fkRIo3');
+var hashids = new Hashids();
+var numbers = hashids.decrypt('El3fkRIo3');
 		</script>
 		
 		<script id="template-example-5-lang-node-js" type="text/template">
-var Hashids = new Hashids('this is my salt 1');
-var hash = Hashids.encrypt(123); /* hash is now "nVB" */
+var hashids = new Hashids('this is my salt 1');
+var hash = hashids.encrypt(123); /* hash is now "nVB" */
 		</script>
 		
 		<script id="template-example-6-lang-node-js" type="text/template">
-var Hashids = new Hashids('this is my salt 2');
-var hash = Hashids.encrypt(123); /* hash is now "ojK" */
+var hashids = new Hashids('this is my salt 2');
+var hash = hashids.encrypt(123); /* hash is now "ojK" */
 		</script>
 		
 		<script id="template-example-7-lang-node-js" type="text/template">
-var Hashids = new Hashids('this is my salt', 16);
-var hash = Hashids.encrypt(1); /* hash is now "jV34xpAYDx0mQNvl" */
+var hashids = new Hashids('this is my salt', 16);
+var hash = hashids.encrypt(1); /* hash is now "JEDngB0NV05ev1Ww" */
 		</script>
 		
 		<script id="template-example-8-lang-node-js" type="text/template">
-var Hashids = new Hashids('this is my salt');
-var hash = Hashids.encrypt(1); /* hash is now "NV" */
+var hashids = new Hashids('this is my salt');
+var hash = hashids.encrypt(1); /* hash is now "NV" */
 		</script>
 		
 		<script id="template-example-9-lang-node-js" type="text/template">
-var Hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
-var hash = Hashids.encrypt(123456789); /* hash is now "jrpjaxap" */
+var hashids = new Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
+var hash = hashids.encrypt(123456789); /* hash is now "jrpjaxap" */
 		</script>
 		
 		<!-- coffeescript examples -->
 		
 		<script id="template-example-1-lang-coffeescript" type="text/template">
-Hashids = new Hashids()
-hash = Hashids.encrypt 123
+hashids = new Hashids()
+hash = hashids.encrypt 123
 		</script>
 		
 		<script id="template-example-2-lang-coffeescript" type="text/template">
-Hashids = new Hashids()
-numbers = Hashids.decrypt 'Mj3'
+hashids = new Hashids()
+numbers = hashids.decrypt 'Mj3'
 		</script>
 		
 		<script id="template-example-3-lang-coffeescript" type="text/template">
-Hashids = new Hashids()
-hash = Hashids.encrypt 123, 456, 789
+hashids = new Hashids()
+hash = hashids.encrypt 123, 456, 789
 		</script>
 		
 		<script id="template-example-4-lang-coffeescript" type="text/template">
-Hashids = new Hashids()
-numbers = Hashids.decrypt 'El3fkRIo3'
+hashids = new Hashids()
+numbers = hashids.decrypt 'El3fkRIo3'
 		</script>
 		
 		<script id="template-example-5-lang-coffeescript" type="text/template">
-Hashids = new Hashids 'this is my salt 1'
-hash = Hashids.encrypt 123 # hash is now "nVB"
+hashids = new Hashids 'this is my salt 1'
+hash = hashids.encrypt 123 # hash is now "nVB"
 		</script>
 		
 		<script id="template-example-6-lang-coffeescript" type="text/template">
-Hashids = new Hashids 'this is my salt 2'
-hash = Hashids.encrypt 123 # hash is now "ojK"
+hashids = new Hashids 'this is my salt 2'
+hash = hashids.encrypt 123 # hash is now "ojK"
 		</script>
 		
 		<script id="template-example-7-lang-coffeescript" type="text/template">
-Hashids = new Hashids 'this is my salt', 16
-hash = Hashids.encrypt 1 # hash is now "jV34xpAYDx0mQNvl"
+hashids = new Hashids 'this is my salt', 16
+hash = hashids.encrypt 1 # hash is now "JEDngB0NV05ev1Ww"
 		</script>
 		
 		<script id="template-example-8-lang-coffeescript" type="text/template">
-Hashids = new Hashids 'this is my salt'
-hash = Hashids.encrypt 1 # hash is now "NV"
+hashids = new Hashids 'this is my salt'
+hash = hashids.encrypt 1 # hash is now "NV"
 		</script>
 		
 		<script id="template-example-9-lang-coffeescript" type="text/template">
-Hashids = new Hashids 'this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz'
-hash = Hashids.encrypt 123456789 # hash is now "jrpjaxap"
+hashids = new Hashids 'this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz'
+hash = hashids.encrypt 123456789 # hash is now "jrpjaxap"
 		</script>
 		
 		<!-- objective-c examples -->
@@ -669,6 +688,53 @@ Hashids *hashids = [Hashids hashidWithSalt:@"this is my salt"
 NSString *hash = [hashids encrypt:@123456789, nil]; // hash is now "zdrnoaor"
 		</script>
 		
+		<!-- cpp examples -->
+		
+		<script id="template-example-1-lang-cpp" type="text/template">
+hashidsxx::Hashids hash();
+std::string e = hash.encrypt({123});
+		</script>
+		
+		<script id="template-example-2-lang-cpp" type="text/template">
+hashidsxx::Hashids hash();
+std::vector<uint32_t> d = hash.decrypt("Mj3");
+		</script>
+		
+		<script id="template-example-3-lang-cpp" type="text/template">
+hashidsxx::Hashids hash();
+std::string e = hash.encrypt({123, 456, 789});
+		</script>
+		
+		<script id="template-example-4-lang-cpp" type="text/template">
+hashidsxx::Hashids hash();
+std::vector<uint32_t> d = hash.decrypt("El3fkRIo3");
+		</script>
+		
+		<script id="template-example-5-lang-cpp" type="text/template">
+hashidsxx::Hashids hash("this is my salt 1");
+std::string e = hash.encrypt({123}); // e is now "nVB"
+		</script>
+		
+		<script id="template-example-6-lang-cpp" type="text/template">
+hashidsxx::Hashids hash("this is my salt 2");
+std::string e = hash.encrypt({123}); // e is now "ojK"
+		</script>
+		
+		<script id="template-example-7-lang-cpp" type="text/template">
+hashidsxx::Hashids hash("this is my salt", 16);
+std::string e = hash.encrypt({1}); // e is now "JEDngB0NV05ev1Ww"
+		</script>
+		
+		<script id="template-example-8-lang-cpp" type="text/template">
+hashidsxx::Hashids hash("this is my salt");
+std::string e = hash.encrypt({1}); // e is now "NV"
+		</script>
+		
+		<script id="template-example-9-lang-cpp" type="text/template">
+hashidsxx::Hashids hash("this is my salt", 0, "abcdefghijklmnopqrstuvwxyz");
+std::string e = hash.encrypt({123456789}); // e is now "jrpjaxap"
+		</script>
+		
 		<!-- ruby examples -->
 		
 		<script id="template-example-1-lang-ruby" type="text/template">
@@ -703,7 +769,7 @@ hash = hashids.encrypt(123) # hash is now "ojK"
 		
 		<script id="template-example-7-lang-ruby" type="text/template">
 hashids = Hashids.new("this is my salt", 16)
-hash = hashids.encrypt(1) # hash is now "jV34xpAYDx0mQNvl"
+hash = hashids.encrypt(1) # hash is now "JEDngB0NV05ev1Ww"
 		</script>
 		
 		<script id="template-example-8-lang-ruby" type="text/template">
@@ -725,7 +791,7 @@ hash = hashids.encrypt(123)
 		
 		<script id="template-example-2-lang-python" type="text/template">
 hashids = Hashids()
-numbers = hashids.decrypt("eGtrS8")
+numbers = hashids.decrypt("Mj3")
 		</script>
 		
 		<script id="template-example-3-lang-python" type="text/template">
@@ -735,32 +801,32 @@ hash = hashids.encrypt(123, 456, 789)
 		
 		<script id="template-example-4-lang-python" type="text/template">
 hashids = Hashids()
-numbers = hashids.decrypt("yn8t46hen")
+numbers = hashids.decrypt("El3fkRIo3")
 		</script>
 		
 		<script id="template-example-5-lang-python" type="text/template">
 hashids = Hashids(salt="this is my salt 1")
-hash = hashids.encrypt(123) # hash is now "rnR"
+hash = hashids.encrypt(123) # hash is now "nVB"
 		</script>
 		
 		<script id="template-example-6-lang-python" type="text/template">
 hashids = Hashids(salt="this is my salt 2")
-hash = hashids.encrypt(123) # hash is now "XBn"
+hash = hashids.encrypt(123) # hash is now "ojK"
 		</script>
 		
 		<script id="template-example-7-lang-python" type="text/template">
 hashids = Hashids(salt="this is my salt", min_length=16)
-hash = hashids.encrypt(1) # hash is now "AA6Fb9iLXiAaBFB5"
+hash = hashids.encrypt(1) # hash is now "JEDngB0NV05ev1Ww"
 		</script>
 		
 		<script id="template-example-8-lang-python" type="text/template">
 hashids = Hashids(salt="this is my salt")
-hash = hashids.encrypt(1) # hash is now "LX"
+hash = hashids.encrypt(1) # hash is now "NV"
 		</script>
 		
 		<script id="template-example-9-lang-python" type="text/template">
 hashids = Hashids(salt="this is my salt", min_length=0, alphabet="abcdefghijklmnopqrstuvwxyz")
-hash = hashids.encrypt(123456789) # hash is now "zdrnoaor"
+hash = hashids.encrypt(123456789) # hash is now "jrpjaxap"
 		</script>
 		
 		<!-- java examples -->
@@ -797,7 +863,7 @@ String hash = hashids.encrypt(123); // hash is now "ojK"
 		
 		<script id="template-example-7-lang-java" type="text/template">
 Hashids hashids = new Hashids("this is my salt", 16);
-String hash = hashids.encrypt(1); // hash is now "jV34xpAYDx0mQNvl"
+String hash = hashids.encrypt(1); // hash is now "JEDngB0NV05ev1Ww"
 		</script>
 		
 		<script id="template-example-8-lang-java" type="text/template">
@@ -873,7 +939,7 @@ $hash = $hashids->encrypt(123);
 		
 		<script id="template-example-2-lang-php" type="text/template">
 $hashids = new Hashids\Hashids();
-$numbers = $hashids->decrypt('eGtrS8');
+$numbers = $hashids->decrypt('Mj3');
 		</script>
 		
 		<script id="template-example-3-lang-php" type="text/template">
@@ -883,32 +949,32 @@ $hash = $hashids->encrypt(123, 456, 789);
 		
 		<script id="template-example-4-lang-php" type="text/template">
 $hashids = new Hashids\Hashids();
-$numbers = $hashids->decrypt('yn8t46hen');
+$numbers = $hashids->decrypt('El3fkRIo3');
 		</script>
 		
 		<script id="template-example-5-lang-php" type="text/template">
 $hashids = new Hashids\Hashids('this is my salt 1');
-$numbers = $hashids->encrypt(123); // hash is now "rnR"
+$numbers = $hashids->encrypt(123); // hash is now "nVB"
 		</script>
 		
 		<script id="template-example-6-lang-php" type="text/template">
 $hashids = new Hashids\Hashids('this is my salt 2');
-$numbers = $hashids->encrypt(123); // hash is now "XBn"
+$numbers = $hashids->encrypt(123); // hash is now "ojK"
 		</script>
 		
 		<script id="template-example-7-lang-php" type="text/template">
 $hashids = new Hashids\Hashids('this is my salt', 16);
-$numbers = $hashids->encrypt(1); // hash is now "AA6Fb9iLXiAaBFB5"
+$numbers = $hashids->encrypt(1); // hash is now "JEDngB0NV05ev1Ww"
 		</script>
 		
 		<script id="template-example-8-lang-php" type="text/template">
 $hashids = new Hashids\Hashids('this is my salt');
-$numbers = $hashids->encrypt(1); // hash is now "LX"
+$numbers = $hashids->encrypt(1); // hash is now "NV"
 		</script>
 		
 		<script id="template-example-9-lang-php" type="text/template">
 $hashids = new Hashids\Hashids('this is my salt', 0, 'abcdefghijklmnopqrstuvwxyz');
-$numbers = $hashids->encrypt(123456789); // hash is now "zdrnoaor"
+$numbers = $hashids->encrypt(123456789); // hash is now "jrpjaxap"
 		</script>
 		
 		<!-- net examples -->
@@ -969,7 +1035,7 @@ local hash = h:encrypt(123);
 		<script id="template-example-2-lang-lua" type="text/template">
 local hashids = require("hashids");
 local h = hashids.new();
-local numbers = h:decrypt("laHquq");
+local numbers = h:decrypt("Mj3");
 		</script>
 		
 		<script id="template-example-3-lang-lua" type="text/template">
@@ -1024,7 +1090,7 @@ cipher = Saltie.encrypt(s, 123)
 		
 		<script id="template-example-2-lang-elixir" type="text/template">
 s = Saltie.new()
-numbers = Saltie.decrypt(s, 'laHquq')
+numbers = Saltie.decrypt(s, 'Mj3')
 		</script>
 		
 		<script id="template-example-3-lang-elixir" type="text/template">
@@ -1103,7 +1169,7 @@ var hash = hashids.encrypt(123); /* hash is now "ojK" */
 		
 		<script id="template-example-7-lang-coldfusion" type="text/template">
 var hashids = new Hashids("this is my salt", 16);
-var hash = hashids.encrypt(1); /* hash is now "jV34xpAYDx0mQNvl" */
+var hash = hashids.encrypt(1); /* hash is now "JEDngB0NV05ev1Ww" */
 		</script>
 		
 		<script id="template-example-8-lang-coldfusion" type="text/template">

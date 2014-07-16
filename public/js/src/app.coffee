@@ -87,6 +87,7 @@
 				url: 'https://github.com/crapthings/meteor-hashids'
 			}]
 			'objective-c': []
+			cpp: []
 			net: [{
 				title: 'NuGet Package'
 				class: 'nuget'
